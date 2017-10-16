@@ -2,6 +2,7 @@ package github.io.isenfireldc.misc.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -25,14 +26,32 @@ public class ItemArrowSpawner extends ItemBase {
 		this.setMaxStackSize(4);
 		this.setMaxDamage(4);
 		
+		
 		spawner = new TileEntityArrowSpawner(arrows);
-	}
+	};
+	
+	@Override
+	public int getItemEnchantability() {
+		return 1;
+	};
+	
+	@Override
+	public EnumAction getItemUseAction(ItemStack stack) {
+		return EnumAction.BOW;
+	};
+	
+	@Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 72000;
+    };
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (instant) {
 			spawner.spawn(worldIn, playerIn, itemstack);
+		} else {
+			playerIn.setActiveHand(handIn);
 		};
 		return new ActionResult<ItemStack>(instant ? EnumActionResult.SUCCESS : EnumActionResult.FAIL, itemstack);
 	};
@@ -41,7 +60,8 @@ public class ItemArrowSpawner extends ItemBase {
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
 		EntityPlayer entityplayer = (EntityPlayer)entityLiving;
 		spawner.spawn(worldIn, entityplayer, stack);
-	}
+		//super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
+	};
 	
 	@Override
 	public boolean isBeaconPayment(ItemStack stack) {
