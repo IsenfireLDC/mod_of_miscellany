@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
+  "modid": "misc",
+  "name": "Mod of Miscellany",
+  "description": "Miscellanious modding fun.",
+  "version": "0.1.1",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["IsenfireLDC"],
+  "credits": "Miscellanious tutorials and documentation",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

@@ -18,11 +18,20 @@ import net.minecraft.world.World;
 public class TileEntityArrowSpawner extends TileEntity {
 	
 	private int arrowsSpawned;
+	private boolean aimable;
+	
+	private float spread = 10.0F;
 	
 	protected Random rand = new Random();
 	
 	public TileEntityArrowSpawner(int arrowsSpawned) {
 		this.arrowsSpawned = arrowsSpawned;
+		this.aimable = true;
+	};
+	
+	public TileEntityArrowSpawner(int arrowsSpawned, boolean aimable) {
+		this.arrowsSpawned = arrowsSpawned;
+		this.aimable = aimable;
 	};
 	
 	@Override
@@ -47,7 +56,8 @@ public class TileEntityArrowSpawner extends TileEntity {
 			//shooting:
 			ItemArrow itemarrow = (ItemArrow)Items.ARROW;
 			EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), entityplayer);
-			entityarrow.setAim(entityplayer, rand.nextFloat() * 360.0F, rand.nextFloat() * 360.0F, 0.0F, 1.0F * 3.0F, 1.0F);
+			//entityarrow.setAim(entityplayer, cone(entityplayer.rotationPitch, spread), cone(entityplayer.rotationYaw, spread), 0.0F, 1.0F * 3.0F, 0.0F);
+			entityarrow.setAim(entityplayer, conePitch(entityplayer.rotationPitch, spread), coneYaw(entityplayer.rotationPitch, entityplayer.rotationYaw, spread), 0.0F, 1.0F * 3.0F, 0.0F);
 			entityarrow.setIsCritical(true);
 		
 			//enchantments:
@@ -80,6 +90,23 @@ public class TileEntityArrowSpawner extends TileEntity {
 		
 		//damage the arrow spawner
 		stack.damageItem(1, entityplayer);
+		
+	}
+	
+	private float conePitch(float rotation, float spread) {
+		rotation -= (spread / 2.0F);
+		return rotation + rand.nextFloat() * spread;
+	}
+	
+	private float coneYaw(float pitch, float yaw, float spread) {
+		//linear scaling
+		/*float yawCalc = Math.abs(pitch) / 90;
+		spread = (360 - spread) * yawCalc + spread;*/
+		
+		//quadratic scaling
+		spread = (spread / 2) * (float)Math.pow((double)((Math.abs(Math.abs(pitch) - 90)) / 180), -1D);
+		yaw -= spread / 2.0F;
+		return yaw + rand.nextFloat() * spread;
 	}
 
 }
