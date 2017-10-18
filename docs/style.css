@@ -1,0 +1,36 @@
+h1 {
+  color: #0e5ba4;
+}
+
+.spanTest {
+  font-weight: bold;
+}
+
+div.sidebar {
+  display: block;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+}
+
+div.sidebar ul {
+  list-style-type: none;
+}
+
+div.sidebar ul li a {
+  text-decoration: none;
+}
+
+div.content {
+  display: block;
+  background-color: #9c9c9c;
+  width: 80%;
+  height: 100%;
+  margin-top: 0;
+  padding: 0;
+  margin-left: 20%;
+}
