@@ -3,7 +3,7 @@
   "modid": "misc",
   "name": "Mod of Miscellany",
   "description": "Miscellanious modding fun.",
-  "version": "0.1.1",
+  "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
