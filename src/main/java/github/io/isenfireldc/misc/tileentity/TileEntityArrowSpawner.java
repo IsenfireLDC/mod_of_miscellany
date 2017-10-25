@@ -31,7 +31,6 @@ public class TileEntityArrowSpawner extends TileEntity {
 	
 	public TileEntityArrowSpawner(int arrowsSpawned) {
 		this.arrowsSpawned = arrowsSpawned;
-		this.aimable = true;
 	};
 	
 /*	public TileEntityArrowSpawner(int arrowsSpawned, boolean aimable) {
@@ -46,13 +45,13 @@ public class TileEntityArrowSpawner extends TileEntity {
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("arrowsSpawned", arrowsSpawned);
+		//compound.setInteger("arrowsSpawned", arrowsSpawned);
 		return super.writeToNBT(compound);
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		arrowsSpawned = compound.getInteger("arrowsSpawned");
+		//arrowsSpawned = compound.getInteger("arrowsSpawned");
 		super.readFromNBT(compound);
 	}
 	
@@ -60,10 +59,12 @@ public class TileEntityArrowSpawner extends TileEntity {
 		EntityArrow[] arrows = new EntityArrow[arrowsSpawned];
 		//sound:
 		worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 1.2F) + 1.0F * 0.5F);
+		
+		//get velocity for instant spawners
 		int a = spawner.getMaxItemUseDuration(stack) - timeLeft;
 		charge = instant ? 1.0F : getArrowVelocity(a);
 		
-		for (int i = 0; i < arrowsSpawned; i++) {
+		for (int i = 0; i < arrows.length; i++) {
 			//shooting:
 			ItemArrow itemarrow = (ItemArrow)Items.ARROW;
 			EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), entityplayer);
@@ -94,8 +95,10 @@ public class TileEntityArrowSpawner extends TileEntity {
 		};
 		
 		//spawn arrows
-		for (EntityArrow entityarrow : arrows) {
-			worldIn.spawnEntity(entityarrow);
+		if (!worldIn.isRemote) {
+			for (EntityArrow entityarrow : arrows) {
+				worldIn.spawnEntity(entityarrow);
+			};
 		};
 		
 		//damage the arrow spawner
