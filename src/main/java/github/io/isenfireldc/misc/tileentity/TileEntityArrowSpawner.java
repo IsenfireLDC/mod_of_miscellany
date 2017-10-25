@@ -2,6 +2,9 @@ package github.io.isenfireldc.misc.tileentity;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
+import github.io.isenfireldc.misc.item.ItemArrowSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -18,7 +21,9 @@ import net.minecraft.world.World;
 public class TileEntityArrowSpawner extends TileEntity {
 	
 	private int arrowsSpawned;
-	private boolean aimable;
+	private boolean aimable = true;
+	private boolean instant;
+	private float charge;
 	
 	private float spread = 10.0F;
 	
@@ -29,10 +34,15 @@ public class TileEntityArrowSpawner extends TileEntity {
 		this.aimable = true;
 	};
 	
-	public TileEntityArrowSpawner(int arrowsSpawned, boolean aimable) {
+/*	public TileEntityArrowSpawner(int arrowsSpawned, boolean aimable) {
 		this.arrowsSpawned = arrowsSpawned;
 		this.aimable = aimable;
-	};
+	};*/
+	
+	public TileEntityArrowSpawner(int arrowsSpawned, boolean instant) {
+		this.arrowsSpawned = arrowsSpawned;
+		this.instant = instant;
+	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
@@ -46,18 +56,18 @@ public class TileEntityArrowSpawner extends TileEntity {
 		super.readFromNBT(compound);
 	}
 	
-	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack) {
+	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack, ItemArrowSpawner spawner, @Nullable int timeLeft) {
 		EntityArrow[] arrows = new EntityArrow[arrowsSpawned];
+		//sound:
+		worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 1.2F) + 1.0F * 0.5F);
+		int a = spawner.getMaxItemUseDuration(stack) - timeLeft;
+		charge = instant ? 1.0F : getArrowVelocity(a);
 		
 		for (int i = 0; i < arrowsSpawned; i++) {
-			//sound:
-			worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 1.2F) + 1.0F * 0.5F);
-		
 			//shooting:
 			ItemArrow itemarrow = (ItemArrow)Items.ARROW;
 			EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), entityplayer);
-			//entityarrow.setAim(entityplayer, cone(entityplayer.rotationPitch, spread), cone(entityplayer.rotationYaw, spread), 0.0F, 1.0F * 3.0F, 0.0F);
-			entityarrow.setAim(entityplayer, conePitch(entityplayer.rotationPitch, spread), coneYaw(entityplayer.rotationPitch, entityplayer.rotationYaw, spread), 0.0F, 1.0F * 3.0F, 0.0F);
+			entityarrow.setAim(entityplayer, conePitch(entityplayer.rotationPitch, spread), coneYaw(entityplayer.rotationPitch, entityplayer.rotationYaw, spread), 0.0F, charge * 3.0F, 0.0F);
 			entityarrow.setIsCritical(true);
 		
 			//enchantments:
@@ -107,6 +117,18 @@ public class TileEntityArrowSpawner extends TileEntity {
 		spread = (spread / 2) * (float)Math.pow((double)((Math.abs(Math.abs(pitch) - 90)) / 180), -1D);
 		yaw -= spread / 2.0F;
 		return yaw + rand.nextFloat() * spread;
+	}
+	
+	private float getArrowVelocity(int charge) {
+		float f = (float)charge / 20.0F;
+		f = (f * f + f * 2.0F) / 3.0F;
+		f = 2 * f;
+		
+		if (f > 2.0F) {
+			f = 2.0F;
+		}
+		
+		return f;
 	}
 
 }

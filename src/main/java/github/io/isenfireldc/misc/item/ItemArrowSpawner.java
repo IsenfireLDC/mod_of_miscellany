@@ -27,7 +27,7 @@ public class ItemArrowSpawner extends ItemBase {
 		this.setMaxDamage(4);
 		
 		
-		spawner = new TileEntityArrowSpawner(arrows);
+		spawner = new TileEntityArrowSpawner(arrows, instant);
 	};
 	
 	@Override
@@ -45,11 +45,12 @@ public class ItemArrowSpawner extends ItemBase {
         return 72000;
     };
 	
+	@SuppressWarnings("null")
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (instant) {
-			spawner.spawn(worldIn, playerIn, itemstack);
+			spawner.spawn(worldIn, playerIn, itemstack, this, (Integer)null);
 		} else {
 			playerIn.setActiveHand(handIn);
 		};
@@ -59,8 +60,7 @@ public class ItemArrowSpawner extends ItemBase {
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
 		EntityPlayer entityplayer = (EntityPlayer)entityLiving;
-		spawner.spawn(worldIn, entityplayer, stack);
-		//super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
+		spawner.spawn(worldIn, entityplayer, stack, this, timeLeft);
 	};
 	
 	@Override
