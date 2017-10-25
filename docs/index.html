@@ -3,19 +3,22 @@
 <head>
   <title>Mod of Miscellany</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js"></script>
 </head>
 
-<body>
-<div class="sidebar">
+<body onload="showDownloads()">
+<div class="menubar">
   <ul>
-    <li><a href="#home">Home</a></li>
+    <li><a href="https://isenfireldc.github.io">Home</a></li>
   </ul>
 </div>
 
-<div class="content">
-  <h1>Mod of Miscellany</h1>
-  <h3>A mod of miscellaneous creations.</h3>
-  <p><span class="spanTest">Hello!</span> Welcome to the page.</p>
+<div class="content" id="content">
+  <h1 class="heading">Mod of Miscellany</h1>
+  <h3 class = "heading">A mod of miscellaneous creations.</h3>
+  <table id="downloadTable">
+    <th colspan="2">Downloads</th>
+  </table>
 </div>
 </body>
 </html>
