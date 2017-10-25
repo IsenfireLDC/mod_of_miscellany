@@ -112,12 +112,10 @@ public class TileEntityArrowSpawner extends TileEntity {
 	}
 	
 	private float coneYaw(float pitch, float yaw, float spread) {
-		//linear scaling
-		/*float yawCalc = Math.abs(pitch) / 90;
-		spread = (360 - spread) * yawCalc + spread;*/
-		
-		//quadratic scaling
 		spread = (spread / 2) * (float)Math.pow((double)((Math.abs(Math.abs(pitch) - 90)) / 180), -1D);
+		if (spread > 360) {
+			spread = 360;
+		}
 		yaw -= spread / 2.0F;
 		return yaw + rand.nextFloat() * spread;
 	}
