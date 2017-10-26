@@ -1,11 +1,13 @@
 package github.io.isenfireldc.misc.item;
 
+import github.io.isenfireldc.misc.MiscellanyMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ItemBase extends Item {
 	
 	protected String name;
+	protected String subfolder = "";
 	
 	public ItemBase(String name) {
 		this.name = name;
@@ -18,6 +20,14 @@ public class ItemBase extends Item {
 	public ItemBase setCreativeTab(CreativeTabs tab) {
 		super.setCreativeTab(tab);
 		return this;
+	}
+	
+	public void setSubfolder(String subfolder) {
+		this.subfolder = subfolder;
+	}
+	
+	public void registerItemModel() {
+		MiscellanyMod.proxy.registerItemRenderer(this, 0, name, subfolder);
 	}
 
 }

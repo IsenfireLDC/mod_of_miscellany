@@ -28,6 +28,8 @@ public class ItemArrowSpawner extends ItemBase {
 		
 		
 		spawner = new TileEntityArrowSpawner(arrows, instant);
+		
+		this.setSubfolder("arrowspawners");
 	};
 	
 	@Override

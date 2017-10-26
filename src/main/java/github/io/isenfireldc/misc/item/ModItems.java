@@ -1,5 +1,8 @@
 package github.io.isenfireldc.misc.item;
 
+import github.io.isenfireldc.misc.Reference;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -26,7 +29,19 @@ public class ModItems {
 	private static <T extends Item> T register(T item) {
 		GameRegistry.register(item);
 		
+		if (item instanceof ItemBase) {
+			((ItemBase)item).registerItemModel();
+		}
+		
 		return item;
 	}
+	
+	/*public static void registerRenders(Item item) {
+		registerRender(item);
+	}
+	
+	private static void registerRender(Item item) {
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	}*/
 
 }
