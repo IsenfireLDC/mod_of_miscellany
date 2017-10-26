@@ -55,14 +55,13 @@ public class TileEntityArrowSpawner extends TileEntity {
 		super.readFromNBT(compound);
 	}
 	
-	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack, ItemArrowSpawner spawner, @Nullable int timeLeft) {
+	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack, ItemArrowSpawner spawner, int timeLeft) {
 		EntityArrow[] arrows = new EntityArrow[arrowsSpawned];
 		//sound:
 		worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 1.2F) + 1.0F * 0.5F);
 		
 		//get velocity for instant spawners
-		int a = spawner.getMaxItemUseDuration(stack) - timeLeft;
-		charge = instant ? 1.0F : getArrowVelocity(a);
+		charge = instant ? 1.0F : getArrowVelocity(spawner.getMaxItemUseDuration(stack) - timeLeft);
 		
 		for (int i = 0; i < arrows.length; i++) {
 			//shooting:

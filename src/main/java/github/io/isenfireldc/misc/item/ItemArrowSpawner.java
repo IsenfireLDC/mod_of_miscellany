@@ -45,12 +45,11 @@ public class ItemArrowSpawner extends ItemBase {
         return 72000;
     };
 	
-	@SuppressWarnings("null")
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (instant) {
-			spawner.spawn(worldIn, playerIn, itemstack, this, (Integer)null);
+			spawner.spawn(worldIn, playerIn, itemstack, this, -1);
 		} else {
 			playerIn.setActiveHand(handIn);
 		};
