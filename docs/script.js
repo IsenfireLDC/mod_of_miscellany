@@ -1,6 +1,6 @@
 var downloadPath = "../builds/dev-versions/";
-var jdownloads = ["misc-0.1.1.jar", "misc-0.1.2-dev.jar"];
-var sdownloads = ["misc-0.1.1.sources.jar", "misc-0.1.2-dev.sources.jar"];
+var jdownloads = ["misc-0.1.1.jar", "misc-0.1.2-dev.jar", "misc-0.1.2.1-dev.jar"];
+var sdownloads = ["misc-0.1.1.sources.jar", "misc-0.1.2-dev.sources.jar", "misc-0.1.2.1-dev.sources.jar"];
 var downloads = new Array(jdownloads.length);
 for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
