@@ -33,11 +33,6 @@ public class TileEntityArrowSpawner extends TileEntity {
 		this.arrowsSpawned = arrowsSpawned;
 	};
 	
-/*	public TileEntityArrowSpawner(int arrowsSpawned, boolean aimable) {
-		this.arrowsSpawned = arrowsSpawned;
-		this.aimable = aimable;
-	};*/
-	
 	public TileEntityArrowSpawner(int arrowsSpawned, boolean instant) {
 		this.arrowsSpawned = arrowsSpawned;
 		this.instant = instant;
