@@ -10,8 +10,12 @@ public class EntityBase extends Entity {
 
 	public EntityBase(World worldIn) {
 		super(worldIn);
-		
 	};
+	
+/*	public EntityBase(World world, String name) {
+		super(world);
+		this.name = name;
+	};*/
 
 	@Override
 	protected void entityInit() {

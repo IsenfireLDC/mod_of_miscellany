@@ -1,20 +1,26 @@
 package github.io.isenfireldc.misc.entity;
 
+import github.io.isenfireldc.misc.MiscellanyMod;
+import github.io.isenfireldc.misc.Reference;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ModEntities {
+	
+	private static int id = -1;
 	
 	public static EntityFlare flare;
 	
 	public static void init() {
 		
+		register(EntityFlare.class, "flare");
+		
 	};
 	
-	private static <T extends Entity> T register(T entity, String name) {
-		EntityRegistry.registerModEntity(registryName, entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-		
-		return entity;
+	private static void register(Class entity, String name) {
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, ++id, MiscellanyMod.instance, 128, 1, true);
+		System.out.println("Registered " + name + ".");
 	};
 
 }

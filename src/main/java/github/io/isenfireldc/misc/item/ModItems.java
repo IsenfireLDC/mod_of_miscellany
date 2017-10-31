@@ -16,6 +16,8 @@ public class ModItems {
 	public static ItemArrowSpawner inst20;
 	public static ItemArrowSpawner slow20;
 	
+	public static ItemFlareGun flare_gun;
+	
 	public static void init() {
 		test5 = register(new ItemArrowSpawner("test5", 5, false));
 		
@@ -24,6 +26,8 @@ public class ModItems {
 		
 		inst20 = register(new ItemArrowSpawner("inst20", 20, true));
 		slow20 = register(new ItemArrowSpawner("slow20", 20, false));
+		
+		flare_gun = register(new ItemFlareGun("flare_gun"));
 	}
 	
 	private static <T extends Item> T register(T item) {

@@ -22,7 +22,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityFlare extends EntityBase implements IProjectile {
+public class EntityFlare extends EntityBase implements IProjectile {
 	
     private int xTile;
     private int yTile;
@@ -37,8 +37,12 @@ public abstract class EntityFlare extends EntityBase implements IProjectile {
     public Entity ignoreEntity;
     private int ignoreTime;
     
+    private boolean hasNoGravity = false;
+    
+    private int burnTime = 1000;
+    
     private double gravCorrection = .6;
-	
+    
 	public EntityFlare(World world) {
 		super(world);
 		
@@ -305,6 +309,12 @@ public abstract class EntityFlare extends EntityBase implements IProjectile {
         }
 
         this.setPosition(this.posX, this.posY, this.posZ);
+        
+        if (burnTime <= 0) {
+        	this.setDead();
+        }
+        
+        burnTime--;
     };
     
     protected float getGravityVelocity() {
@@ -312,7 +322,23 @@ public abstract class EntityFlare extends EntityBase implements IProjectile {
     	return 0.003F;
     };
     
-    protected abstract void onImpact(RayTraceResult result);
+    //protected abstract void onImpact(RayTraceResult result);
+    
+    protected void onImpact(RayTraceResult result) {
+        if (!this.world.isRemote) {
+        	
+            this.world.setEntityState(this, (byte)0);
+            
+            this.motionX = 0;
+            this.motionY = 0;
+            this.motionZ = 0;
+            this.hasNoGravity = true;
+            
+            if (burnTime <= 0) {
+            	this.setDead();
+            };
+        }
+    }
     
     @Override
     public float getBrightness(float partialTicks) {
@@ -402,5 +428,10 @@ public abstract class EntityFlare extends EntityBase implements IProjectile {
         return this.thrower;
         
 	};
+	
+	@Override
+	public boolean hasNoGravity() {
+		return hasNoGravity;
+	}
 
 }
