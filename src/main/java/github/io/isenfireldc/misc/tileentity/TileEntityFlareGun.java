@@ -12,7 +12,7 @@ public class TileEntityFlareGun {
 	
 	public boolean fire(World world, EntityPlayer player) {
 		EntityFlare flare = new EntityFlare(world, player);
-		flare.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
+		flare.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
 		if (!world.isRemote) {
 			world.spawnEntity(flare);
 		};
