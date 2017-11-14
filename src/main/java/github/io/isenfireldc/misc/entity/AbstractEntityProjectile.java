@@ -53,6 +53,8 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
+    
+    public AbstractEntityProjectile.Boundedness boundedness;
 	
     public AbstractEntityProjectile(World worldIn) {
         super(worldIn);
@@ -205,10 +207,10 @@ public abstract class AbstractEntityProjectile extends EntityBase {
             {
                 ++this.ticksInGround;
 
-                if (this.ticksInGround >= 1200)
+/*                if (this.ticksInGround >= 1200)
                 {
                     this.setDead();
-                }
+                }*/
             }
 
             ++this.timeInGround;
@@ -546,5 +548,12 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     /* My methods below this line */
     
     protected abstract double getVerticalVelocity(double velocity);
+    
+    public static enum Boundedness {
+    	NOT_BOUNDED,
+    	BOUNDED,
+    	BOUNDED_TOP,
+    	BOUNDED_BOTTOM;
+    }
 	
 }
