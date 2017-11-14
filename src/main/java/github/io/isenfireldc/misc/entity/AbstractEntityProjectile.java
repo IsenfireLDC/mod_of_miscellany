@@ -53,11 +53,6 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
-    
-    private double gravity = 1.0D;
-    private boolean velocityLimit = false;
-    private double maxVelocityUp = 0D;
-    private double maxVelocityDown = 0D;
 	
     public AbstractEntityProjectile(World worldIn) {
         super(worldIn);
