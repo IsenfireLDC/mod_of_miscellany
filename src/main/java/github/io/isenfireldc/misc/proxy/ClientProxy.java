@@ -1,6 +1,7 @@
 package github.io.isenfireldc.misc.proxy;
 
 import github.io.isenfireldc.misc.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
