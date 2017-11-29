@@ -112,7 +112,8 @@ public class EntityFlare extends AbstractEntityProjectile {
      * @param pos Position of the flare
      */
     private void setBlock(World world, BlockPos pos) {
-    	boolean flag = false;
+    	world.getBlockState(pos).getBlock().setLightLevel(1.0F);
+    	/*boolean flag = false;
     	boolean refresh = false;
     	BlockLitAir light;
     	for (BlockLitAir block : lighting) {
@@ -134,7 +135,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     		lighting.add(light);
     	} else {
     		flag = false;
-    	};
+    	};*/
     };
     
     //For potential use later

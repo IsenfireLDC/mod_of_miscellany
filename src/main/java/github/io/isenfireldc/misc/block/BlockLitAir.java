@@ -7,6 +7,7 @@ import com.google.common.base.Optional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,7 +20,7 @@ public class BlockLitAir extends BlockBase {
 	private BlockPos pos;
 
 	public BlockLitAir(BlockPos pos) {
-		super("litAir", Material.AIR);
+		super("lit_air", Material.AIR);
 		this.pos = pos;
 		
 		this.setDefaultState(getDefaultState());
@@ -58,6 +59,23 @@ public class BlockLitAir extends BlockBase {
 		return pos;
 	};
 	
+	@Override
+	public boolean isCollidable() {
+		return false;
+	};
 	
-
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	};
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
+	};
 }

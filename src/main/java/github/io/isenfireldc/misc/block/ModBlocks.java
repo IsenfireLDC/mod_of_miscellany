@@ -6,11 +6,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 	
-	public static BlockLitAir litAir;
+	public static BlockLitAir lit_air;
 	
 	public static void init() {
 		
-		litAir = register(new BlockLitAir());
+		lit_air = register(new BlockLitAir());
 		
 	}
 	
