@@ -6,28 +6,6 @@ var downloads;
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
 
-function showDownloads() {
-  var table = document.getElementById('downloadTable');
-
-  for (var i = 0; i < downloads.length; i++) {
-    console.log(i);
-    var row = document.createElement('tr');
-    for (var j = 0; j < downloads[i].length; j++) {
-      console.log(j);
-      var cell = document.createElement('td');
-      var file = document.createElement('a');
-      file.setAttribute('href', downloadPath + downloads[i][j]);
-      console.log(downloadPath + downloads[i][j]);
-      file.setAttribute('download', downloads[i][j]);
-      file.innerHTML = downloads[i][j];
-
-      cell.appendChild(file);
-      row.appendChild(cell);
-    }
-    table.appendChild(row);
-  }
-}
-
 function getData() {       //this will read file and send information to other function
        var xmlhttp;
 
@@ -65,7 +43,7 @@ function intoArray (lines) {
    var lineArr = lines.split('\n');
    lineArr.pop();
 
-   downloads = new Array(lineArr.length);
+   downloads = new Array(jdownloads.length);
 
    //just to check if it works output lineArr[index] as below
    var j = 0;
@@ -73,4 +51,26 @@ function intoArray (lines) {
      downloads[j] = [lineArr[i], lineArr[i + 1]];
      j++;
    };
+}
+
+function showDownloads() {
+  var table = document.getElementById('downloadTable');
+
+  for (var i = 0; i < downloads.length; i++) {
+    console.log(i);
+    var row = document.createElement('tr');
+    for (var j = 0; j < downloads[i].length; j++) {
+      console.log(j);
+      var cell = document.createElement('td');
+      var file = document.createElement('a');
+      file.setAttribute('href', downloadPath + downloads[i][j]);
+      console.log(downloadPath + downloads[i][j]);
+      file.setAttribute('download', downloads[i][j]);
+      file.innerHTML = downloads[i][j];
+
+      cell.appendChild(file);
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
 }
