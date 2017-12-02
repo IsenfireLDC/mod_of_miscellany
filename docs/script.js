@@ -6,7 +6,7 @@ var downloads;
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
 
-function showDownloads() {
+function showDownloads(downloads) {
   var table = document.getElementById('downloadTable');
 
   for (var i = 0; i < downloads.length; i++) {
@@ -48,7 +48,7 @@ function getData() {       //this will read file and send information to other f
 
        xmlhttp.open("GET", "devFiles.txt", true);
        xmlhttp.send();
-       showDownloads();
+       showDownloads(this.downloads);
 }
 
 /*function getData2() {
@@ -70,7 +70,7 @@ function intoArray (lines) {
    //just to check if it works output lineArr[index] as below
    var j = 0;
    for (var i = 0; i < lineArr.length; i += 2) {
-     downloads[j] = [lineArr[i], lineArr[i + 1]];
+     this.downloads[j] = [lineArr[i], lineArr[i + 1]];
      j++;
    };
 }
