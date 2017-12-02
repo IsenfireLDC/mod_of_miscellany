@@ -65,7 +65,9 @@ function intoArray (lines) {
    //and saving each new line as each element*
 
    var lineArr = lines.split('\n');
+   console.log(lineArr);
    lineArr.pop();
+   console.log(lineArr);
 
    downloads = new Array(lineArr.length);
 
@@ -73,6 +75,9 @@ function intoArray (lines) {
    var j = 0;
    for (var i = 0; i < lineArr.length; i += 2) {
      downloads[j] = [lineArr[i], lineArr[i + 1]];
+     console.log(downloads[j]);
+     console.log(i + " " + j);
      j++;
    };
+   console.log(downloads);
 }
