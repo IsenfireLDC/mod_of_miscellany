@@ -50,12 +50,12 @@ function getData() {       //this will read file and send information to other f
        xmlhttp.send();
 }
 
-function getData2() {
+/*function getData2() {
   fetch('devFiles.txt')
     .then(response => response.text())
     .then(text => console.log(text));
     intoArray(text);
-}
+}*/
 
 function intoArray (lines) {
    // splitting all text data into array "\n" is splitting data from each new line
@@ -64,6 +64,11 @@ function intoArray (lines) {
    var lineArr = lines.split('\n');
 
    //just to check if it works output lineArr[index] as below
+   var j = 0;
+   for (var i = 0; i < lineArr.length; i += 2) {
+     downloads[j] = [lineArr[i], lineArr[i + 1]];
+     j++;
+   }
    document.write(lineArr[2]);
    document.write(lineArr[3]);
 }
