@@ -68,7 +68,5 @@ function intoArray (lines) {
    for (var i = 0; i < lineArr.length; i += 2) {
      downloads[j] = [lineArr[i], lineArr[i + 1]];
      j++;
-   }
-   document.write(lineArr[2]);
-   document.write(lineArr[3]);
+   };
 }
