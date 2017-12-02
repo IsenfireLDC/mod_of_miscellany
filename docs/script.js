@@ -63,6 +63,7 @@ function intoArray (lines) {
    //and saving each new line as each element*
 
    var lineArr = lines.split('\n');
+   lineArr.pop();
 
    //just to check if it works output lineArr[index] as below
    var j = 0;
