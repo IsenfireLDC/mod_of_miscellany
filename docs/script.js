@@ -43,7 +43,7 @@ function intoArray (lines) {
    var lineArr = lines.split('\n');
    lineArr.pop();
 
-   downloads = new Array(jdownloads.length);
+   downloads = new Array(lineArr.length);
 
    //just to check if it works output lineArr[index] as below
    var j = 0;
