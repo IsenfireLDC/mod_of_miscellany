@@ -2,9 +2,9 @@ var downloadPath = "../builds/dev-versions/";
 var jdownloads = ["misc-0.1.1.jar", "misc-0.1.2-dev.jar", "misc-0.1.2.1-dev.jar", "misc-0.1.3-dev.jar"];
 var sdownloads = ["misc-0.1.1.sources.jar", "misc-0.1.2-dev.sources.jar", "misc-0.1.2.1-dev.sources.jar", "misc-0.1.3-dev.sources.jar"];
 var downloads = new Array(jdownloads.length);
-for (var i = 0; i < jdownloads.length; i++) {
+/*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
-};
+};*/
 
 function showDownloads() {
   var table = document.getElementById('downloadTable');
@@ -48,6 +48,7 @@ function getData() {       //this will read file and send information to other f
 
        xmlhttp.open("GET", "devFiles.txt", true);
        xmlhttp.send();
+       showDownloads();
 }
 
 /*function getData2() {
@@ -68,7 +69,5 @@ function intoArray (lines) {
    for (var i = 0; i < lineArr.length; i += 2) {
      downloads[j] = [lineArr[i], lineArr[i + 1]];
      j++;
-   }
-   document.write(lineArr[2]);
-   document.write(lineArr[3]);
+   };
 }
