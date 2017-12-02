@@ -1,7 +1,7 @@
 var downloadPath = "../builds/dev-versions/";
 var jdownloads = ["misc-0.1.1.jar", "misc-0.1.2-dev.jar", "misc-0.1.2.1-dev.jar", "misc-0.1.3-dev.jar"];
 var sdownloads = ["misc-0.1.1.sources.jar", "misc-0.1.2-dev.sources.jar", "misc-0.1.2.1-dev.sources.jar", "misc-0.1.3-dev.sources.jar"];
-var downloads = new Array(jdownloads.length);
+var downloads;
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
@@ -63,6 +63,9 @@ function intoArray (lines) {
    //and saving each new line as each element*
 
    var lineArr = lines.split('\n');
+   lineArr.pop();
+
+   downloads = new Array(lineArr.length);
 
    //just to check if it works output lineArr[index] as below
    var j = 0;
