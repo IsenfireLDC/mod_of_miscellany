@@ -1,11 +1,11 @@
 var downloadPath = "../builds/dev-versions/";
 var downloads;
-getData();
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
 
 function showDownloads() {
+  getData();
   var table = document.getElementById('downloadTable');
 
   for (var i = 0; i < downloads.length; i++) {
