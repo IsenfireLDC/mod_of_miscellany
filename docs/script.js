@@ -1,10 +1,6 @@
 var downloadPath = "../builds/dev-versions/";
 var downloads;
 getData();
-
-//globalized for debugging
-var lines;
-var lineArr;
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
