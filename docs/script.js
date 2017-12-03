@@ -1,5 +1,5 @@
 var downloadPath = "../builds/dev-versions/";
-var downloads;
+var downloads = [];
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
