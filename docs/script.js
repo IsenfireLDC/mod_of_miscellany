@@ -69,7 +69,7 @@ function intoArray (lines) {
    lineArr.pop();
    console.log(lineArr);
 
-   downloads = new Array(lineArr.length);
+   downloads = new Array(lineArr.length / 2);
 
    //just to check if it works output lineArr[index] as below
    var j = 0;
