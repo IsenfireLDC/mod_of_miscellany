@@ -1,11 +1,15 @@
 var downloadPath = "../builds/dev-versions/";
+var inputFiles = ["devFiles.txt"];  //For possible use later
 var downloads = [];
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
 
+function pageLoad() {
+  getData().then(showDownloads);
+}
+
 function showDownloads() {
-  getData();
   var table = document.getElementById('downloadTable');
 
   for (var i = 0; i < downloads.length; i++) {
@@ -28,6 +32,7 @@ function showDownloads() {
 }
 
 function getData() {       //this will read file and send information to other function
+  return new new Promise(function(resolve) {
        var xmlhttp;
 
        if (window.XMLHttpRequest) {
@@ -40,21 +45,25 @@ function getData() {       //this will read file and send information to other f
        xmlhttp.onreadystatechange = function () {
            if (xmlhttp.readyState == 4) {
              var lines = xmlhttp.responseText;    //*here we get all lines from text file*
+             resolve(xmlhttp.responseText);
 
              intoArray(lines);     //here we call function with parameter "lines*"
+           } else {
+             reject(Error(xmlhttp.statusText));
            }
        }
 
        xmlhttp.open("GET", "devFiles.txt", true);
        xmlhttp.send();
+   });
 }
 
-/*function getData2() {
+function getData2() {
   fetch('devFiles.txt')
     .then(response => response.text())
     .then(text => console.log(text));
     intoArray(text);
-}*/
+}
 
 function intoArray (lines) {
    // splitting all text data into array "\n" is splitting data from each new line
