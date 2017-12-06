@@ -6,7 +6,13 @@ var downloads = [];
 };*/
 
 function pageLoad() {
-  getData().then(showDownloads);
+  fetch('devFiles.txt')
+    .then(response => response.text())
+    .then(text => {
+      intoArray(text);
+      return text;
+    })
+    .then(showDownloads);
 }
 
 function showDownloads() {
@@ -32,7 +38,6 @@ function showDownloads() {
 }
 
 function getData() {       //this will read file and send information to other function
-  return new new Promise(function(resolve) {
        var xmlhttp;
 
        if (window.XMLHttpRequest) {
@@ -45,24 +50,22 @@ function getData() {       //this will read file and send information to other f
        xmlhttp.onreadystatechange = function () {
            if (xmlhttp.readyState == 4) {
              var lines = xmlhttp.responseText;    //*here we get all lines from text file*
-             resolve(xmlhttp.responseText);
 
              intoArray(lines);     //here we call function with parameter "lines*"
-           } else {
-             reject(Error(xmlhttp.statusText));
            }
        }
 
        xmlhttp.open("GET", "devFiles.txt", true);
        xmlhttp.send();
-   });
 }
 
 function getData2() {
   fetch('devFiles.txt')
     .then(response => response.text())
-    .then(text => console.log(text));
-    intoArray(text);
+    .then(text => {
+      intoArray(text);
+      return text;
+    }).then(showDownloads);
 }
 
 function intoArray (lines) {
