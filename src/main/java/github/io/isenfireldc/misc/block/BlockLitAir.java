@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 //TODO Make die after flare is dead or otherwise fix system
 public class BlockLitAir extends BlockBase {
 	
-	private int ticksRemaining = 1000;
+	//private int ticksRemaining = 1000;
 	
 	private BlockPos pos;
 
@@ -42,7 +42,7 @@ public class BlockLitAir extends BlockBase {
 	 * @param world The world that the block is in
 	 * @return Returns true if the block is 'dead'
 	 */
-	public boolean update(boolean refresh, World world) {
+	/*public boolean update(boolean refresh, World world) {
 		if (ticksRemaining == 0 && !refresh) {
 			world.setBlockToAir(pos);
 			return true;
@@ -53,7 +53,7 @@ public class BlockLitAir extends BlockBase {
 			this.ticksRemaining--;
 		};
 		return false;
-	};
+	};*/
 	
 	public BlockPos getPosition() {
 		return pos;

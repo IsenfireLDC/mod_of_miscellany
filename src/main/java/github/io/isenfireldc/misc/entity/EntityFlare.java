@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import github.io.isenfireldc.misc.block.BlockLitAir;
 import github.io.isenfireldc.misc.item.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -29,6 +31,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     
     private BlockPos prevPos;
     private BlockPos pos;
+    private IBlockState prevState;
 
 	public EntityFlare(World worldIn) {
 		super(worldIn);
@@ -112,7 +115,17 @@ public class EntityFlare extends AbstractEntityProjectile {
      * @param pos Position of the flare
      */
     private void setBlock(World world, BlockPos pos) {
-    	world.getBlockState(pos).getBlock().setLightLevel(1.0F);
+    	IBlockState currentState = world.getBlockState(pos);
+    	
+    	BlockLitAir light = new BlockLitAir(pos);
+    	world.setBlockState(pos, light.getDefaultState());
+    	
+    	if (prevState != null) {
+    		world.setBlockState(prevPos, prevState);
+    	}
+    	prevPos = pos;
+    	prevState = currentState;
+    	
     	/*boolean flag = false;
     	boolean refresh = false;
     	BlockLitAir light;

@@ -1,1 +1,1 @@
-dir ".\builds\dev-versions" /b /o:d *.jar > devFiles.txt
+dir ".\builds\dev-versions\*.jar" /b /o:d > devFiles.txt
