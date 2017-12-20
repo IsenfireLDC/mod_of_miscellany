@@ -1,23 +1,17 @@
 package github.io.isenfireldc.misc.block;
 
-import java.util.Collection;
-
-import com.google.common.base.Optional;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 //TODO Fix collision
 public class BlockLitAir extends BlockCollisionlessBase {
 	
-	//private int ticksRemaining = 1000;
+	private int ticksRemaining = 1000;
 	
 	private BlockPos pos;
+	
+	private int lightValue = 15;
 
 	public BlockLitAir(BlockPos pos) {
 		super("lit_air");
@@ -37,7 +31,7 @@ public class BlockLitAir extends BlockCollisionlessBase {
 	
 	@Override
 	public int getLightValue(IBlockState state) {
-		return 15;
+		return lightValue;
 	};
 	
 	/**
@@ -47,8 +41,8 @@ public class BlockLitAir extends BlockCollisionlessBase {
 	 * @param world The world that the block is in
 	 * @return Returns true if the block is 'dead'
 	 */
-	/*public boolean update(boolean refresh, World world) {
-		if (ticksRemaining == 0 && !refresh) {
+	public boolean update(/*boolean refresh, World world*/) {
+		/*if (ticksRemaining == 0 && !refresh) {
 			world.setBlockToAir(pos);
 			return true;
 		}
@@ -56,9 +50,15 @@ public class BlockLitAir extends BlockCollisionlessBase {
 			ticksRemaining = 1000;
 		} else {
 			this.ticksRemaining--;
-		};
+		};*/
+		if (ticksRemaining == 0) {
+			ticksRemaining = 20;
+			lightValue = 12 + (int)Math.round(Math.random() * 3);
+			this.setLightLevel(lightValue);
+		}
+		ticksRemaining--;
 		return false;
-	};*/
+	};
 	
 	public BlockPos getPosition() {
 		return pos;

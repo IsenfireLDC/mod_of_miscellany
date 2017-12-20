@@ -32,6 +32,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     private BlockPos prevPos;
     private BlockPos pos;
     private IBlockState prevState;
+    private BlockLitAir light;
 
 	public EntityFlare(World worldIn) {
 		super(worldIn);
@@ -117,21 +118,19 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
     	IBlockState currentState = world.getBlockState(pos);
     	
-    	BlockLitAir light = new BlockLitAir(pos);
-    	world.setBlockState(pos, light.getDefaultState());
+    	if (this.light != null && this.light.getDefaultState() == currentState) {
+    		this.light.update();
+    	} else {
+        	BlockLitAir light = new BlockLitAir(pos);
+        	world.setBlockState(pos, light.getDefaultState());
+        	this.light = light;
+        	if (prevState != null) {
+        		world.setBlockState(prevPos, prevState);
+        	};
+    	};
     	
-    	System.out.println("Next:");
-    	System.out.println(prevPos);
-    	System.out.println(prevState);
-    	
-    	if (false /*prevState != null*/) {
-    		world.setBlockState(prevPos, prevState);
-    	}
     	prevPos = pos;
     	prevState = currentState;
-    	
-    	System.out.println(prevPos);
-    	System.out.println(prevState);
     	
     	/*boolean flag = false;
     	boolean refresh = false;
