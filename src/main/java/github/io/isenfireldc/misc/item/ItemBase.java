@@ -1,6 +1,7 @@
 package github.io.isenfireldc.misc.item;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
+import github.io.isenfireldc.misc.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -13,7 +14,7 @@ public class ItemBase extends Item {
 		this.name = name;
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MISC);
+		setCreativeTab(Reference.TAB);
 	};
 	
 	@Override

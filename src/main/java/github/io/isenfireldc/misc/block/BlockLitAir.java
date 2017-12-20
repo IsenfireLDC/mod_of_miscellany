@@ -8,31 +8,36 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 //TODO Fix collision
-//TODO Make die after flare is dead or otherwise fix system
-public class BlockLitAir extends BlockBase {
+public class BlockLitAir extends BlockCollisionlessBase {
 	
 	//private int ticksRemaining = 1000;
 	
 	private BlockPos pos;
 
 	public BlockLitAir(BlockPos pos) {
-		super("lit_air", Material.AIR);
+		super("lit_air");
 		this.pos = pos;
 		
 		this.setDefaultState(getDefaultState());
 	};
 	
 	public BlockLitAir() {
-		super("litAir", Material.AIR);
+		super("litAir");
 	};
 	
 	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.INVISIBLE;
+	}
+	
+	@Override
 	public int getLightValue(IBlockState state) {
-		return 30;
+		return 15;
 	};
 	
 	/**
@@ -57,25 +62,5 @@ public class BlockLitAir extends BlockBase {
 	
 	public BlockPos getPosition() {
 		return pos;
-	};
-	
-	@Override
-	public boolean isCollidable() {
-		return false;
-	};
-	
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	};
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
 	};
 }

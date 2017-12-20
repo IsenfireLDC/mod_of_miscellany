@@ -120,11 +120,18 @@ public class EntityFlare extends AbstractEntityProjectile {
     	BlockLitAir light = new BlockLitAir(pos);
     	world.setBlockState(pos, light.getDefaultState());
     	
-    	if (prevState != null) {
+    	System.out.println("Next:");
+    	System.out.println(prevPos);
+    	System.out.println(prevState);
+    	
+    	if (false /*prevState != null*/) {
     		world.setBlockState(prevPos, prevState);
     	}
     	prevPos = pos;
     	prevState = currentState;
+    	
+    	System.out.println(prevPos);
+    	System.out.println(prevState);
     	
     	/*boolean flag = false;
     	boolean refresh = false;

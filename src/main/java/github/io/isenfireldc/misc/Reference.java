@@ -1,5 +1,7 @@
 package github.io.isenfireldc.misc;
 
+import net.minecraft.creativetab.CreativeTabs;
+
 public class Reference {
 	
 	public static final String MODID = "misc";
@@ -9,5 +11,7 @@ public class Reference {
 	
 	public static final String SERVER = "github.io.isenfireldc.misc.proxy.CommonProxy";
 	public static final String CLIENT = "github.io.isenfireldc.misc.proxy.ClientProxy";
+	
+	public static final CreativeTabs TAB = CreativeTabs.MISC;
 
 }

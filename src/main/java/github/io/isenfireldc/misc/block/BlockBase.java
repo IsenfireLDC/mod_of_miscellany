@@ -1,6 +1,7 @@
 package github.io.isenfireldc.misc.block;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
+import github.io.isenfireldc.misc.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,7 +24,7 @@ public class BlockBase extends Block {
 		
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MISC);
+		setCreativeTab(Reference.TAB);
 	};
 	
 	@Override
