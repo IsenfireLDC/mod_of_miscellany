@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import github.io.isenfireldc.misc.block.BlockLitAir;
 import github.io.isenfireldc.misc.item.ModItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -24,7 +23,7 @@ public class EntityFlare extends AbstractEntityProjectile {
 	
     private int burnTime = 1000;
     
-    private double gravity = 0.8D;
+    private static final double MOVEMENT = 0.75D;
     private boolean velocityLimit = true;	//mainly for debugging
     private double maxVelocityUp = 1/0D;
     private double maxVelocityDown = -0.2D;
@@ -57,7 +56,7 @@ public class EntityFlare extends AbstractEntityProjectile {
 		return new ItemStack(entityItem);
 	};
 	
-	@Override
+/*	@Override
 	protected double getVerticalVelocity(double velocity) {
 		boolean flag = false;
     	if (velocityLimit) {
@@ -78,7 +77,19 @@ public class EntityFlare extends AbstractEntityProjectile {
     		flag = false;
     	};
     	return velocity;
-    };
+    };*/
+	
+	@Override
+	protected double getVerticalVelocity(double velocity) {
+		velocity -= 0.05000000074505806D * MOVEMENT;
+		return velocity;
+	};
+	
+	@Override
+	protected double sideVelocity(double velocity) {
+		velocity *= MOVEMENT;
+		return velocity;
+	}
     
     //TODO Use the AbstractEntityProjectile.Boundedness enum
 /*    private double boundedVelocity(double velocity) {
@@ -118,12 +129,12 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
     	IBlockState currentState = world.getBlockState(pos);
     	
-    	if (this.light != null && this.light.getDefaultState() == currentState) {
-    		this.light.update();
+    	System.out.println(light.getBlockState() == currentState);
+    	if (light != null && light.getBlockState() == currentState) {
+    		light.update();
     	} else {
-        	BlockLitAir light = new BlockLitAir(pos);
+        	light = new BlockLitAir(pos);
         	world.setBlockState(pos, light.getDefaultState());
-        	this.light = light;
         	if (prevState != null) {
         		world.setBlockState(prevPos, prevState);
         	};

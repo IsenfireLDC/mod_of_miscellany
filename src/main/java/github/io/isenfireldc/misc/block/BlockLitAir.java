@@ -1,5 +1,6 @@
 package github.io.isenfireldc.misc.block;
 
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
@@ -12,12 +13,14 @@ public class BlockLitAir extends BlockCollisionlessBase {
 	private BlockPos pos;
 	
 	private int lightValue = 15;
+	
+	private IBlockState state = this.getDefaultState();
 
 	public BlockLitAir(BlockPos pos) {
 		super("lit_air");
 		this.pos = pos;
 		
-		this.setDefaultState(getDefaultState());
+		this.setDefaultState(getDefaultState());//TODO Remove?
 	};
 	
 	public BlockLitAir() {
@@ -56,6 +59,7 @@ public class BlockLitAir extends BlockCollisionlessBase {
 			lightValue = 12 + (int)Math.round(Math.random() * 3);
 			this.setLightLevel(lightValue);
 		}
+		System.out.println(this + ":" + ticksRemaining);
 		ticksRemaining--;
 		return false;
 	};

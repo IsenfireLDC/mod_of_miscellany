@@ -39,6 +39,10 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		return 0;
 	};
 	
-	
+	@Override
+	protected double sideVelocity(double velocity) {
+		// TODO Auto-generated method stub
+		return 0;
+	};
 	
 }

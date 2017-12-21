@@ -118,9 +118,9 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
-        this.motionX = x;
+        this.motionX = sideVelocity(x);
         this.motionY = y;
-        this.motionZ = z;
+        this.motionZ = sideVelocity(z);
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
         this.rotationPitch = (float)(MathHelper.atan2(y, (double)f1) * (180D / Math.PI));
@@ -525,6 +525,8 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     }
 
     protected abstract ItemStack getEntityStack();
+    
+    protected abstract double sideVelocity(double velocity);
     
     /**
      * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
