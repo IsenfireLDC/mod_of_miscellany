@@ -54,7 +54,10 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     private int ticksInGround;
     private int ticksInAir;
     
-    public AbstractEntityProjectile.Boundedness boundedness;
+    /** The constant used to change motionY in vanilla */
+    protected static final double grav = 0.05000000074505806D;
+    
+    public AbstractEntityProjectile.Boundedness boundedness;	//Maybe use later?
 	
     public AbstractEntityProjectile(World worldIn) {
         super(worldIn);
@@ -118,9 +121,9 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
-        this.motionX = sideVelocity(x);
+        this.motionX = sideVelocity(x, z)[0];
         this.motionY = y;
-        this.motionZ = sideVelocity(z);
+        this.motionZ = sideVelocity(x, z)[1];
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
         this.rotationPitch = (float)(MathHelper.atan2(y, (double)f1) * (180D / Math.PI));
@@ -526,7 +529,7 @@ public abstract class AbstractEntityProjectile extends EntityBase {
 
     protected abstract ItemStack getEntityStack();
     
-    protected abstract double sideVelocity(double velocity);
+    protected abstract double[] sideVelocity(double velocityX, double velocityZ);
     
     /**
      * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to

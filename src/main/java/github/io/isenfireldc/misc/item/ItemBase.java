@@ -8,12 +8,13 @@ import net.minecraft.item.Item;
 public class ItemBase extends Item {
 	
 	protected String name;
+	protected String texture;
 	protected String subfolder = "";
 	
 	public ItemBase(String name) {
-		this.name = name;
-		setUnlocalizedName(name);
-		setRegistryName(name);
+		this.name = checkName(name);
+		setUnlocalizedName(this.name);
+		setRegistryName(this.name);
 		setCreativeTab(Reference.TAB);
 	};
 	
@@ -21,14 +22,24 @@ public class ItemBase extends Item {
 	public ItemBase setCreativeTab(CreativeTabs tab) {
 		super.setCreativeTab(tab);
 		return this;
-	}
+	};
 	
 	public void setSubfolder(String subfolder) {
 		this.subfolder = subfolder;
-	}
+	};
 	
 	public void registerItemModel() {
-		MiscellanyMod.proxy.registerItemRenderer(this, 0, name, subfolder);
-	}
+		MiscellanyMod.proxy.registerItemRenderer(this, 0, texture, subfolder);
+	};
+	
+	private String checkName(String name) {
+		String check = name.substring(name.length() - 1);
+		if (check == "#") {
+			texture = "#";
+			return name.substring(0, name.length() - 1);
+		};
+		texture = name;
+		return name;
+	};
 
 }

@@ -1,0 +1,6 @@
+* Created ItemFlare
+* Added a placeholder system that allows for items to use a generic texture (allows me to simply replace name afterwards)
+* Deleted commented code that is not likely to be used again
+* Changed specific class ItemFlareGun to generic class ItemEntityGun
+* Added EntityBridgeCreator to ModEntities
+* Decided that I should probably commit more often

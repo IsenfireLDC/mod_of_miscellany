@@ -19,14 +19,11 @@ public class EntityFlare extends AbstractEntityProjectile {
 	
 	private Item entityItem = ModItems.slow10;
 	
-	private ArrayList<BlockLitAir> lighting = new ArrayList<BlockLitAir>();
+	//private ArrayList<BlockLitAir> lighting = new ArrayList<BlockLitAir>();
 	
     private int burnTime = 1000;
     
     private static final double MOVEMENT = 0.75D;
-    private boolean velocityLimit = true;	//mainly for debugging
-    private double maxVelocityUp = 1/0D;
-    private double maxVelocityDown = -0.2D;
     
     private BlockPos prevPos;
     private BlockPos pos;
@@ -56,55 +53,19 @@ public class EntityFlare extends AbstractEntityProjectile {
 		return new ItemStack(entityItem);
 	};
 	
-/*	@Override
-	protected double getVerticalVelocity(double velocity) {
-		boolean flag = false;
-    	if (velocityLimit) {
-    		double diff = Math.abs((velocity > maxVelocityUp ? maxVelocityUp : maxVelocityDown) - velocity);
-    		if (velocity > maxVelocityUp) {
-    			velocity -= diff / 2;
-    		} else if (velocity < maxVelocityDown) {
-    			if (diff > 0.1D) {
-    				velocity += diff / 2;
-    			} else {
-    				flag = true;
-    			}
-    		}
-    	}
-    	if (!flag) {
-    		velocity -= 0.05000000074505806D * gravity;
-    	} else {
-    		flag = false;
-    	};
-    	return velocity;
-    };*/
-	
 	@Override
 	protected double getVerticalVelocity(double velocity) {
-		velocity -= 0.05000000074505806D * MOVEMENT;
+		velocity -= super.grav * MOVEMENT;
 		return velocity;
 	};
 	
 	@Override
-	protected double sideVelocity(double velocity) {
-		velocity *= MOVEMENT;
-		return velocity;
-	}
-    
-    //TODO Use the AbstractEntityProjectile.Boundedness enum
-/*    private double boundedVelocity(double velocity) {
-		double diff = Math.abs((velocity > maxVelocityUp ? maxVelocityUp : maxVelocityDown) - velocity);
-		if (velocity > maxVelocityUp) {
-			velocity -= diff / 2;
-		} else if (velocity < maxVelocityDown) {
-			if (diff > 0.1D) {
-				velocity += diff / 2;
-			} else {
-				velocity = maxVelocityDown + (0.05000000074505806D * gravity);
-			}
-		}
-		return velocity;
-    };*/
+	protected double[] sideVelocity(double velocityX, double velocityZ) {
+		velocityX *= MOVEMENT;
+		velocityZ *= MOVEMENT;
+		
+		return new double[] {velocityX, velocityZ};
+	};
     
     @Override
     public void onUpdate() {
@@ -129,8 +90,8 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
     	IBlockState currentState = world.getBlockState(pos);
     	
-    	System.out.println(light.getBlockState() == currentState);
-    	if (light != null && light.getBlockState() == currentState) {
+    	System.out.println(light.getBlockState() == currentState);		//TODO ERROR HERE: light.getBlockState()
+    	if (light != null && light.getBlockState() == currentState) {	//TODO ERROR HERE: light.getBlockState()
     		light.update();
     	} else {
         	light = new BlockLitAir(pos);
