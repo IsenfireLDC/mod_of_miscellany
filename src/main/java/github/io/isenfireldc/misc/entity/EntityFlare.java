@@ -90,8 +90,8 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
     	IBlockState currentState = world.getBlockState(pos);
     	
-    	System.out.println(light.getBlockState() == currentState);		//TODO ERROR HERE: light.getBlockState()
-    	if (light != null && light.getBlockState() == currentState) {	//TODO ERROR HERE: light.getBlockState()
+    	System.out.println(light.getDefaultState() == currentState);	//TODO ERROR HERE: light.getBlockState()
+    	if (light != null && light.getDefaultState() == currentState) {	//TODO ERROR HERE: light.getBlockState()
     		light.update();
     	} else {
         	light = new BlockLitAir(pos);

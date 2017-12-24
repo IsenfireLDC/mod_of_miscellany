@@ -1,11 +1,8 @@
 package github.io.isenfireldc.misc.item;
 
-import github.io.isenfireldc.misc.Reference;
-import github.io.isenfireldc.misc.entity.AbstractEntityProjectile;
+import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
 import github.io.isenfireldc.misc.entity.EntityFlare;
 import github.io.isenfireldc.misc.entity.ModEntities;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -30,8 +27,8 @@ public class ModItems {
 		inst20 = register(new ItemArrowSpawner("inst20", 20, true));
 		slow20 = register(new ItemArrowSpawner("slow20", 20, false));
 		
-		flare_gun = register(new ItemEntityGun("flare_gun", ModEntities.flare));
-		bridge_builder = register(new ItemEntityGun("bridge_builder", ModEntities.bridge_builder));
+		flare_gun = register(new ItemEntityGun<EntityFlare>("flare_gun", ModEntities.flare));
+		bridge_builder = register(new ItemEntityGun<EntityBridgeCreator>("bridge_builder", ModEntities.bridge_builder));
 		
 		item_flare = register(new ItemFlare("item_flare"));
 	}

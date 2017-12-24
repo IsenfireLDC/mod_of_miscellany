@@ -8,11 +8,15 @@ public class ModBlocks {
 	
 	public static BlockLitAir lit_air;
 	
+	public static BlockBridgeBuilder bridge_builder;
+	
 	public static void init() {
 		
 		lit_air = register(new BlockLitAir());
 		
-	}
+		bridge_builder = register(new BlockBridgeBuilder());
+		
+	};
 	
 	private static <T extends Block> T register(T block, ItemBlock itemBlock) {
 		if (itemBlock != null) {

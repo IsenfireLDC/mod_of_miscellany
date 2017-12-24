@@ -1,6 +1,4 @@
-* Created ItemFlare
-* Added a placeholder system that allows for items to use a generic texture (allows me to simply replace name afterwards)
-* Deleted commented code that is not likely to be used again
-* Changed specific class ItemFlareGun to generic class ItemEntityGun
-* Added EntityBridgeCreator to ModEntities
-* Decided that I should probably commit more often
+* Removed the now-useless Xgradlew.bat
+* Made ItemEntityGun generic and made necessary changes (It now shoots things without crashing on its own)
+* EntityFlare still broken
+* TileEntityEntityGun decided to join the broken party

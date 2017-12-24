@@ -1,6 +1,8 @@
 package github.io.isenfireldc.misc.item;
 
 import github.io.isenfireldc.misc.entity.AbstractEntityProjectile;
+import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
+import github.io.isenfireldc.misc.entity.EntityFlare;
 import github.io.isenfireldc.misc.tileentity.TileEntityEntityGun;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,13 +11,13 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class ItemEntityGun extends ItemBase {
+public class ItemEntityGun<T extends AbstractEntityProjectile> extends ItemBase {
 	
-	protected AbstractEntityProjectile entity;
+	protected T entity;
 	
 	private TileEntityEntityGun entityGun = new TileEntityEntityGun();
 	
-	public ItemEntityGun(String name, AbstractEntityProjectile entity) {
+	public ItemEntityGun(String name, T entity) {
 		super(name);
 		
 		this.entity = entity;
