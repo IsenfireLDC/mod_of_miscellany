@@ -27,8 +27,8 @@ public class ModItems {
 		inst20 = register(new ItemArrowSpawner("inst20", 20, true));
 		slow20 = register(new ItemArrowSpawner("slow20", 20, false));
 		
-		flare_gun = register(new ItemEntityGun<EntityFlare>("flare_gun", ModEntities.flare));
-		bridge_builder = register(new ItemEntityGun<EntityBridgeCreator>("bridge_builder", ModEntities.bridge_builder));
+		flare_gun = register(new ItemEntityGun("flare_gun", EntityFlare.class));
+		bridge_builder = register(new ItemEntityGun("bridge_builder", EntityBridgeCreator.class));
 		
 		item_flare = register(new ItemFlare("item_flare"));
 	}

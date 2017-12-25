@@ -11,13 +11,13 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class ItemEntityGun<T extends AbstractEntityProjectile> extends ItemBase {
+public class ItemEntityGun extends ItemBase {
 	
-	protected T entity;
+	protected Class<? extends AbstractEntityProjectile> entity;
 	
 	private TileEntityEntityGun entityGun = new TileEntityEntityGun();
 	
-	public ItemEntityGun(String name, T entity) {
+	public ItemEntityGun(String name, Class<? extends AbstractEntityProjectile> entity) {
 		super(name);
 		
 		this.entity = entity;

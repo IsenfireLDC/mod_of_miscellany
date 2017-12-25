@@ -15,22 +15,21 @@ public class TileEntityEntityGun {
 		
 	};
 	
-	public <T extends AbstractEntityProjectile> T fire(World world, EntityPlayer player, T entity) {
+	public Class<? extends AbstractEntityProjectile> fire(World world, EntityPlayer player, Class<? extends AbstractEntityProjectile> entity) {
 		this.world = world;
 		this.player = player;
-		entity = setEntity(entity);
-		entity.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
+		setEntity(entity).setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
 		if (!world.isRemote) {
-			world.spawnEntity(entity);
+			world.spawnEntity(setEntity(entity));
 		};
 		
 		return entity;
 	};
 	
-	private <T extends AbstractEntityProjectile> T setEntity(T entity) {
-		if (entity instanceof EntityFlare) {
+	private <T extends AbstractEntityProjectile> T setEntity(Class<? extends AbstractEntityProjectile> entity) {
+		if (entity == EntityFlare.class) {
 			return (T) new EntityFlare(world, player);
-		} else if (entity instanceof EntityBridgeCreator) {
+		} else if (entity == EntityBridgeCreator.class) {
 			return (T) new EntityBridgeCreator(world);
 		};
 		

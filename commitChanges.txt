@@ -1,4 +1,1 @@
-* Removed the now-useless Xgradlew.bat
-* Made ItemEntityGun generic and made necessary changes (It now shoots things without crashing on its own)
-* EntityFlare still broken
-* TileEntityEntityGun decided to join the broken party
+* Changed how ItemEntityGun and TileEntityEntityGun work (still broken)
