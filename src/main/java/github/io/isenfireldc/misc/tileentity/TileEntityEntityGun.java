@@ -29,7 +29,7 @@ public class TileEntityEntityGun {
 		if (meta == 0) {
 			return new EntityFlare(world, player);
 		} else if (meta == 1) {
-			return new EntityBridgeCreator(world);
+			return new EntityBridgeCreator(world, player);
 		};
 		
 		return null;

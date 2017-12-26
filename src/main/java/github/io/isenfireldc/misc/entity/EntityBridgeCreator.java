@@ -12,7 +12,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	
 	BlockPos pos;
 	/** Direction of motion: -1 for nothing, 0 for +z, 1 for +x, 2 for -z, 3 for -x */
-	int direction;
+	static int direction;
+	boolean directionChecked = false;
 	
 	protected Item entityItem;
 	
@@ -40,8 +41,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	};
 
 	@Override
-	protected double getVerticalVelocity(double velocity) {
-		velocity -= super.grav;
+	protected double getVerticalVelocity(double velocity) { //TODO Add a different system
+		velocity -= super.grav / 10;
 		return velocity;
 	};
 	
@@ -54,21 +55,32 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 			direction = 0;
 		};
 		
-		BlockPos currentPos = this.getPosition();
-		if (pos.getZ() - currentPos.getZ() < 0) {
-			direction = 0;
-		} else if (pos.getX() - currentPos.getX() < 0) {
-			direction = 1;
-		} else if (pos.getZ() - currentPos.getZ() > 0) {
-			direction = 2;
-		} else if (pos.getX() - currentPos.getX() > 0) {
-			direction = 3;
-		} else {
-			direction = -1;
-		};
+		if (!directionChecked) {
+			setDirection(pos, this.getPosition());
+			directionChecked = true;
+		}
 		
 		return new double[] {velocityX, velocityZ};
 	};
+	
+	public static int setDirection(BlockPos start, BlockPos end) {
+		if (start.getZ() - end.getZ() < 0) {
+			direction = 0;
+			return -1 * (start.getZ() - end.getZ());
+		} else if (start.getX() - end.getX() < 0) {
+			direction = 1;
+			return -1 * (start.getX() - end.getX());
+		} else if (start.getZ() - end.getZ() > 0) {
+			direction = 2;
+			return start.getZ() - end.getZ();
+		} else if (start.getX() - end.getX() > 0) {
+			direction = 3;
+			return start.getX() - end.getX();
+		} else {
+			direction = -1;
+			return 0;
+		}
+	}
 	
 	@Override
 	public void onUpdate() {
@@ -77,7 +89,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		BlockPos currentPos = this.getPosition();
 		
 		if ((direction == 0 || direction == 2) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100) || (direction == 1 || direction == 3) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100)) {
-			BlockBridgeBuilder builder = new BlockBridgeBuilder(direction);
+			BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
 			this.world.setBlockState(currentPos, builder.getDefaultState());
 		};
 		

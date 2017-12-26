@@ -1,4 +1,3 @@
-* Hardcoded entity classes into TileEntityEntityGun
-* Temporarily commented out broken code in EntityFlare
-* /\ Fixed broken code in EntityFlare
-* <issue> EntityFlare is only ticked once
+* Added code to BlockBridgeBuilder
+* Created TileEntityBridgeBuilder
+* Edited TileEntityEntityGun to shoot EntityBridgeCreator

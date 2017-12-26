@@ -5,8 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityBase extends Entity {
-	
-	protected String name;
 
 	public EntityBase(World worldIn) {
 		super(worldIn);
