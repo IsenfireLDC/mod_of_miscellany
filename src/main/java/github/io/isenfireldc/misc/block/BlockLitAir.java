@@ -59,7 +59,7 @@ public class BlockLitAir extends BlockCollisionlessBase {
 			lightValue = 12 + (int)Math.round(Math.random() * 3);
 			this.setLightLevel(lightValue);
 		}
-		System.out.println(this + ":" + ticksRemaining);
+		System.out.println(this + " (BlockLitAir):" + ticksRemaining);
 		ticksRemaining--;
 		return false;
 	};

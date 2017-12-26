@@ -75,6 +75,8 @@ public class EntityFlare extends AbstractEntityProjectile {
     	
     	if (burnTime == 0) {
     		this.entityDropItem(this.getEntityStack(), 0.1F);
+    		light = null;
+    		this.getEntityWorld().setBlockState(this.getPosition(), prevState);
     		this.setDead();
     	} else {
     		burnTime--;
@@ -90,11 +92,17 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
     	IBlockState currentState = world.getBlockState(pos);
     	
-    	System.out.println(light.getDefaultState() == currentState);	//TODO ERROR HERE: light.getBlockState()
-    	if (light != null && light.getDefaultState() == currentState) {	//TODO ERROR HERE: light.getBlockState()
-    		light.update();
+    	if (light != null && light instanceof BlockLitAir) {
+    		if (light.getDefaultState() == currentState) {
+    			if (prevState != null) {
+    				System.out.println(prevState);
+    			}
+    			System.out.println(currentState);
+    			light.update();
+    		}
     	} else {
         	light = new BlockLitAir(pos);
+        	System.out.println(this + " was ticked: " + burnTime);
         	world.setBlockState(pos, light.getDefaultState());
         	if (prevState != null) {
         		world.setBlockState(prevPos, prevState);

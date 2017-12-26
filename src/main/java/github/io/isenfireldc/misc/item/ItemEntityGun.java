@@ -13,14 +13,14 @@ import net.minecraft.world.World;
 
 public class ItemEntityGun extends ItemBase {
 	
-	protected Class<? extends AbstractEntityProjectile> entity;
+	protected int meta;
 	
 	private TileEntityEntityGun entityGun = new TileEntityEntityGun();
 	
-	public ItemEntityGun(String name, Class<? extends AbstractEntityProjectile> entity) {
+	public ItemEntityGun(String name, int meta) {
 		super(name);
 		
-		this.entity = entity;
+		this.meta = meta;
 	};
 	
 	@Override
@@ -31,7 +31,7 @@ public class ItemEntityGun extends ItemBase {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		entityGun.fire(worldIn, playerIn, entity);
+		entityGun.fire(worldIn, playerIn, meta);
 		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	};
