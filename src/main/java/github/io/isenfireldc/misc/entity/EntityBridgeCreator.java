@@ -41,8 +41,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	};
 
 	@Override
-	protected double getVerticalVelocity(double velocity) { //TODO Add a different system
-		velocity -= super.grav / 10;
+	protected double getVerticalVelocity(double velocity) { //TODO Add a different system (-45 degrees to 45 degrees pitch only)
+		//velocity -= super.grav / 10;
 		return velocity;
 	};
 	

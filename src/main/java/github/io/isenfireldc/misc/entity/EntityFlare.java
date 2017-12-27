@@ -71,7 +71,10 @@ public class EntityFlare extends AbstractEntityProjectile {
     public void onUpdate() {
     	super.onUpdate();
     	
-    	this.setBlock(this.getEntityWorld(), this.getPosition());
+    	if (!world.isRemote) {
+    		this.setBlock(this.getEntityWorld(), this.getPosition());
+    		System.out.println(this + " was ticked: " + burnTime);
+    	};
     	
     	if (burnTime == 0) {
     		this.entityDropItem(this.getEntityStack(), 0.1F);
@@ -102,7 +105,6 @@ public class EntityFlare extends AbstractEntityProjectile {
     		}
     	} else {
         	light = new BlockLitAir(pos);
-        	System.out.println(this + " was ticked: " + burnTime);
         	world.setBlockState(pos, light.getDefaultState());
         	if (prevState != null) {
         		world.setBlockState(prevPos, prevState);

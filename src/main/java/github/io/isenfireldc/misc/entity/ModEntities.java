@@ -24,7 +24,6 @@ public class ModEntities {
 	
 	private static void register(Class entity, String name) {
 		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, ++id, MiscellanyMod.instance, 128, 1, true);
-		System.out.println("Registered " + name + ".");
 	};
 
 }

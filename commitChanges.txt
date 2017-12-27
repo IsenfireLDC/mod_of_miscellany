@@ -1,3 +1,7 @@
 * Added code to BlockBridgeBuilder
 * Created TileEntityBridgeBuilder
 * Edited TileEntityEntityGun to shoot EntityBridgeCreator
+-----a*-------
+* Added debugging lines
+* <discovered bug> If EntityFlare ticks all the way to 0, the game crashes
+* Added crash reports
