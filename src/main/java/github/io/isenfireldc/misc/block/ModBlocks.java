@@ -1,5 +1,6 @@
 package github.io.isenfireldc.misc.block;
 
+import github.io.isenfireldc.misc.item.ItemModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -24,8 +25,9 @@ public class ModBlocks {
 		};
 		GameRegistry.register(block);
 		
-/*		if (block instanceof ItemModelProvider) {
-			((ItemModelProvider)block).registerItemModel(itemBlock);
+		//TODO Create a better version of this
+		/*if (itemBlock instanceof ItemModelProvider) {
+			((ItemModelProvider)itemBlock).registerItemModel();
 		}*/
 		
 		return block;

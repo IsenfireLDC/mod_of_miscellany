@@ -36,7 +36,7 @@ public class ModItems {
 	private static <T extends Item> T register(T item) {
 		GameRegistry.register(item);
 		
-		if (item instanceof ItemBase) {
+		if (item instanceof ItemModelProvider) {
 			((ItemBase)item).registerItemModel();
 		}
 		

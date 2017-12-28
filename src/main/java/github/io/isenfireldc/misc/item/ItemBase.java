@@ -5,7 +5,7 @@ import github.io.isenfireldc.misc.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class ItemBase extends Item {
+public class ItemBase extends Item implements ItemModelProvider {
 	
 	protected String name;
 	protected String texture;
@@ -28,6 +28,7 @@ public class ItemBase extends Item {
 		this.subfolder = subfolder;
 	};
 	
+	@Override
 	public void registerItemModel() {
 		MiscellanyMod.proxy.registerItemRenderer(this, 0, texture, subfolder);
 	};

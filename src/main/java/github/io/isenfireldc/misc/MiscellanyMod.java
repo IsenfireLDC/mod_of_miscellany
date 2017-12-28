@@ -1,5 +1,6 @@
 package github.io.isenfireldc.misc;
 
+import github.io.isenfireldc.misc.block.ModBlocks;
 import github.io.isenfireldc.misc.entity.ModEntities;
 import github.io.isenfireldc.misc.item.ModItems;
 import github.io.isenfireldc.misc.proxy.CommonProxy;
@@ -25,6 +26,7 @@ public class MiscellanyMod {
 		System.out.println(Reference.NAME + " is loading...");
 		
 		ModItems.init();
+		ModBlocks.init();
 		ModEntities.init();
 	}
 	

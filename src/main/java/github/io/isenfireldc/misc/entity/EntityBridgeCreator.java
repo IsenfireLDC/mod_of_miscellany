@@ -48,11 +48,10 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	
 	@Override
 	protected double[] sideVelocity(double velocityX, double velocityZ) {
-		if (velocityX > velocityZ) {
+		if (Math.abs(velocityX) > Math.abs(velocityZ)) {
 			velocityZ = 0;
 		} else {
 			velocityX = 0;
-			direction = 0;
 		};
 		
 		if (!directionChecked) {
@@ -87,10 +86,18 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		super.onUpdate();
 		
 		BlockPos currentPos = this.getPosition();
+/*		System.out.println("z: " + Math.abs(pos.getZ() - currentPos.getZ()));
+		System.out.println("x: " + Math.abs(pos.getX() - currentPos.getX()));
+		System.out.println("block: " + world.getBlockState(currentPos));*/
 		
 		if ((direction == 0 || direction == 2) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100) || (direction == 1 || direction == 3) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100)) {
-			BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
-			this.world.setBlockState(currentPos, builder.getDefaultState());
+			System.out.println("Creating BlockBridgeBuilder");
+			try {
+				BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
+				this.world.setBlockState(currentPos, builder.getDefaultState());
+			} catch (Exception e){
+				System.err.println("Attempted to place builder: " + e);
+			}
 		};
 		
 	};
