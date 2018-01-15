@@ -15,6 +15,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	static int direction;
 	boolean directionChecked = false;
 	
+	int count = 0;
+	
 	protected Item entityItem;
 	
 	public EntityBridgeCreator(World worldIn) {
@@ -85,16 +87,21 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 		
+		System.out.println("Update: " + ++count);
+		
 		BlockPos currentPos = this.getPosition();
 /*		System.out.println("z: " + Math.abs(pos.getZ() - currentPos.getZ()));
 		System.out.println("x: " + Math.abs(pos.getX() - currentPos.getX()));
 		System.out.println("block: " + world.getBlockState(currentPos));*/
+		int zDiff = Math.abs(pos.getZ() - currentPos.getZ());
+		int xDiff = Math.abs(pos.getX() - currentPos.getX());
 		
-		if ((direction == 0 || direction == 2) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100) || (direction == 1 || direction == 3) && (Math.abs(pos.getZ() - currentPos.getZ()) >= 100)) {
-			System.out.println("Creating BlockBridgeBuilder");
+		if (zDiff >= 100 || xDiff >= 100) {
+			int print = zDiff > xDiff ? zDiff : xDiff;
+			System.out.println("Creating BlockBridgeBuilder: " + print);
 			try {
 				BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
-				this.world.setBlockState(currentPos, builder.getDefaultState());
+				this.world.setBlockState(currentPos, builder.getStateForPlacement(world, currentPos, getHorizontalFacing(), currentPos.getX(), currentPos.getY(), currentPos.getZ(), 0, (EntityLivingBase) this.shootingEntity));
 			} catch (Exception e){
 				System.err.println("Attempted to place builder: " + e);
 			}

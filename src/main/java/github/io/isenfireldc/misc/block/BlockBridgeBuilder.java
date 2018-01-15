@@ -2,13 +2,15 @@ package github.io.isenfireldc.misc.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
 import github.io.isenfireldc.misc.tileentity.TileEntityBridgeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockBridgeBuilder extends BlockCollisionlessBase {
+public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder> {
 	
 	protected final static String name = "builder";
 	
@@ -35,12 +37,8 @@ public class BlockBridgeBuilder extends BlockCollisionlessBase {
 		this.end = end;
 		this.direction = direction;
 		this.world = world;
-	};
-	
-	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-		this.build();
-		this.builder = new TileEntityBridgeBuilder(world, start, direction, slope);
+		
+		//this.build();
 	};
 	
 	@Override
@@ -56,12 +54,14 @@ public class BlockBridgeBuilder extends BlockCollisionlessBase {
 	
 	public void build() {
 		int[] sec = getSections();
-		
+		System.out.println(this + ": " + sec);
 		this.slope = buildArray(sec[0], sec[1]);
+		System.out.println(this + ": " + this.slope);
 	};
 	
 	private int[] getSections() {
 		int distance = EntityBridgeCreator.setDirection(start, end);
+		System.out.println(this + ": " + EntityBridgeCreator.setDirection(start, end));
 		int height = end.getY() - start.getY();
 		
 		return new int[] {distance, height};
@@ -102,6 +102,18 @@ public class BlockBridgeBuilder extends BlockCollisionlessBase {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Class<TileEntityBridgeBuilder> getEntityClass() {
+		return TileEntityBridgeBuilder.class;
+	};
+	
+	@Nullable
+	@Override
+	public TileEntityBridgeBuilder createTileEntity(World world, IBlockState state) {
+		this.builder = new TileEntityBridgeBuilder(world, start, direction, slope);
+		return this.builder;
 	};
 	
 	/*private void buildSection(int distance, int height, int slope) {

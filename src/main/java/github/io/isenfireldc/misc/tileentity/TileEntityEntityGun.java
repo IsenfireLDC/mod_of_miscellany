@@ -4,9 +4,10 @@ import github.io.isenfireldc.misc.entity.AbstractEntityProjectile;
 import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
 import github.io.isenfireldc.misc.entity.EntityFlare;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileEntityEntityGun {
+public class TileEntityEntityGun extends TileEntity {
 	
 	private World world;
 	private EntityPlayer player;

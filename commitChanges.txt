@@ -5,3 +5,9 @@
 * Added debugging lines
 * <discovered bug> If EntityFlare ticks all the way to 0, the game crashes
 * Added crash reports
+-----b*-------
+* Added more debugging
+* Added an item to place BlockBridgeBuilder
+* Edited TileEntityBridgeBuilder
+* Added abstract generic class BlockTileEntity
+* <bug info> BlockBridgeBuilder is created and placed as Block{null}

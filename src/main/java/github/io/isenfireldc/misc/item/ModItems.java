@@ -19,6 +19,8 @@ public class ModItems {
 	
 	public static ItemFlare item_flare;
 	
+	public static ItemBridgeBuilderCreator bridge_builder_debugger;
+	
 	public static void init() {
 		
 		inst10 = register(new ItemArrowSpawner("inst10", 10, true));
@@ -31,6 +33,7 @@ public class ModItems {
 		bridge_builder = register(new ItemEntityGun("bridge_builder", 1));
 		
 		item_flare = register(new ItemFlare("item_flare"));
+		bridge_builder_debugger = register(new ItemBridgeBuilderCreator("bridge_builder_debugger"));
 	}
 	
 	private static <T extends Item> T register(T item) {

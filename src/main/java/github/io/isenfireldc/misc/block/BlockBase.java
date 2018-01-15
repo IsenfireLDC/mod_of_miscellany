@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 
 public class BlockBase extends Block {
 	
-	protected static final Material defaultMaterial = Material.GROUND;
+	protected static final Material defaultMaterial = Material.ROCK;
 	
 	protected String name;
 	protected String subfolder;

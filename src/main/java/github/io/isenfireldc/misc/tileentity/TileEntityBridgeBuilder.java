@@ -2,10 +2,12 @@ package github.io.isenfireldc.misc.tileentity;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class TileEntityBridgeBuilder {
+public class TileEntityBridgeBuilder extends TileEntity {
 	
 	private World world;
 	private BlockPos start;
@@ -27,6 +29,7 @@ public class TileEntityBridgeBuilder {
 			build(slope[step]);
 			return true;
 		} catch (Exception e) {
+			System.err.println(this + ": " + e);
 			return false;
 		}
 		
@@ -63,5 +66,35 @@ public class TileEntityBridgeBuilder {
 			start = increment(start, direction);
 		}
 	};
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setIntArray("BlockPos", new int[] {start.getX(), start.getY(), start.getZ()});
+		compound.setInteger("Direction", direction);
+		
+		int count = 0;
+		for (int[] arr : slope) {
+			compound.setIntArray("Slope" + count, arr);
+			count++;
+		};
+		compound.setInteger("Count", count);
+		return super.writeToNBT(compound);
+	};
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		int[] startArr = compound.getIntArray("BlockPos");
+		this.start = new BlockPos(startArr[0], startArr[1], startArr[2]);
+		
+		this.direction = compound.getInteger("Direction");
+		
+		int count = compound.getInteger("Count");
+		int[][] tempSlope = new int[count][];
+		for (int i = 0; i < count; i++) {
+			tempSlope[i] = compound.getIntArray("Slope" + i);
+		};
+		this.slope = tempSlope;
+		super.readFromNBT(compound);
+	}
 
 }
