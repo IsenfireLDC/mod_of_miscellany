@@ -44,7 +44,7 @@ public class TileEntityBridgeBuilder extends TileEntity {
 			pos.add(1, 0, 0);
 			break;
 		case 3:
-			pos.add(0, 1, -1);
+			pos.add(0, 0, -1);
 			break;
 		case 4:
 			pos.add(-1, 0, 0);

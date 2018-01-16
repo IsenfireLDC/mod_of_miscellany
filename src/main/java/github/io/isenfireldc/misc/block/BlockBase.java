@@ -2,28 +2,31 @@ package github.io.isenfireldc.misc.block;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
 import github.io.isenfireldc.misc.Reference;
+import github.io.isenfireldc.misc.item.ItemModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class BlockBase extends Block {
+public class BlockBase extends Block implements ItemModelProvider {
 	
 	protected static final Material defaultMaterial = Material.ROCK;
 	
 	protected String name;
+	protected String texture;
 	protected String subfolder;
 	
 	public BlockBase(String name) {
 		this(name, defaultMaterial);
+		System.out.println(this + ": " + "ConstructorA");
 	};
 	
 	public BlockBase(String name, Material material) {
 		super(material);
-		this.name = name;
+		this.name = checkName(name);
 		
-		setUnlocalizedName(name);
-		setRegistryName(name);
+		setUnlocalizedName(this.name);
+		setRegistryName(this.name);
 		setCreativeTab(Reference.TAB);
 	};
 	
@@ -37,8 +40,25 @@ public class BlockBase extends Block {
 		this.subfolder = subfolder;
 	};
 	
+	@Override
 	public void registerItemModel(Item item) {
-		MiscellanyMod.proxy.registerItemRenderer(item, 0, name, subfolder);
+		MiscellanyMod.proxy.registerItemRenderer(item, 0, texture, subfolder);
 	};
+	
+	private String checkName(String name) {
+		String check = name.substring(name.length() - 1);
+		System.out.println(check);
+		if (check == "#") {
+			texture = "#";
+			return name.substring(0, name.length() - 1);
+		};
+		texture = name;
+		return name;
+	}
+
+	/*@Override
+	public void registerItemModel() {
+		MiscellanyMod.proxy.registerItemRenderer(this, 0, texture, subfolder);
+	};*/
 
 }

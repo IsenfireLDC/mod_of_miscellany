@@ -40,7 +40,7 @@ public class ModItems {
 		GameRegistry.register(item);
 		
 		if (item instanceof ItemModelProvider) {
-			((ItemBase)item).registerItemModel();
+			((ItemBase)item).registerItemModel(item);
 		}
 		
 		return item;

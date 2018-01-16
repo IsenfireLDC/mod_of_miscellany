@@ -29,8 +29,8 @@ public class ItemBase extends Item implements ItemModelProvider {
 	};
 	
 	@Override
-	public void registerItemModel() {
-		MiscellanyMod.proxy.registerItemRenderer(this, 0, texture, subfolder);
+	public void registerItemModel(Item item) {
+		MiscellanyMod.proxy.registerItemRenderer(item, 0, texture, subfolder);
 	};
 	
 	private String checkName(String name) {

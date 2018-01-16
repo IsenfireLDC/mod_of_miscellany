@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder> {
 	
-	protected final static String name = "builder";
+	protected final static String name = "builder#";
 	
 	private static BlockPos start;
 	private static BlockPos end;
@@ -28,6 +28,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	
 	public BlockBridgeBuilder() {
 		super(name);
+		System.out.println(this + ": " + "ConstructorA");
 	};
 	
 	public BlockBridgeBuilder(BlockPos start, BlockPos end, int direction, World world) {

@@ -11,3 +11,5 @@
 * Edited TileEntityBridgeBuilder
 * Added abstract generic class BlockTileEntity
 * <bug info> BlockBridgeBuilder is created and placed as Block{null}
+-----c*-------
+* <bug info> Concluded that BlockBridgeBuilder is either erroring when initialized or on being placed
