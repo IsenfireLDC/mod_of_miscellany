@@ -7,6 +7,9 @@ import javax.annotation.Nullable;
 import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
 import github.io.isenfireldc.misc.tileentity.TileEntityBridgeBuilder;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -42,7 +45,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		//this.build();
 	};
 	
-	@Override
+/*	@Override
 	public boolean requiresUpdates() {
 		return update;
 	};
@@ -51,7 +54,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		update = builder.buildStep(step);
 		step++;
-	};
+	};*/
 	
 	public void build() {
 		int[] sec = getSections();
@@ -66,6 +69,10 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		int height = end.getY() - start.getY();
 		
 		return new int[] {distance, height};
+	};
+	
+	public void setArrayTo(int[][] array) {
+		slope = array;
 	};
 	
 	private int[][] buildArray(int distance, int height) {
@@ -103,7 +110,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		}
 		
 		return result;
-	}
+	};
 
 	@Override
 	public Class<TileEntityBridgeBuilder> getEntityClass() {

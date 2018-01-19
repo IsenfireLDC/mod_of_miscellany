@@ -11,6 +11,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemBridgeBuilderCreator extends ItemBase {
+	
+	private final int[][] testArray = new int[][] {
+			{0, 0, 0, 1},
+			{0, 1, 0, 1},
+			{0, 1, 1, 1},
+			{1, 1, 1, 1}
+	};
 
 	public ItemBridgeBuilderCreator(String name) {
 		super(name);
@@ -29,7 +36,9 @@ public class ItemBridgeBuilderCreator extends ItemBase {
 			BlockBridgeBuilder builder = ModBlocks.bridge_builder;
 			try {
 				builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
+				System.out.println(builder);
 				builder.build();
+				builder.setArrayTo(testArray);
 				System.out.println("Successfully created builder");
 			} catch (Exception e) {
 				System.err.println("Failed to create BridgeBuilder: " + e);
