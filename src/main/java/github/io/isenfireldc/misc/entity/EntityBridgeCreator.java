@@ -67,16 +67,16 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public static int setDirection(BlockPos start, BlockPos end) {
 		if (start.getZ() - end.getZ() < 0) {
 			direction = 0;
-			return -1 * (start.getZ() - end.getZ());
+			return Math.abs(start.getZ() - end.getZ());
 		} else if (start.getX() - end.getX() < 0) {
 			direction = 1;
-			return -1 * (start.getX() - end.getX());
+			return Math.abs(start.getX() - end.getX());
 		} else if (start.getZ() - end.getZ() > 0) {
 			direction = 2;
-			return start.getZ() - end.getZ();
+			return Math.abs(start.getZ() - end.getZ());
 		} else if (start.getX() - end.getX() > 0) {
 			direction = 3;
-			return start.getX() - end.getX();
+			return Math.abs(start.getX() - end.getX());
 		} else {
 			direction = -1;
 			return 0;
@@ -87,7 +87,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 		
-		System.out.println("Update: " + ++count);
+		System.out.println(this + ": " + "Update: " + ++count);
 		
 		BlockPos currentPos = this.getPosition();
 /*		System.out.println("z: " + Math.abs(pos.getZ() - currentPos.getZ()));
@@ -100,10 +100,14 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 			int print = zDiff > xDiff ? zDiff : xDiff;
 			System.out.println("Creating BlockBridgeBuilder: " + print);
 			try {
-				BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
-				this.world.setBlockState(currentPos, builder.getStateForPlacement(world, currentPos, getHorizontalFacing(), currentPos.getX(), currentPos.getY(), currentPos.getZ(), 0, (EntityLivingBase) this.shootingEntity));
+				if (!world.isRemote) {
+					BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
+					builder.build();
+					this.world.setBlockState(currentPos, builder.getDefaultState());
+				};
+				this.setDead();
 			} catch (Exception e){
-				System.err.println("Attempted to place builder: " + e);
+				System.err.println(this + ": " + "Attempted to place builder: " + e);
 			}
 		};
 		

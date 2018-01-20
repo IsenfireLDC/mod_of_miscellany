@@ -38,7 +38,6 @@ public class ItemBridgeBuilderCreator extends ItemBase {
 				builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
 				System.out.println(builder);
 				builder.build();
-				builder.setArrayTo(testArray);
 				System.out.println("Successfully created builder");
 			} catch (Exception e) {
 				System.err.println("Failed to create BridgeBuilder: " + e);

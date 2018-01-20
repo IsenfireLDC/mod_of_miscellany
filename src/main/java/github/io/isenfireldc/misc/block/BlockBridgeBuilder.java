@@ -23,6 +23,8 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	private int[][] slope;
 	private int step = 0;
 	
+	private static final int SECTION_SIZE = 4;
+	
 	private boolean update = true;
 	
 	private static World world;
@@ -75,23 +77,26 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		slope = array;
 	};
 	
-	private int[][] buildArray(int distance, int height) {
+	private int[][] buildArray(int distance, int height) {  //TODO Needs a rework: Incorporate the average slope into the algorithm
 		double slope;
 		boolean running = true;
 		int i = 0;
 		
-		int size = (int) Math.ceil((double)distance / 4);
+		int size = (int) Math.ceil((double)distance / SECTION_SIZE);
 		
-		int[][] result = new int[size][4];
+		int[][] result = new int[size][SECTION_SIZE];
 		
 		while (running) {
-			int[] section = new int[4];
+			int[] section = new int[SECTION_SIZE];
 			int j = 0;
 			
-			for (int k = 0; k < 4; k++) {
+			for (int k = 0; k < SECTION_SIZE; k++) {
 				
-				slope = height / distance;
-				int a = (int) Math.round(slope);
+				slope = (double)height / distance;
+				int a = (int) Math.round(slope * 2);
+				if (a > 1) {
+					a = 1;
+				};
 				section[j] = a;
 				
 				distance--;

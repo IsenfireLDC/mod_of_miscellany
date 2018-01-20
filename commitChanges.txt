@@ -15,3 +15,6 @@
 * <bug info> Concluded that BlockBridgeBuilder is either erroring when initialized or on being placed
 -----d*-------
 * <bug fix>? Did some debugging and finally got the bridgebuilder to quasi-work
+-----e*-------
+* Made some edits to the array calculation algorithm, will need to make some more soon
+* <bug info> EntityBridgeCreator only builds bridges towards -x and -z
