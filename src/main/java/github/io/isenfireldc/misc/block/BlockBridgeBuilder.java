@@ -73,11 +73,68 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		return new int[] {distance, height};
 	};
 	
+	/*
+	 * Debugging purposes only
+	 */
 	public void setArrayTo(int[][] array) {
 		slope = array;
 	};
 	
-	private int[][] buildArray(int distance, int height) {  //TODO Needs a rework: Incorporate the average slope into the algorithm
+	private int[][] buildArray(int distance, int height) {
+		double slope = (double)height / distance;
+		boolean running = true;
+		
+		int c_dist = 1;
+		int c_height;
+		int a_height = 0;
+		
+		boolean incomplete = false;
+		int size = (int) Math.ceil((double)distance / SECTION_SIZE);
+		
+		int leftovers = distance % SECTION_SIZE;
+		
+		int[][] result = new int[size][SECTION_SIZE];
+		
+		int count = 0;
+		
+		while (running) {
+			int[] section;
+			if (size - count == 1 && leftovers != 0) {
+				section = new int[leftovers];
+			} else {
+				section = new int[SECTION_SIZE];
+			};
+			
+			for (int i = 0; i < SECTION_SIZE; i++) {
+				c_height = (int)Math.round(slope * c_dist);
+				
+				if (c_height - a_height == 1) {
+					section[i] = 1;
+					a_height++;
+				} else {
+					section[i] = 0;
+				};
+				
+				if (c_dist >= distance) {
+					running = false;
+					break;
+				};
+				
+				c_dist++;
+			}
+			
+			result[count] = section;
+			count++;
+			if (count >= size) {
+			    running = false;
+			    break;
+			 };
+		}
+		
+		return result;
+	};
+	
+	/*private int[][] buildArray(int distance, int height) {  //TODO Needs a rework: Incorporate the average slope into the algorithm
 		double slope;
 		boolean running = true;
 		int i = 0;
@@ -115,7 +172,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		}
 		
 		return result;
-	};
+	};*/
 
 	@Override
 	public Class<TileEntityBridgeBuilder> getEntityClass() {

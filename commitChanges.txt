@@ -18,3 +18,7 @@
 -----e*-------
 * Made some edits to the array calculation algorithm, will need to make some more soon
 * <bug info> EntityBridgeCreator only builds bridges towards -x and -z
+-----f*-------
+* Reworked array calculation algorithm
+* <bug info> EntityBridgeCreator occasionally builds a tower
+<end version 0.1.4.9>
