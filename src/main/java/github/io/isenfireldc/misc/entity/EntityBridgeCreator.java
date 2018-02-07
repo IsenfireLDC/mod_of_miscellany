@@ -19,22 +19,31 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	
 	protected Item entityItem;
 	
+	double initialX;
+	double initialZ;
+	
 	public EntityBridgeCreator(World worldIn) {
 		super(worldIn);
 		
 		this.pos = this.getPosition();
+		this.initialX = this.posX;
+		this.initialZ = this.posZ;
 	}
 	
 	public EntityBridgeCreator(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
 		
 		this.pos = this.getPosition();
+		this.initialX = this.posX;
+		this.initialZ = this.posZ;
 	};
 	
 	public EntityBridgeCreator(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
 		
 		this.pos = this.getPosition();
+		this.initialX = this.posX;
+		this.initialZ = this.posZ;
 	};
 
 	@Override
@@ -50,6 +59,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	
 	@Override
 	protected double[] sideVelocity(double velocityX, double velocityZ) {
+		System.out.println(this + ": " + "Vx=" + velocityX + ", Vz=" + velocityZ);
 		if (Math.abs(velocityX) > Math.abs(velocityZ)) {
 			velocityZ = 0;
 		} else {
@@ -59,22 +69,25 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		if (!directionChecked) {
 			setDirection(pos, this.getPosition());
 			directionChecked = true;
+			System.out.println(direction);
 		}
 		
 		return new double[] {velocityX, velocityZ};
 	};
 	
-	public static int setDirection(BlockPos start, BlockPos end) {
-		if (start.getZ() - end.getZ() < 0) {
+	public int setDirection(BlockPos start, BlockPos end) {
+		System.out.println("setDirection zi: " + this.initialZ + " zf: " + this.posZ);
+		System.out.println("setDirection xi: " + this.initialX + " xf: " + this.posX);
+		if (this.initialZ - this.posZ < 0) {
 			direction = 0;
 			return Math.abs(start.getZ() - end.getZ());
-		} else if (start.getX() - end.getX() < 0) {
+		} else if (this.initialX - this.posX < 0) {
 			direction = 1;
 			return Math.abs(start.getX() - end.getX());
-		} else if (start.getZ() - end.getZ() > 0) {
+		} else if (this.initialZ - this.posZ > 0) {
 			direction = 2;
 			return Math.abs(start.getZ() - end.getZ());
-		} else if (start.getX() - end.getX() > 0) {
+		} else if (this.initialX - this.posX > 0) {
 			direction = 3;
 			return Math.abs(start.getX() - end.getX());
 		} else {
@@ -87,7 +100,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 		
-		System.out.println(this + ": " + "Update: " + ++count);
+		//System.out.println(this + ": " + "Update: " + ++count);
 		
 		BlockPos currentPos = this.getPosition();
 /*		System.out.println("z: " + Math.abs(pos.getZ() - currentPos.getZ()));
@@ -101,7 +114,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 			System.out.println("Creating BlockBridgeBuilder: " + print);
 			try {
 				if (!world.isRemote) {
-					BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
+					BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world, this);
 					builder.build();
 					this.world.setBlockState(currentPos, builder.getDefaultState());
 				};

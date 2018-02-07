@@ -529,6 +529,9 @@ public abstract class AbstractEntityProjectile extends EntityBase {
 
     protected abstract ItemStack getEntityStack();
     
+    /*
+     * Allows for modification of movement in x or z directions
+     */
     protected abstract double[] sideVelocity(double velocityX, double velocityZ);
     
     /**

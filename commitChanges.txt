@@ -1,24 +1,16 @@
-* Added code to BlockBridgeBuilder
-* Created TileEntityBridgeBuilder
-* Edited TileEntityEntityGun to shoot EntityBridgeCreator
------a*-------
-* Added debugging lines
-* <discovered bug> If EntityFlare ticks all the way to 0, the game crashes
-* Added crash reports
------b*-------
-* Added more debugging
-* Added an item to place BlockBridgeBuilder
-* Edited TileEntityBridgeBuilder
-* Added abstract generic class BlockTileEntity
-* <bug info> BlockBridgeBuilder is created and placed as Block{null}
------c*-------
-* <bug info> Concluded that BlockBridgeBuilder is either erroring when initialized or on being placed
------d*-------
-* <bug fix>? Did some debugging and finally got the bridgebuilder to quasi-work
------e*-------
-* Made some edits to the array calculation algorithm, will need to make some more soon
-* <bug info> EntityBridgeCreator only builds bridges towards -x and -z
------f*-------
-* Reworked array calculation algorithm
-* <bug info> EntityBridgeCreator occasionally builds a tower
-<end version 0.1.4.9>
+<start version 0.1.4.10>
+ * Removed non-used debugging statements
+ * <bug fix> Stairs now face the correct direction when placed!
+
+---------Goals----------
+ X Add method to properly turn stairs
+ * Have stairs start at foot level
+ * Fix pillar bug
+ * Fix placeholder texture
+ * Look into and stop block from being placed as null
+ > Look into and fix tileentity
+
+ ----Key----
+ * To do
+ > In progress
+ X Completed

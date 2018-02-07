@@ -2,6 +2,7 @@ package github.io.isenfireldc.misc.item;
 
 import github.io.isenfireldc.misc.block.BlockBridgeBuilder;
 import github.io.isenfireldc.misc.block.ModBlocks;
+import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -35,7 +36,7 @@ public class ItemBridgeBuilderCreator extends ItemBase {
 		if (!world.isRemote) {
 			BlockBridgeBuilder builder = ModBlocks.bridge_builder;
 			try {
-				builder = new BlockBridgeBuilder(pos, currentPos, direction, world);
+				builder = new BlockBridgeBuilder(pos, currentPos, direction, world, new EntityBridgeCreator(world));
 				System.out.println(builder);
 				builder.build();
 				System.out.println("Successfully created builder");

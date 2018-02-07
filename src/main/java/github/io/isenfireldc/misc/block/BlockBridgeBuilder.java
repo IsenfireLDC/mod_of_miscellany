@@ -17,9 +17,9 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	
 	protected final static String name = "builder#";
 	
-	private static BlockPos start;
-	private static BlockPos end;
-	private static int direction;
+	private BlockPos start;
+	private BlockPos end;
+	private int direction;
 	private int[][] slope;
 	private int step = 0;
 	
@@ -29,20 +29,23 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	
 	private static World world;
 	
+	private EntityBridgeCreator entityBuilder;
+	
 	private TileEntityBridgeBuilder builder;
 	
 	public BlockBridgeBuilder() {
 		super(name);
-		System.out.println(this + ": " + "ConstructorA");
+		//System.out.println(this + ": " + "ConstructorA");
 	};
 	
-	public BlockBridgeBuilder(BlockPos start, BlockPos end, int direction, World world) {
+	public BlockBridgeBuilder(BlockPos start, BlockPos end, int direction, World world, EntityBridgeCreator entityBuilder) {
 		this();
 		
 		this.start = start;
 		this.end = end;
 		this.direction = direction;
 		this.world = world;
+		this.entityBuilder = entityBuilder;
 		
 		//this.build();
 	};
@@ -66,8 +69,8 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	};
 	
 	private int[] getSections() {
-		int distance = EntityBridgeCreator.setDirection(start, end);
-		System.out.println(this + ": " + EntityBridgeCreator.setDirection(start, end));
+		int distance = entityBuilder.setDirection(start, end);
+		System.out.println(this + ": " + entityBuilder.setDirection(start, end));
 		int height = end.getY() - start.getY();
 		
 		return new int[] {distance, height};
