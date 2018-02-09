@@ -1,12 +1,17 @@
 <start version 0.1.4.10>
  * Removed non-used debugging statements
  * <bug fix> Stairs now face the correct direction when placed!
+-------10a-------
+ * Removed more unused debugging statements
+ * Did some work on tileentity classes
+ * Started fixing block placeholder texture
+ * <new info> May be creating a new block incorrectly - use instance in ModBlocks opposed to new block
 
 ---------Goals----------
  X Add method to properly turn stairs
  * Have stairs start at foot level
  * Fix pillar bug
- * Fix placeholder texture
+ > Fix placeholder texture
  * Look into and stop block from being placed as null
  > Look into and fix tileentity
 

@@ -26,9 +26,7 @@ public class ModBlocks {
 		GameRegistry.register(block);
 		
 		//TODO Create a better version of this
-		if (itemBlock instanceof ItemModelProvider) {
-			((ItemModelProvider)itemBlock).registerItemModel(itemBlock);
-		}
+		((ItemModelProvider)block).registerItemModel(itemBlock);
 		
 		return block;
 	}

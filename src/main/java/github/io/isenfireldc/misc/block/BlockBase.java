@@ -8,7 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class BlockBase extends Block implements ItemModelProvider {
+public class BlockBase extends Block {
 	
 	protected static final Material defaultMaterial = Material.ROCK;
 	
@@ -40,7 +40,6 @@ public class BlockBase extends Block implements ItemModelProvider {
 		this.subfolder = subfolder;
 	};
 	
-	@Override
 	public void registerItemModel(Item item) {
 		MiscellanyMod.proxy.registerItemRenderer(item, 0, texture, subfolder);
 	};

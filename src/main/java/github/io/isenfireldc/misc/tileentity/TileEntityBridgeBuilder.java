@@ -43,46 +43,34 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 			build(slope[step]);
 			return true;
 		} catch (Exception e) {
-			System.err.println(this + ": " + e);
+			System.err.println(this + " buildStep: " + e);
 			return false;
 		}
 		
 	};
 	
 	private BlockPos increment(BlockPos pos, int direction) {
-		//System.out.println(/*this + ": " + */"Incrementing position " + pos + " in direction " + direction);
 		switch (direction) {
 		case 0:
 			return pos.add(0, 0, 1);
-			//break;
 		case 1:
 			return pos.add(1, 0, 0);
-			//System.out.println(pos);
-			//System.out.println(pos.add(1, 0, 0));
-			//break;
 		case 2:
 			return pos.add(0, 0, -1);
-			//break;
 		case 3:
 			return pos.add(-1, 0, 0);
-			//break;
 		};
 		
 		return pos;
-		
-		//return pos;
 	};
 	
 	public void build(int[] slope) {
 		for (int i : slope) {
-			//System.out.println(i);
 			if (i == 0) {
-				//System.out.println(/*this + ": " + */"Placing " + block);
 				world.setBlockState(start, block.getDefaultState());
 			} else if (i == 1) {
-				//System.out.println(/*this + ": " + */"Placing " + stair);
 				start = start.add(0, 1, 0);
-				world.setBlockState(start, getOrientation((BlockStairs) stair));	//TODO Use correct state for direction of stair
+				world.setBlockState(start, getOrientation((BlockStairs) stair));
 			};
 			
 			start = increment(start, direction);

@@ -9,8 +9,8 @@ public class ModTileEntities {
 		
 	};
 	
-	private static <T extends TileEntity> T register(T tileentity, String name) {
-		GameRegistry.registerTileEntity(tileentity.getClass(), name);
+	private static <T extends TileEntity> T register(T tileentity) {
+		GameRegistry.registerTileEntity(tileentity.getClass(), tileentity.toString());
 		
 		return tileentity;
 	};
