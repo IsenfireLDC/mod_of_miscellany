@@ -1,6 +1,7 @@
 package github.io.isenfireldc.misc.entity;
 
 import github.io.isenfireldc.misc.block.BlockBridgeBuilder;
+import github.io.isenfireldc.misc.block.ModBlocks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public EntityBridgeCreator(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
 		
-		this.pos = this.getPosition();
+		this.pos = this.getPosition().add(0, -1, 0);
 		this.initialX = this.posX;
 		this.initialZ = this.posZ;
 	};
@@ -41,9 +42,9 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	public EntityBridgeCreator(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
 		
-		this.pos = this.getPosition();
-		this.initialX = this.posX;
-		this.initialZ = this.posZ;
+		this.initialX = shooter.posX;
+		this.initialZ = shooter.posZ;
+		this.pos = shooter.getPosition();
 	};
 
 	@Override
@@ -114,8 +115,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 			System.out.println("Creating BlockBridgeBuilder: " + print);
 			try {
 				if (!world.isRemote) {
-					BlockBridgeBuilder builder = new BlockBridgeBuilder(pos, currentPos, direction, world, this);
-					builder.build();
+					BlockBridgeBuilder builder = ModBlocks.bridge_builder;
+					builder.build(pos.down(), currentPos, direction, world, this);
 					this.world.setBlockState(currentPos, builder.getDefaultState());
 				};
 				this.setDead();

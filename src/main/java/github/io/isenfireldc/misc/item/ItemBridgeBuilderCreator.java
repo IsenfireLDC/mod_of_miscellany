@@ -36,9 +36,9 @@ public class ItemBridgeBuilderCreator extends ItemBase {
 		if (!world.isRemote) {
 			BlockBridgeBuilder builder = ModBlocks.bridge_builder;
 			try {
-				builder = new BlockBridgeBuilder(pos, currentPos, direction, world, new EntityBridgeCreator(world));
+				builder = new BlockBridgeBuilder();
 				System.out.println(builder);
-				builder.build();
+				builder.build(pos, currentPos, direction, world, new EntityBridgeCreator(world));
 				System.out.println("Successfully created builder");
 			} catch (Exception e) {
 				System.err.println("Failed to create BridgeBuilder: " + e);

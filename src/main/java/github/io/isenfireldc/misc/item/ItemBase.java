@@ -36,7 +36,7 @@ public class ItemBase extends Item implements ItemModelProvider {
 	private String checkName(String name) {
 		String check = name.substring(name.length() - 1);
 		if (check.equals("#")) {
-			texture = "#";
+			texture = "PlaceholderItem";
 			return name.substring(0, name.length() - 1);
 		};
 		texture = name;

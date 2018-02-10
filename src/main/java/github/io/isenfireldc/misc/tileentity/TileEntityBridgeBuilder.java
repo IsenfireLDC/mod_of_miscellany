@@ -70,7 +70,10 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 				world.setBlockState(start, block.getDefaultState());
 			} else if (i == 1) {
 				start = start.add(0, 1, 0);
-				world.setBlockState(start, getOrientation((BlockStairs) stair));
+				world.setBlockState(start, getOrientation((BlockStairs) stair, 1));
+			} else if (i == -1) {
+				world.setBlockState(start, getOrientation((BlockStairs) stair, -1));
+				start = start.add(0, -1, 0);
 			};
 			
 			start = increment(start, direction);
@@ -82,7 +85,7 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 	 * 
 	 * @return IBlockState of correctly oriented stair
 	 */
-	private IBlockState getOrientation(BlockStairs stair) {
+	private IBlockState getOrientation(BlockStairs stair, int dirY) {
 		//Values given by stair.getDefaultState()
 		EnumFacing facing = EnumFacing.NORTH;
 		BlockStairs.EnumHalf half = BlockStairs.EnumHalf.BOTTOM;
@@ -90,19 +93,36 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 		
 		//south: +z, east: +x, north: -z, west: -x
 		//0 for +z, 1 for +x, 2 for -z, 3 for -x
-		switch (this.direction) {
-			case 0:
-				facing = EnumFacing.SOUTH;
-				break;
-			case 1:
-				facing = EnumFacing.EAST;
-				break;
-			case 2:
-				facing = EnumFacing.NORTH;
-				break;
-			case 3:
-				facing = EnumFacing.WEST;
-				break;
+		if (dirY > 0) { //going up
+			switch (this.direction) {
+				case 0:
+					facing = EnumFacing.SOUTH;
+					break;
+				case 1:
+					facing = EnumFacing.EAST;
+					break;
+				case 2:
+					facing = EnumFacing.NORTH;
+					break;
+				case 3:
+					facing = EnumFacing.WEST;
+					break;
+			}
+		} else if (dirY < 0) { //going down
+			switch (this.direction) {
+				case 0:
+					facing = EnumFacing.NORTH;
+					break;
+				case 1:
+					facing = EnumFacing.WEST;
+					break;
+				case 2:
+					facing = EnumFacing.SOUTH;
+					break;
+				case 3:
+					facing = EnumFacing.EAST;
+					break;
+			}
 		}
 		return stair.getBlockState().getBaseState().withProperty(stair.FACING, facing).withProperty(stair.HALF, half).withProperty(stair.SHAPE, shape);
 	};

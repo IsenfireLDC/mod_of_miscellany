@@ -18,7 +18,6 @@ public class BlockBase extends Block {
 	
 	public BlockBase(String name) {
 		this(name, defaultMaterial);
-		System.out.println(this + ": " + "ConstructorA");
 	};
 	
 	public BlockBase(String name, Material material) {
@@ -46,9 +45,8 @@ public class BlockBase extends Block {
 	
 	private String checkName(String name) {
 		String check = name.substring(name.length() - 1);
-		System.out.println(check);
 		if (check.equals("#")) {
-			texture = "#";
+			texture = "PlaceholderBlock";
 			return name.substring(0, name.length() - 1);
 		};
 		texture = name;
