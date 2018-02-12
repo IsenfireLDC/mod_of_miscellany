@@ -93,10 +93,10 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 			for (int i = 0; i < SECTION_SIZE; i++) {
 				c_height = (int)Math.round(slope * c_dist);
 				
-				if (c_height - a_height == 1) {
+				if (c_height - a_height >= 1) {
 					section[i] = 1;
 					a_height++;
-				} else if (c_height - a_height == -1) {
+				} else if (c_height - a_height <= -1) {
 					section[i] = -1;
 					a_height--;
 				} else {
@@ -123,7 +123,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	};
 
 	@Override
-	public Class<TileEntityBridgeBuilder> getEntityClass() {
+	public Class<TileEntityBridgeBuilder> getTileEntityClass() {
 		return TileEntityBridgeBuilder.class;
 	};
 	

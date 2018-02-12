@@ -134,12 +134,7 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 		
 		int count = 0;
 		for (int[] arr : slope) {
-			System.out.println(arr + ":");
-			for (int arrInt : arr) {
-				System.out.println(arrInt);
-			};
 			String arrName = "Slope" + count;
-			System.out.println(arrName);
 			compound.setIntArray("Slope" + count, arr);
 			count++;
 		};
@@ -158,10 +153,6 @@ public class TileEntityBridgeBuilder extends TileEntityBase implements ITickable
 		int[][] tempSlope = new int[count][];
 		for (int i = 0; i <= count; i++) {
 			tempSlope[i] = compound.getIntArray("Slope" + i);
-			System.out.println(tempSlope[i]);
-			for (int arrInt : tempSlope[i]) {
-				System.out.println(arrInt);
-			};
 		};
 		this.slope = tempSlope;
 		super.readFromNBT(compound);

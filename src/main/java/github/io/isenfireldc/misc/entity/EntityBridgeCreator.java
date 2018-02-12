@@ -67,8 +67,8 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 			velocityX = 0;
 		};
 		
-		if (!directionChecked) {
-			setDirection(pos, this.getPosition());
+		if (!directionChecked && ticksExisted >= 5) {
+			setDirection(this.pos, this.getPosition());
 			directionChecked = true;
 			System.out.println(direction);
 		}

@@ -29,6 +29,9 @@ public class ModBlocks {
 		if (block instanceof ItemModelProvider) {
 			((ItemModelProvider)block).registerItemModel(itemBlock);
 		}
+		if (block instanceof BlockTileEntity) {
+			GameRegistry.registerTileEntity(((BlockTileEntity<?>)block).getTileEntityClass(), block.getRegistryName().toString());
+		}
 		
 		return block;
 	}
