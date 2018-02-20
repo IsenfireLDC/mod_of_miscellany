@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 public class BlockBase extends Block {
 	
 	protected static final Material defaultMaterial = Material.ROCK;
+	protected static final String defaultTexture = "PlaceholderBlock";
 	
 	protected String name;
 	protected String texture;
@@ -46,7 +47,7 @@ public class BlockBase extends Block {
 	private String checkName(String name) {
 		String check = name.substring(name.length() - 1);
 		if (check.equals("#")) {
-			texture = "PlaceholderBlock";
+			texture = defaultTexture;
 			return name.substring(0, name.length() - 1);
 		};
 		texture = name;

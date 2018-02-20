@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements ItemModelProvider {
 	
+	protected static final String defaultTexture = "PlaceholderItem";
+	
 	protected String name;
 	protected String texture;
 	protected String subfolder = "";
@@ -36,7 +38,7 @@ public class ItemBase extends Item implements ItemModelProvider {
 	private String checkName(String name) {
 		String check = name.substring(name.length() - 1);
 		if (check.equals("#")) {
-			texture = "PlaceholderItem";
+			texture = defaultTexture;
 			return name.substring(0, name.length() - 1);
 		};
 		texture = name;

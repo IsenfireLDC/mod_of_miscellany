@@ -17,6 +17,8 @@
  * <bug fix> Pillars are no longer built - entity now moves before calculating its direction
  * <bug fix> Staircase should be build at a 45 degree angle if entity is fired at a larger angle
  * <bug fix> Tileentities connected to blocks are now properly registered and able to save to NBT
+-------10d-------
+ * <info> Changed pack_format in pack.mcmeta to 2, will see if it works when building
 
 ---------Goals----------
  X Add method to properly turn stairs
