@@ -6,7 +6,7 @@ public class Reference {
 	
 	public static final String MODID = "misc";
 	public static final String NAME = "Mod of Miscellany";
-	public static final String VERSION = "0.1.4-dev";
+	public static final String VERSION = "0.1.4.10e-dev";
 	public static final String ACCEPTED_VERSIONS = "[1.11.2]";
 	
 	public static final String SERVER = "github.io.isenfireldc.misc.proxy.CommonProxy";

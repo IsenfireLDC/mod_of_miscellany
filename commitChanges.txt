@@ -19,15 +19,18 @@
  * <bug fix> Tileentities connected to blocks are now properly registered and able to save to NBT
 -------10d-------
  * <info> Changed pack_format in pack.mcmeta to 2, will see if it works when building
+-------10e-------
+ * <bug info> direction is using previously calculated value
+ * <bug fix> reordered code, direction is now calculated at a better time
 
 ---------Goals----------
  X Add method to properly turn stairs
  X Have stairs start at foot level
  X Fix pillar bug
- > Fix placeholder texture
+?> Fix placeholder texture
  X Look into and stop block from being placed as null
 ?X Look into and fix tileentity
- * Allow the bridge builder to build smaller bridges
+ > Allow the bridge builder to build smaller bridges
 
  ----Key----
  * To do

@@ -1,6 +1,6 @@
 package github.io.isenfireldc.misc.item;
 
-import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
+import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
 import github.io.isenfireldc.misc.entity.EntityFlare;
 import github.io.isenfireldc.misc.entity.ModEntities;
 import net.minecraft.item.Item;

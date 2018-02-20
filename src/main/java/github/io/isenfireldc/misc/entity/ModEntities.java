@@ -12,13 +12,13 @@ public class ModEntities {
 	
 	public static EntityFlare flare;
 	
-	public static EntityBridgeCreator bridge_builder;
+	public static EntityBridgeBuilder bridge_builder;
 	
 	public static void init() {
 		
 		register(EntityFlare.class, "flare");
 		
-		register(EntityBridgeCreator.class, "bridge_builder");
+		register(EntityBridgeBuilder.class, "bridge_builder");
 		
 	};
 	

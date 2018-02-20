@@ -1,7 +1,7 @@
 package github.io.isenfireldc.misc.tileentity;
 
 import github.io.isenfireldc.misc.entity.AbstractEntityProjectile;
-import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
+import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
 import github.io.isenfireldc.misc.entity.EntityFlare;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -30,7 +30,7 @@ public class TileEntityEntityGun extends TileEntity {
 		if (meta == 0) {
 			return new EntityFlare(world, player);
 		} else if (meta == 1) {
-			return new EntityBridgeCreator(world, player);
+			return new EntityBridgeBuilder(world, player);
 		};
 		
 		return null;

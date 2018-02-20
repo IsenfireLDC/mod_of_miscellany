@@ -2,13 +2,16 @@ package github.io.isenfireldc.misc.entity;
 
 import github.io.isenfireldc.misc.block.BlockBridgeBuilder;
 import github.io.isenfireldc.misc.block.ModBlocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityBridgeCreator extends AbstractEntityProjectile {
+public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	//TODO Only works in cardinal directions at present, corners are too complicated
 	
 	BlockPos pos;
@@ -18,12 +21,12 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	
 	int count = 0;
 	
-	protected Item entityItem;
+	protected Item entityItem = Item.getItemFromBlock(Blocks.TNT);
 	
 	double initialX;
 	double initialZ;
 	
-	public EntityBridgeCreator(World worldIn) {
+	public EntityBridgeBuilder(World worldIn) {
 		super(worldIn);
 		
 		this.pos = this.getPosition();
@@ -31,7 +34,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		this.initialZ = this.posZ;
 	}
 	
-	public EntityBridgeCreator(World worldIn, double x, double y, double z) {
+	public EntityBridgeBuilder(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
 		
 		this.pos = this.getPosition().add(0, -1, 0);
@@ -39,7 +42,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		this.initialZ = this.posZ;
 	};
 	
-	public EntityBridgeCreator(World worldIn, EntityLivingBase shooter) {
+	public EntityBridgeBuilder(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
 		
 		this.initialX = shooter.posX;
@@ -53,8 +56,7 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 	};
 
 	@Override
-	protected double getVerticalVelocity(double velocity) { //TODO Add a different system (-45 degrees to 45 degrees pitch only)
-		//velocity -= super.grav / 10;
+	protected double getVerticalVelocity(double velocity) {
 		return velocity;
 	};
 	
@@ -66,12 +68,6 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		} else {
 			velocityX = 0;
 		};
-		
-		if (!directionChecked && ticksExisted >= 5) {
-			setDirection(this.pos, this.getPosition());
-			directionChecked = true;
-			System.out.println(direction);
-		}
 		
 		return new double[] {velocityX, velocityZ};
 	};
@@ -113,18 +109,39 @@ public class EntityBridgeCreator extends AbstractEntityProjectile {
 		if (zDiff >= 100 || xDiff >= 100) {
 			int print = zDiff > xDiff ? zDiff : xDiff;
 			System.out.println("Creating BlockBridgeBuilder: " + print);
-			try {
-				if (!world.isRemote) {
-					BlockBridgeBuilder builder = ModBlocks.bridge_builder;
-					builder.build(pos.down(), currentPos, direction, world, this);
-					this.world.setBlockState(currentPos, builder.getDefaultState());
-				};
-				this.setDead();
-			} catch (Exception e){
-				System.err.println(this + ": " + "Attempted to place builder: " + e);
-			}
+			build();
 		};
 		
 	};
+	
+	private void build() {
+		System.out.println("Building...");
+		
+		setDirection(this.pos, this.getPosition());
+		directionChecked = true;
+		System.out.println(this + ": " + direction);
+		
+		BlockPos currentPos = this.getPosition();
+		try {
+			if (!world.isRemote) {
+				System.out.println(this + ": " + direction);
+				BlockBridgeBuilder builder = ModBlocks.bridge_builder;
+				builder.build(pos.down(), currentPos, direction, world, this);
+				this.world.setBlockState(currentPos, builder.getDefaultState());
+			};
+			this.setDead();
+		} catch (Exception e) {
+			System.err.println(this + ": " + "Attempted to place builder: " + e);
+		}
+	};
+	
+	@Override
+	public void onBlockHit(RayTraceResult raytraceResultIn) {
+		super.onBlockHit(raytraceResultIn);
+		build();
+	};
+
+	@Override
+	public void onEntityHit(RayTraceResult raytraceResultIn, Entity entity) {};
 	
 }

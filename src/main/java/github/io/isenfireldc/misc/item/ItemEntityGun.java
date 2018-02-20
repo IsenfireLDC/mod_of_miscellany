@@ -1,7 +1,7 @@
 package github.io.isenfireldc.misc.item;
 
 import github.io.isenfireldc.misc.entity.AbstractEntityProjectile;
-import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
+import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
 import github.io.isenfireldc.misc.entity.EntityFlare;
 import github.io.isenfireldc.misc.tileentity.TileEntityEntityGun;
 import net.minecraft.entity.player.EntityPlayer;

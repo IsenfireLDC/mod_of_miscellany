@@ -7,7 +7,8 @@ call gradlew build
 goto copyFiles
 
 :setTxt
-call .\docs\genTxtFiles.bat
+cd .\docs
+call genTxtFiles
 goto end
 
 
@@ -26,5 +27,6 @@ for /f "delims=" %%i in ('dir /b /o:-d ".\build\libs\*.jar"') do (
 		set /a count += 1
 	)
 )
+goto setTxt
 
 :end

@@ -325,6 +325,7 @@ public abstract class AbstractEntityProjectile extends EntityBase {
 
         if (entity != null)
         {
+        	onEntityHit(raytraceResultIn, entity);
             //float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
             //int i = MathHelper.ceil((double)f * this.damage);
 
@@ -402,28 +403,34 @@ public abstract class AbstractEntityProjectile extends EntityBase {
                 }
             }
         } else {
-            BlockPos blockpos = raytraceResultIn.getBlockPos();
-            this.xTile = blockpos.getX();
-            this.yTile = blockpos.getY();
-            this.zTile = blockpos.getZ();
-            IBlockState iblockstate = this.world.getBlockState(blockpos);
-            this.inTile = iblockstate.getBlock();
-            this.inData = this.inTile.getMetaFromState(iblockstate);
-            this.motionX = (double)((float)(raytraceResultIn.hitVec.xCoord - this.posX));
-            this.motionY = (double)((float)(raytraceResultIn.hitVec.yCoord - this.posY));
-            this.motionZ = (double)((float)(raytraceResultIn.hitVec.zCoord - this.posZ));
-            float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-            this.posX -= this.motionX / (double)f2 * 0.05000000074505806D;
-            this.posY -= this.motionY / (double)f2 * 0.05000000074505806D;
-            this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
-            this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-            this.inGround = true;
-            this.projectileShake = 7;
+        	onBlockHit(raytraceResultIn);
+        }
+    };
+    
+    protected abstract void onEntityHit(RayTraceResult raytraceResultIn, Entity entity);
+    
+    protected void onBlockHit(RayTraceResult raytraceResultIn) {
+        BlockPos blockpos = raytraceResultIn.getBlockPos();
+        this.xTile = blockpos.getX();
+        this.yTile = blockpos.getY();
+        this.zTile = blockpos.getZ();
+        IBlockState iblockstate = this.world.getBlockState(blockpos);
+        this.inTile = iblockstate.getBlock();
+        this.inData = this.inTile.getMetaFromState(iblockstate);
+        this.motionX = (double)((float)(raytraceResultIn.hitVec.xCoord - this.posX));
+        this.motionY = (double)((float)(raytraceResultIn.hitVec.yCoord - this.posY));
+        this.motionZ = (double)((float)(raytraceResultIn.hitVec.zCoord - this.posZ));
+        float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+        this.posX -= this.motionX / (double)f2 * 0.05000000074505806D;
+        this.posY -= this.motionY / (double)f2 * 0.05000000074505806D;
+        this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
+        this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+        this.inGround = true;
+        this.projectileShake = 7;
 
-            if (iblockstate.getMaterial() != Material.AIR)
-            {
-                this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
-            }
+        if (iblockstate.getMaterial() != Material.AIR)
+        {
+            this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
         }
     };
     

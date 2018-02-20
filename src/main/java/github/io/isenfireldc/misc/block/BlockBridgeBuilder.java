@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import github.io.isenfireldc.misc.entity.EntityBridgeCreator;
+import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
 import github.io.isenfireldc.misc.tileentity.TileEntityBridgeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	
 	private static World world;
 	
-	private EntityBridgeCreator entityBuilder;
+	private EntityBridgeBuilder entityBuilder;
 	
 	private TileEntityBridgeBuilder builder;
 	
@@ -37,7 +37,7 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 		super(name);
 	};
 	
-	public void build(BlockPos start, BlockPos end, int direction, World world, EntityBridgeCreator entityBuilder) {
+	public void build(BlockPos start, BlockPos end, int direction, World world, EntityBridgeBuilder entityBuilder) {
 		this.start = start;
 		this.end = end;
 		this.direction = direction;
