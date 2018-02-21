@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 public class BlockBase extends Block {
 	
 	protected static final Material defaultMaterial = Material.ROCK;
-	protected static final String defaultTexture = "PlaceholderBlock";
+	protected static final String defaultTexture = "placeholder_block";
 	
 	protected String name;
 	protected String texture;

@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "all": "misc:blocks/PlaceholderBlock"
+            "all": "misc:blocks/placeholder_block"
         }
     },
     "variants": {

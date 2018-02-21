@@ -22,15 +22,20 @@
 -------10e-------
  * <bug info> direction is using previously calculated value
  * <bug fix> reordered code, direction is now calculated at a better time
+ * BUILD: Created build 0.1.4.10e to test pack.mcmeta stuff
+-------10f-------
+ * <bug fix> Renamed everything because Minecraft hates camel case for some reason
+ * Did assorted weirdness to get all item textures to work
+ * <bug info> inventory variant of blocks is not working
 
 ---------Goals----------
  X Add method to properly turn stairs
  X Have stairs start at foot level
  X Fix pillar bug
-?> Fix placeholder texture
+ > Fix placeholder texture
  X Look into and stop block from being placed as null
-?X Look into and fix tileentity
- > Allow the bridge builder to build smaller bridges
+ X Look into and fix tileentity
+ X Allow the bridge builder to build smaller bridges
 
  ----Key----
  * To do

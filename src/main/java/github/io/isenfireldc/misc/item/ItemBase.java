@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements ItemModelProvider {
 	
-	protected static final String defaultTexture = "PlaceholderItem";
+	protected static final String defaultTexture = "placeholder_item";
 	
 	protected String name;
 	protected String texture;
