@@ -28,7 +28,7 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	double initialX;
 	double initialZ;
 	
-	protected int MAX_BRIDGE_DISTANCE;
+	protected static int MAX_BRIDGE_DISTANCE;
 	
 	public EntityBridgeBuilder(World worldIn) {
 		super(worldIn);
@@ -37,7 +37,6 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 		this.initialX = this.posX;
 		this.initialZ = this.posZ;
 		this.MAX_BRIDGE_DISTANCE = ConfigValues.MAX_BRIDGE_DISTANCE;
-		System.out.println("Max Bridge Distance: " + MAX_BRIDGE_DISTANCE);
 	}
 	
 	public EntityBridgeBuilder(World worldIn, double x, double y, double z) {
@@ -55,6 +54,7 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 		this.initialX = shooter.posX;
 		this.initialZ = shooter.posZ;
 		this.pos = shooter.getPosition();
+		this.MAX_BRIDGE_DISTANCE = ConfigHandler.MAX_BRIDGE_DISTANCE;
 	};
 
 	@Override

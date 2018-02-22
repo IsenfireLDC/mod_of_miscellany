@@ -29,7 +29,7 @@
  * <bug info> inventory variant of blocks is not working
 -------10g-------
  * <bug fix> Block textures now work: subfolder is now initialized to ""
- * Attempted to add configuration file
+ * Attempted to add configuration file - Look at Settings, CommonProxy, DefenseTech; Overlord
 
 ---------Goals----------
  X Add method to properly turn stairs
