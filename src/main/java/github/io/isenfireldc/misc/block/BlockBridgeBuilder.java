@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import github.io.isenfireldc.misc.ConfigHandler;
 import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
 import github.io.isenfireldc.misc.tileentity.TileEntityBridgeBuilder;
 import net.minecraft.block.state.IBlockState;
@@ -12,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
 
 public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder> {
 	
@@ -32,6 +34,8 @@ public class BlockBridgeBuilder extends BlockTileEntity<TileEntityBridgeBuilder>
 	private EntityBridgeBuilder entityBuilder;
 	
 	private TileEntityBridgeBuilder builder;
+	
+	private int builder_max_distance;
 	
 	public BlockBridgeBuilder() {
 		super(name);

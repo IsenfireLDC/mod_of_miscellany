@@ -8,14 +8,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class BlockBase extends Block {
+public class BlockBase extends Block implements ItemModelProvider {
 	
 	protected static final Material defaultMaterial = Material.ROCK;
 	protected static final String defaultTexture = "placeholder_block";
 	
 	protected String name;
 	protected String texture;
-	protected String subfolder;
+	protected String subfolder = "";
 	
 	public BlockBase(String name) {
 		this(name, defaultMaterial);

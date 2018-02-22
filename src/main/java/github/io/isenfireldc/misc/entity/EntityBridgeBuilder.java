@@ -1,5 +1,7 @@
 package github.io.isenfireldc.misc.entity;
 
+import github.io.isenfireldc.misc.ConfigHandler;
+import github.io.isenfireldc.misc.ConfigValues;
 import github.io.isenfireldc.misc.block.BlockBridgeBuilder;
 import github.io.isenfireldc.misc.block.ModBlocks;
 import net.minecraft.entity.Entity;
@@ -26,12 +28,16 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	double initialX;
 	double initialZ;
 	
+	protected int MAX_BRIDGE_DISTANCE;
+	
 	public EntityBridgeBuilder(World worldIn) {
 		super(worldIn);
 		
 		this.pos = this.getPosition();
 		this.initialX = this.posX;
 		this.initialZ = this.posZ;
+		this.MAX_BRIDGE_DISTANCE = ConfigValues.MAX_BRIDGE_DISTANCE;
+		System.out.println("Max Bridge Distance: " + MAX_BRIDGE_DISTANCE);
 	}
 	
 	public EntityBridgeBuilder(World worldIn, double x, double y, double z) {
@@ -40,6 +46,7 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 		this.pos = this.getPosition().add(0, -1, 0);
 		this.initialX = this.posX;
 		this.initialZ = this.posZ;
+		this.MAX_BRIDGE_DISTANCE = ConfigHandler.MAX_BRIDGE_DISTANCE;
 	};
 	
 	public EntityBridgeBuilder(World worldIn, EntityLivingBase shooter) {
@@ -97,16 +104,11 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 		
-		//System.out.println(this + ": " + "Update: " + ++count);
-		
 		BlockPos currentPos = this.getPosition();
-/*		System.out.println("z: " + Math.abs(pos.getZ() - currentPos.getZ()));
-		System.out.println("x: " + Math.abs(pos.getX() - currentPos.getX()));
-		System.out.println("block: " + world.getBlockState(currentPos));*/
 		int zDiff = Math.abs(pos.getZ() - currentPos.getZ());
 		int xDiff = Math.abs(pos.getX() - currentPos.getX());
 		
-		if (zDiff >= 100 || xDiff >= 100) {
+		if (zDiff >= MAX_BRIDGE_DISTANCE || xDiff >= MAX_BRIDGE_DISTANCE) {
 			int print = zDiff > xDiff ? zDiff : xDiff;
 			System.out.println("Creating BlockBridgeBuilder: " + print);
 			build();

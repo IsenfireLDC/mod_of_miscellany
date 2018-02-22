@@ -27,15 +27,19 @@
  * <bug fix> Renamed everything because Minecraft hates camel case for some reason
  * Did assorted weirdness to get all item textures to work
  * <bug info> inventory variant of blocks is not working
+-------10g-------
+ * <bug fix> Block textures now work: subfolder is now initialized to ""
+ * Attempted to add configuration file
 
 ---------Goals----------
  X Add method to properly turn stairs
  X Have stairs start at foot level
  X Fix pillar bug
- > Fix placeholder texture
+ X Fix placeholder texture
  X Look into and stop block from being placed as null
  X Look into and fix tileentity
  X Allow the bridge builder to build smaller bridges
+ * Add config file
 
  ----Key----
  * To do

@@ -4,6 +4,8 @@ import github.io.isenfireldc.misc.block.ModBlocks;
 import github.io.isenfireldc.misc.entity.ModEntities;
 import github.io.isenfireldc.misc.item.ModItems;
 import github.io.isenfireldc.misc.proxy.CommonProxy;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -15,6 +17,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class MiscellanyMod {
 	
+	public static Configuration config;
+	
+	public static Property builder_max_distance;
+	
 	@Instance(Reference.MODID)
 	public static MiscellanyMod instance;
 	
@@ -24,6 +30,11 @@ public class MiscellanyMod {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		System.out.println(Reference.NAME + " is loading...");
+		/*
+		config = new Configuration(e.getSuggestedConfigurationFile());
+		config.load();*/
+		
+		proxy.loadConfiguration();
 		
 		ModItems.init();
 		ModBlocks.init();
