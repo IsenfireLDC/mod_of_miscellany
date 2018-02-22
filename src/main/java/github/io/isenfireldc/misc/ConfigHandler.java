@@ -15,7 +15,7 @@ public class ConfigHandler {
 	
 	public static void init() {
 		
-		CONFIGURATION.load();
+		//CONFIGURATION.load();
 		
 		MAX_BRIDGE_DISTANCE = CONFIGURATION.get(Configuration.CATEGORY_GENERAL, "Max Bridge Distance", 100).getInt(100);
 		

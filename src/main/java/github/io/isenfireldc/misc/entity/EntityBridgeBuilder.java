@@ -36,7 +36,7 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 		this.pos = this.getPosition();
 		this.initialX = this.posX;
 		this.initialZ = this.posZ;
-		this.MAX_BRIDGE_DISTANCE = ConfigValues.MAX_BRIDGE_DISTANCE;
+		this.MAX_BRIDGE_DISTANCE = ConfigHandler.MAX_BRIDGE_DISTANCE;
 	}
 	
 	public EntityBridgeBuilder(World worldIn, double x, double y, double z) {
