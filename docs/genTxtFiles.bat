@@ -1,1 +1,2 @@
-dir ".\builds\dev-versions\*.jar" /b /o:d > devFiles.txt
+dir ".\builds\all-versions\*.jar" /b /o:-d > allFiles.txt
+dir ".\builds\recommended\*.jar" /b /o:-d > recommendedFiles.txt
