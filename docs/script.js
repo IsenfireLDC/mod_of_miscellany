@@ -1,5 +1,5 @@
 var downloadPath = "../builds/dev-versions/";
-var inputFiles = ["allFiles.txt", "recommendedFiles.txt"];  //For possible use later
+var inputFiles = ["recommendedFiles.txt", "allFiles.txt"];
 var downloads = [];
 /*for (var i = 0; i < jdownloads.length; i++) {
   downloads[i] = [jdownloads[i], sdownloads[i]];
@@ -7,15 +7,13 @@ var downloads = [];
 
 function pageLoad() {
   for (var file in inputFiles) {
-    if (object.hasOwnProperty(file)) {
-      fetch(file)
-        .then(response => response.text())
-        .then(text => {
-          intoArray(text);
-          return text;
-        })
-        .then(showAllDownloads(file));
-    }
+    fetch(file)
+      .then(response => response.text())
+      .then(text => {
+        intoArray(text);
+        return text;
+      })
+      .then(showAllDownloads(file));
   }
 }
 
