@@ -7,13 +7,13 @@ var downloads = [];
 
 function pageLoad() {
   for (var file in inputFiles) {
-    fetch(file)
+    fetch(inputFiles[file])
       .then(response => response.text())
       .then(text => {
         intoArray(text);
         return text;
       })
-      .then(showAllDownloads(file));
+      .then(showAllDownloads(inputFiles[file]));
   }
 }
 
