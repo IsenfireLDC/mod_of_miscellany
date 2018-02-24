@@ -7,7 +7,7 @@ var downloads = [];
 
 function pageLoad() {
   for (var file in inputFiles) {
-    fetch(file)
+    fetch(inputFiles[file])
       .then(response => response.text())
       .then(text => {
         intoArray(text);
