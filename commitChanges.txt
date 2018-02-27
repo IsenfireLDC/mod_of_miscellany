@@ -3,6 +3,7 @@
  * Reworked building batch files
  * Added recommended (final/stable builds) folder
  * Reworked tables on website
+ * Miscellaneous fixes to tables
 <end version 0.1.4.11>
 
 ---------Goals----------
