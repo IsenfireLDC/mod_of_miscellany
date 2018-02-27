@@ -7,14 +7,16 @@ var downloads = [];
 
 
 async function pageLoad() {
-  var file=inputFiles.pop();
-  fetch(file)
-    .then(response => response.text())
-    .then(text => {
-      intoArray(text);
-      return text;
-    })
-    .then(showAllDownloads(file));
+  for (variable of inputFiles) {
+    var file= await inputFiles.pop();
+    fetch(file)
+      .then(response => response.text())
+      .then(text => {
+        intoArray(text);
+        return text;
+      })
+      .then(showAllDownloads(file));
+  }
 }
 
 function showAllDownloads(elementId) {
