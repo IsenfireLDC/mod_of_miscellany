@@ -19,20 +19,20 @@ async function pageLoad() {
   }
 }
 
-function showAllDownloads(elementId) {
+async function showAllDownloads(elementId) {
   var index = elementId.indexOf("Files.txt");
   elementId = elementId.substring(0, index);
-  var table = document.getElementById(elementId);
+  var table = await document.getElementById(elementId);
 
   for (var i = 0; i < downloads.length; i++) {
-    console.log(i);
+
     var row = document.createElement('tr');
     for (var j = 0; j < downloads[i].length; j++) {
-      console.log(j);
+
       var cell = document.createElement('td');
       var file = document.createElement('a');
+      
       file.setAttribute('href', downloadPath + downloads[i][j]);
-      console.log(downloadPath + downloads[i][j]);
       file.setAttribute('download', downloads[i][j]);
       file.innerHTML = downloads[i][j];
 
@@ -48,9 +48,7 @@ function intoArray (lines) {
    //and saving each new line as each element*
 
    var lineArr = lines.split('\n');
-   console.log(lineArr);
    lineArr.pop();
-   console.log(lineArr);
 
    downloads = new Array(lineArr.length / 2);
 
@@ -58,8 +56,6 @@ function intoArray (lines) {
    var j = 0;
    for (var i = 0; i < lineArr.length; i += 2) {
      downloads[j] = [lineArr[i], lineArr[i + 1]];
-     console.log(downloads[j]);
-     console.log(i + " " + j);
      j++;
    };
    console.log(downloads);
