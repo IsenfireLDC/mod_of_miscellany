@@ -20,9 +20,10 @@ async function pageLoad() {
 }
 
 async function showAllDownloads(elementId) {
+  console.log("Diplaying " + elementId + "...");
   var index = elementId.indexOf("Files.txt");
   elementId = elementId.substring(0, index);
-  var table = await document.getElementById(elementId);
+  var table = document.getElementById(elementId);
 
   for (var i = 0; i < downloads.length; i++) {
 
