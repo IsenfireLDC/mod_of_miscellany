@@ -7,7 +7,7 @@ var downloads = [];
 
 
 async function pageLoad() {
-  for (file of inputFiles) {
+  inputFiles.forEach(async (file) => {
     console.log(file);
     await fetch(file)
       .then(response => response.text())
@@ -16,7 +16,7 @@ async function pageLoad() {
         return text;
       })
       .then(showAllDownloads(file));
-  }
+  })
 }
 
 async function showAllDownloads(elementId) {
@@ -31,7 +31,7 @@ async function showAllDownloads(elementId) {
 
       var cell = document.createElement('td');
       var file = document.createElement('a');
-      
+
       file.setAttribute('href', downloadPath + downloads[i][j]);
       file.setAttribute('download', downloads[i][j]);
       file.innerHTML = downloads[i][j];
