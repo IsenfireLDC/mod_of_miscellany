@@ -7,9 +7,9 @@ var downloads = [];
 
 
 async function pageLoad() {
-  for (variable of inputFiles) {
-    var file= await inputFiles.pop();
-    fetch(file)
+  for (file of inputFiles) {
+    console.log(file);
+    await fetch(file)
       .then(response => response.text())
       .then(text => {
         intoArray(text);
