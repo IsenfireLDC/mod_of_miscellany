@@ -5,16 +5,16 @@ var downloads = [];
   downloads[i] = [jdownloads[i], sdownloads[i]];
 };*/
 
-var currentIndex=0
-function pageLoad() {
-  fetch(inputFiles[currentIndex])
+
+async function pageLoad() {
+  var file=inputFiles.pop();
+  fetch(file)
     .then(response => response.text())
     .then(text => {
       intoArray(text);
       return text;
     })
-    .then(showAllDownloads(inputFiles[currentIndex]))
-    .then(currentIndex++);
+    .then(showAllDownloads(file));
 }
 
 function showAllDownloads(elementId) {
