@@ -13,7 +13,7 @@ function pageLoad() {
       intoArray(text);
       return text;
     })
-    .then(showAllDownloads(inputFiles[file]))
+    .then(showAllDownloads(inputFiles[currentIndex]))
     .then(currentIndex++);
 }
 
