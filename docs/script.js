@@ -15,7 +15,8 @@ async function pageLoad() {
         intoArray(text);
         return text;
       })
-      .then(showAllDownloads(file));
+      .then(showAllDownloads(file))
+      .then(console.log("Loaded file: " + file));
   }
 }
 
