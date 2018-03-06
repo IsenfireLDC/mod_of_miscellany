@@ -2,10 +2,11 @@
  * Deleted bridge_builder_debugger
  * Finished updating lang file
  * Added recipes for existing items
+---- Commited Mod Files ----
 <end version 0.1.4.13>
 
 ---------Goals----------
- * Fix tables on website
+ > Fix tables on website
  X Add config GUI
  * Create GUI for config
  X Rework building batch files
