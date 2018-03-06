@@ -9,34 +9,31 @@ var downloads = [];
 async function pageLoad() {
   for (const file of inputFiles) {
     console.log(file);
-    await fetch(file)
-      .then(response => response.text())
-      .then(text => {
-        intoArray(text);
-        return text;
-      })
-      .then(showAllDownloads(file))
-      .then(console.log("Loaded file: " + file));
+    let response = await fetch(file)
+    let text = await response.text())
+    let downloadArray = await intoArray(text);
+    await showAllDownloads(downloadArray, file)
+    console.log("Loaded file: " + file);
   }
 }
 
-async function showAllDownloads(elementId) {
+async function showAllDownloads(array, elementId) {
   console.log("Displaying " + elementId + "...");
   var index = elementId.indexOf("Files.txt");
   elementId = elementId.substring(0, index);
   var table = document.getElementById(elementId);
 
-  for (var i = 0; i < downloads.length; i++) {
+  for (var i = 0; i < array.length; i++) {
 
     var row = document.createElement('tr');
-    for (var j = 0; j < downloads[i].length; j++) {
+    for (var j = 0; j < array[i].length; j++) {
 
       var cell = document.createElement('td');
       var file = document.createElement('a');
 
-      file.setAttribute('href', downloadPath + downloads[i][j]);
-      file.setAttribute('download', downloads[i][j]);
-      file.innerHTML = downloads[i][j];
+      file.setAttribute('href', downloadPath + array[i][j]);
+      file.setAttribute('download', array[i][j]);
+      file.innerHTML = array[i][j];
 
       cell.appendChild(file);
       row.appendChild(cell);
@@ -62,4 +59,5 @@ async function intoArray (lines) {
      j++;
    };
    console.log(downloads);
+   return downloads;
 }
