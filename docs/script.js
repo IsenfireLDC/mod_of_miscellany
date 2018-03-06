@@ -7,7 +7,7 @@ var downloads = [];
 
 
 async function pageLoad() {
-  inputFiles.forEach(async (file) => {
+  for (const file of inputFiles) {
     console.log(file);
     await fetch(file)
       .then(response => response.text())
@@ -16,11 +16,11 @@ async function pageLoad() {
         return text;
       })
       .then(showAllDownloads(file));
-  })
+  }
 }
 
 async function showAllDownloads(elementId) {
-  console.log("Diplaying " + elementId + "...");
+  console.log("Displaying " + elementId + "...");
   var index = elementId.indexOf("Files.txt");
   elementId = elementId.substring(0, index);
   var table = document.getElementById(elementId);
