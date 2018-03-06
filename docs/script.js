@@ -42,6 +42,7 @@ async function showAllDownloads(elementId) {
     }
     table.appendChild(row);
   }
+  console.log("Finished displaying " + elementId + "...");
 }
 
 function intoArray (lines) {
