@@ -12,7 +12,7 @@ async function pageLoad() {
     await fetch(file)
       .then(response => response.text())
       .then(text => {
-        await intoArray(text);
+        intoArray(text);
         return text;
       })
       .then(showAllDownloads(file))
