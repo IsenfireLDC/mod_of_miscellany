@@ -12,7 +12,7 @@ async function pageLoad() {
     await fetch(file)
       .then(response => response.text())
       .then(text => {
-        intoArray(text);
+        await intoArray(text);
         return text;
       })
       .then(showAllDownloads(file))
@@ -46,7 +46,7 @@ async function showAllDownloads(elementId) {
   console.log("Finished displaying " + elementId + "...");
 }
 
-function intoArray (lines) {
+async function intoArray (lines) {
    // splitting all text data into array "\n" is splitting data from each new line
    //and saving each new line as each element*
 
