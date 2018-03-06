@@ -9,11 +9,15 @@ item.slow20.name=Medium Arrowspawner
 item.flare_gun.name=Flare Gun
 item.bridge_builder.name=Bridge Builder
 
+#Entity Items
+item.flare.name=Flare
+
 #Food
 item.pizza.name=Pizza
 
 ###Blocks
 tile.builder.name=Bridge Builder
+tile.litair.name=Lit Air
 
 ###Entities
 entity.flare.name=Flare

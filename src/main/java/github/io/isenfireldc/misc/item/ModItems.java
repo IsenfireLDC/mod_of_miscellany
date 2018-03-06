@@ -14,9 +14,7 @@ public class ModItems {
 	public static ItemEntityGun flare_gun;
 	public static ItemEntityGun bridge_builder;
 	
-	public static ItemFlare item_flare;
-	
-	public static ItemBridgeBuilderCreator bridge_builder_debugger;
+	public static ItemFlare flare;
 	
 	public static ItemPizza pizza;
 	
@@ -31,8 +29,7 @@ public class ModItems {
 		flare_gun = register(new ItemEntityGun("flare_gun", 0));
 		bridge_builder = register(new ItemEntityGun("bridge_builder", 1));
 		
-		item_flare = register(new ItemFlare("item_flare"));
-		bridge_builder_debugger = register(new ItemBridgeBuilderCreator("bridge_builder_debugger"));
+		flare = register(new ItemFlare("flare"));
 		
 		pizza = register(new ItemPizza("pizza"));
 	}

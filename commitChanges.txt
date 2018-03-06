@@ -1,17 +1,8 @@
-<start version 0.1.4.11>
- * Added base code for GUI
- * Reworked building batch files
- * Added recommended (final/stable builds) folder
- * Reworked tables on website
- * Miscellaneous fixes to tables
-<end version 0.1.4.11>
-<start version 0.1.4.12>
- * Created base class ItemEdible
- * Created pizza
- * Created recipe class ModRecipes
- * Updated lang file and added existing items
- * Got an error in ModItems, created a workaround (should be changed later, if possible)
-<end version 0.1.4.12>
+<start version 0.1.4.13>
+ * Deleted bridge_builder_debugger
+ * Finished updating lang file
+ * Added recipes for existing items
+<end version 0.1.4.13>
 
 ---------Goals----------
  * Fix tables on website
@@ -20,5 +11,6 @@
  X Rework building batch files
  X Add pizza
  X Add recipe class
- * Add recipes for existing items
+ X Add recipes for existing items
  * End version 0.1.4
+ * Fix workaround
