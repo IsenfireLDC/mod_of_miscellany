@@ -9,10 +9,10 @@ var downloads = [];
 async function pageLoad() {
   for (const file of inputFiles) {
     console.log(file);
-    let response = await fetch(file)
-    let text = await response.text())
+    let response = await fetch(file);
+    let text = await response.text();
     let downloadArray = await intoArray(text);
-    await showAllDownloads(downloadArray, file)
+    await showAllDownloads(downloadArray, file);
     console.log("Loaded file: " + file);
   }
 }
