@@ -1,5 +1,20 @@
-#Items
+###Items
+#Arrowspawners
 item.inst10.name=Small Instant Arrowspanwer
 item.inst20.name=Medium Instant Arrowspawner
 item.slow10.name=Small Arrowspawner
 item.slow20.name=Medium Arrowspawner
+
+#Entity Guns
+item.flare_gun.name=Flare Gun
+item.bridge_builder.name=Bridge Builder
+
+#Food
+item.pizza.name=Pizza
+
+###Blocks
+tile.builder.name=Bridge Builder
+
+###Entities
+entity.flare.name=Flare
+entity.bridge_builder.name=Bridge Pathfinder

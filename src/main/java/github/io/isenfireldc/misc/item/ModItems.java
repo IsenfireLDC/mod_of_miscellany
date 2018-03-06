@@ -1,8 +1,5 @@
 package github.io.isenfireldc.misc.item;
 
-import github.io.isenfireldc.misc.entity.EntityBridgeBuilder;
-import github.io.isenfireldc.misc.entity.EntityFlare;
-import github.io.isenfireldc.misc.entity.ModEntities;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -21,6 +18,8 @@ public class ModItems {
 	
 	public static ItemBridgeBuilderCreator bridge_builder_debugger;
 	
+	public static ItemPizza pizza;
+	
 	public static void init() {
 		
 		inst10 = register(new ItemArrowSpawner("inst10", 10, true));
@@ -34,13 +33,21 @@ public class ModItems {
 		
 		item_flare = register(new ItemFlare("item_flare"));
 		bridge_builder_debugger = register(new ItemBridgeBuilderCreator("bridge_builder_debugger"));
+		
+		pizza = register(new ItemPizza("pizza"));
 	}
 	
 	private static <T extends Item> T register(T item) {
 		GameRegistry.register(item);
 		
 		if (item instanceof ItemModelProvider) {
-			((ItemBase)item).registerItemModel(item);
+			//((ItemBase)item).registerItemModel(item);
+			//TODO Need a better method for doing this
+			if (item instanceof ItemEdible) {
+				((ItemEdible)item).registerItemModel(item);
+			} else {
+				((ItemBase)item).registerItemModel(item);
+			}
 		}
 		
 		return item;

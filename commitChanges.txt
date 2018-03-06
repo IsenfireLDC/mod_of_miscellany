@@ -5,8 +5,20 @@
  * Reworked tables on website
  * Miscellaneous fixes to tables
 <end version 0.1.4.11>
+<start version 0.1.4.12>
+ * Created base class ItemEdible
+ * Created pizza
+ * Created recipe class ModRecipes
+ * Updated lang file and added existing items
+ * Got an error in ModItems, created a workaround (should be changed later, if possible)
+<end version 0.1.4.12>
 
 ---------Goals----------
+ * Fix tables on website
  X Add config GUI
  * Create GUI for config
  X Rework building batch files
+ X Add pizza
+ X Add recipe class
+ * Add recipes for existing items
+ * End version 0.1.4

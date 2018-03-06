@@ -1,35 +1,29 @@
 package github.io.isenfireldc.misc.item;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
-import github.io.isenfireldc.misc.Reference;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 
-public class ItemBase extends Item implements ItemModelProvider {
+public class ItemEdible extends ItemFood implements ItemModelProvider {
 	
-	protected static final String defaultTexture = "placeholder_item";
+	protected static final String defaultTexture = "placeholder_food";
 	
 	protected String name;
 	protected String texture;
-	protected String subfolder = "general";
+	protected String subfolder = "food";
 	
-	public ItemBase(String name) {
+	public ItemEdible(int amount, float saturation, boolean isWolfFood, String name) {
+		super(amount, saturation, isWolfFood);
 		this.name = checkName(name);
-		setUnlocalizedName(this.name);
-		setRegistryName(this.name);
-		setCreativeTab(Reference.TAB);
 	};
 	
-	@Override
-	public ItemBase setCreativeTab(CreativeTabs tab) {
-		super.setCreativeTab(tab);
-		return this;
-	};
-	
+	/*
+	 * Only call this once per class, but that shouldn't be a problem 
+	*/
 	public void setSubfolder(String subfolder) {
-		this.subfolder = subfolder;
+		this.subfolder += "/" + subfolder;
 	};
-	
+
 	@Override
 	public void registerItemModel(Item item) {
 		MiscellanyMod.proxy.registerItemRenderer(item, 0, texture, subfolder);

@@ -4,6 +4,7 @@ import github.io.isenfireldc.misc.block.ModBlocks;
 import github.io.isenfireldc.misc.entity.ModEntities;
 import github.io.isenfireldc.misc.item.ModItems;
 import github.io.isenfireldc.misc.proxy.CommonProxy;
+import github.io.isenfireldc.misc.recipes.ModRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -20,10 +21,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, guiFactory = Reference.GUI_FACTORY)
 public class MiscellanyMod {
-	
-	public static Configuration config;
-	
-	public static Property builder_max_distance;
 	
 	@Instance(Reference.MODID)
 	public static MiscellanyMod instance;
@@ -46,7 +43,7 @@ public class MiscellanyMod {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
-		
+		ModRecipes.init();
 	}
 	
 	@EventHandler
