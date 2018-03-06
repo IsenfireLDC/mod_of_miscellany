@@ -6,6 +6,7 @@
  * Changed forEach loop to for of loop in script.js
  * Added favicon.ico file to site, errors are annoying
  * Changed inner workings of the pageLoad function
+ * Slightly formatted site
 <end version 0.1.4.13>
 
 ---------Goals----------
