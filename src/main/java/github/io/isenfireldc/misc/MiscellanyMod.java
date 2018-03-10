@@ -1,10 +1,15 @@
 package github.io.isenfireldc.misc;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import github.io.isenfireldc.misc.block.ModBlocks;
 import github.io.isenfireldc.misc.entity.ModEntities;
+import github.io.isenfireldc.misc.gui.Config;
 import github.io.isenfireldc.misc.item.ModItems;
 import github.io.isenfireldc.misc.proxy.CommonProxy;
 import github.io.isenfireldc.misc.recipes.ModRecipes;
+import jline.internal.Log;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -22,6 +27,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, guiFactory = Reference.GUI_FACTORY)
 public class MiscellanyMod {
 	
+	public static Logger log = LogManager.getLogger(Reference.MODID + ":Info");
+	
 	@Instance(Reference.MODID)
 	public static MiscellanyMod instance;
 	
@@ -30,11 +37,9 @@ public class MiscellanyMod {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		System.out.println(Reference.NAME + " is loading...");
+		log.info(Reference.NAME + " is loading...");
 		
-		MinecraftForge.EVENT_BUS.register(instance);
-		
-		proxy.loadConfiguration();
+		Config.load(e);
 		
 		ModItems.init();
 		ModBlocks.init();
@@ -49,12 +54,5 @@ public class MiscellanyMod {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		
-	}
-	
-	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent e) {
-		if (e.getModID().equals(Reference.NAME)) {
-			proxy.loadConfiguration();
-		}
 	}
 }

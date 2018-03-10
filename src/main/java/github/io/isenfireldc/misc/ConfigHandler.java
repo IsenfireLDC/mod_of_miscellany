@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Loader;
 public class ConfigHandler {
 	
 	public static final File CONFIGURATION_FILE = new File(Loader.instance().getConfigDir(), Reference.NAME.replace(" ", "") + ".cfg");
-	public static final Configuration CONFIGURATION = new Configuration(CONFIGURATION_FILE);
+	public static final Configuration CONFIGURATION = new Configuration(CONFIGURATION_FILE, "main");
 	
 	//public static Property MAX_BRIDGE_DISTANCE;
 	public static int MAX_BRIDGE_DISTANCE = 100;

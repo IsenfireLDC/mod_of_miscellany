@@ -1,3 +1,5 @@
+misc-0.1.4.14-sources.jar
+misc-0.1.4.14.jar
 misc-0.1.4.10i-dev-sources.jar
 misc-0.1.4.10i-dev.jar
 misc-0.1.4.10h-dev-sources.jar

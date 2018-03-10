@@ -5,11 +5,11 @@
   "description": "Miscellanious modding fun.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://isenfireldc.github.io/mod_of_miscellany/",
   "updateUrl": "",
   "authorList": ["IsenfireLDC"],
   "credits": "Miscellanious tutorials and documentation",
-  "logoFile": "",
+  "logoFile": "favicon.ico",
   "screenshots": [],
   "dependencies": []
 }

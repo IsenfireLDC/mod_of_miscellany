@@ -1,21 +1,22 @@
-<start version 0.1.4.13>
- * Deleted bridge_builder_debugger
- * Finished updating lang file
- * Added recipes for existing items
----- Commited Mod Files ----
- * Changed forEach loop to for of loop in script.js
- * Added favicon.ico file to site, errors are annoying
- * Changed inner workings of the pageLoad function
- * Slightly formatted site
-<end version 0.1.4.13>
+<start version 0.1.4.14>
+ * Added website and icon to mcmod.info file
+ * Reworked GUI using TinkersConstruct as an example
+ * BUILD: 0.1.4.14 - Testing new config setup
+ * RESULT: ConfigGui works, but it appears that I can't change config, at least in-game (Look into @SubscribeEvent annotation)
+ * <bug-info> build.bat will copy files to an empty directory if no path is given
+<end version 0.1.4.14>
 
 ---------Goals----------
- > Fix tables on website
+ X Fix tables on website
  X Add config GUI
- * Create GUI for config
  X Rework building batch files
  X Add pizza
  X Add recipe class
  X Add recipes for existing items
- * End version 0.1.4
+ * Add a check for blank input in build.bat
+ * Look into and fix config issues
+------Version 0.1.5------
  * Fix workaround
+ * Add missing textures
+ * Add tomato plant?
+ * Add crafting items for pizza and arrowspawners?
