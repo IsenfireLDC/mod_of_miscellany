@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class MiscellanyMod {
 	
 	public static Logger log = LogManager.getLogger(Reference.MODID + ":Info");
+	public static Logger debug = LogManager.getLogger(Reference.MODID + ":Debug");
 	
 	@Instance(Reference.MODID)
 	public static MiscellanyMod instance;

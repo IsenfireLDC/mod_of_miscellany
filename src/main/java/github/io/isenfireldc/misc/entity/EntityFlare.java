@@ -3,6 +3,7 @@ package github.io.isenfireldc.misc.entity;
 import java.util.ArrayList;
 
 import github.io.isenfireldc.misc.block.BlockLitAir;
+import github.io.isenfireldc.misc.block.ModBlocks;
 import github.io.isenfireldc.misc.item.ModItems;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -24,13 +25,13 @@ public class EntityFlare extends AbstractEntityProjectile {
 	//private ArrayList<BlockLitAir> lighting = new ArrayList<BlockLitAir>();
 	
     private int burnTime = 1000;
+    private static final int defaultLitTime = 40;
     
     private static final double MOVEMENT = 0.75D;
     
-    private BlockPos prevPos;
+    private BlockPos prevPos = null;
     private BlockPos pos;
-    private IBlockState prevState;
-    private BlockLitAir light;
+//    private IBlockState prevState;
 
 	public EntityFlare(World worldIn) {
 		super(worldIn);
@@ -75,13 +76,19 @@ public class EntityFlare extends AbstractEntityProjectile {
     	
     	if (!world.isRemote) {
     		this.setBlock(this.getEntityWorld(), this.getPosition());
-    		System.out.println(this + " was ticked: " + burnTime);
+    		if (burnTime % 20 == 0) {
+    			System.out.println(this + " was ticked: " + burnTime);
+    		}
+    	};
+    	
+    	if (pos == prevPos) {
+    		//TODO Restart block countdown
     	};
     	
     	if (burnTime == 0) {
     		this.entityDropItem(this.getEntityStack(), 0.1F);
-    		light = null;
-    		this.getEntityWorld().setBlockState(this.getPosition(), prevState);
+//    		light = null;
+//    		this.getEntityWorld().setBlockState(this.getPosition(), prevState);
     		this.setDead();
     	} else {
     		burnTime--;
@@ -90,31 +97,18 @@ public class EntityFlare extends AbstractEntityProjectile {
     
     /**
      * Updates all lighting blocks and creates and destroys them as necessary
+     * ---Being Reworked---
      * 
      * @param world Current world
      * @param pos Position of the flare
      */
     private void setBlock(World world, BlockPos pos) {
-    	IBlockState currentState = world.getBlockState(pos);
-    	
-    	if (light != null && light instanceof BlockLitAir) {
-    		if (light.getDefaultState() == currentState) {
-    			if (prevState != null) {
-    				System.out.println(prevState);
-    			}
-    			System.out.println(currentState);
-    			light.update();
-    		}
-    	} else {
-        	light = new BlockLitAir(pos);
-        	world.setBlockState(pos, light.getDefaultState());
-        	if (prevState != null) {
-        		world.setBlockState(prevPos, prevState);
-        	};
-    	};
-    	
-    	prevPos = pos;
-    	prevState = currentState;
+//    	BlockLitAir light = new BlockLitAir(pos);
+    	IBlockState state = world.getBlockState(pos);
+    	BlockLitAir light = ModBlocks.lit_air;
+    	world.setBlockState(pos, light.getDefaultState());
+    	light.getTileEntity(world, pos).ticksRemaining = defaultLitTime;
+    	light.getTileEntity(world, pos).prevState = state;
     	
     	/*boolean flag = false;
     	boolean refresh = false;
@@ -142,7 +136,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     };
     
     //For potential use later
-    private boolean hasMoved() {
+    /*private boolean hasMoved() {
     	this.pos = this.getPosition();
     	
     	if (pos != prevPos) {
@@ -151,7 +145,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     	}
     	
     	return false;
-    }
+    }*/
 
 	@Override
 	public void onEntityHit(RayTraceResult raytraceResultIn, Entity entity) {};

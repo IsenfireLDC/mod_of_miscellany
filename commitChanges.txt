@@ -1,10 +1,8 @@
-<start version 0.1.4.14>
- * Added website and icon to mcmod.info file
- * Reworked GUI using TinkersConstruct as an example
- * BUILD: 0.1.4.14 - Testing new config setup
- * RESULT: ConfigGui works, but it appears that I can't change config, at least in-game (Look into @SubscribeEvent annotation)
- * <bug-info> build.bat will copy files to an empty directory if no path is given
-<end version 0.1.4.14>
+<start version 0.1.4.15>
+ * Made BlockLitAir a tileentity
+ * Added check for blank input in build.bat
+ * Added dynamic lighting to BlockLitAir
+<end version 0.1.4.15>
 
 ---------Goals----------
  X Fix tables on website
@@ -13,8 +11,9 @@
  X Add pizza
  X Add recipe class
  X Add recipes for existing items
- * Add a check for blank input in build.bat
+ X Add a check for blank input in build.bat
  * Look into and fix config issues
+ > Miscellaneous Fixes
 ------Version 0.1.5------
  * Fix workaround
  * Add missing textures

@@ -2,6 +2,7 @@ package github.io.isenfireldc.misc.block;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -12,6 +13,10 @@ public abstract class BlockTileEntity<TE extends TileEntity> extends BlockBase {
 
 	public BlockTileEntity(String name) {
 		super(name);
+	};
+	
+	public BlockTileEntity(String name, Material material) {
+		super(name, material);
 	};
 	
 	public abstract Class<TE> getTileEntityClass();

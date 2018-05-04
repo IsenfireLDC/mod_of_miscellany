@@ -33,7 +33,7 @@ for /f "delims=" %%i in ('dir /b /o:-d ".\build\libs\*.jar"') do (
 			copy /y .\build\libs\%%i .\docs\builds\all-versions\%%i
 			echo %~n0: Copied file %%i to docs\builds\all-versions\%%i
 		)
-		if /i "%~n1" NEQ "null" (
+		if /i "%~n1" NEQ "" (
 			copy /y .\build\libs\%%i .\docs\builds\%~n1\%%i
 			echo %~n0: Copied file %%i to docs\builds\%~n1\%%i
 		)
