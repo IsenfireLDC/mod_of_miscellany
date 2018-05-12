@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import github.io.isenfireldc.misc.ConfigHandler;
 import github.io.isenfireldc.misc.MiscellanyMod;
 import github.io.isenfireldc.misc.Reference;
+import github.io.isenfireldc.misc.config.Config;
 import jline.internal.Log;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

@@ -4,17 +4,27 @@ import java.util.Random;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
 import github.io.isenfireldc.misc.block.BlockLitAir;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
 
+/**
+ * A placeholder-type block that is used as a light source for EntityFlare
+ * 
+ * @author IsenfireLDC
+ * @since 0.1.4
+ * @version 2.0
+ *
+ */
 public class TileEntityLitAir extends TileEntityBase implements ITickable {
 	
-	public static final String name = "tile_entity_bridge_builder";
+	public static final String name = "tile_entity_lit_air";
 	
 	public IBlockState prevState = null;
-	
-	public BlockLitAir block;
 	
 	public int ticksRemaining = 200;
 	
@@ -27,6 +37,10 @@ public class TileEntityLitAir extends TileEntityBase implements ITickable {
 		super(name);
 	};
 
+	/**
+	 * Updates light level of connected {@link BlockLitAir} block and
+	 * deletes it when it goes out
+	 */
 	@Override
 	public void update() {
 		if (ticksRemaining % animTicks == 0) {
@@ -53,17 +67,42 @@ public class TileEntityLitAir extends TileEntityBase implements ITickable {
 		} else {
 			ticksRemaining--;
 		}
+		this.markDirty();
 	};
 	
-	
 	//TODO Add save/load for TileEntityLitAir
+	/**
+	 * Code example for saving blocks found in {@link net.minecraft.inventory.ItemStackHelper}
+	 */
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		//blockstate
+		int meta = prevState.getBlock().getMetaFromState(prevState);
+		compound.setInteger("meta", meta);
+		ItemStack itemstack = new ItemStack(Item.getItemFromBlock(prevState.getBlock()));
+		NBTTagCompound compIn = new NBTTagCompound();
+		itemstack.writeToNBT(compIn);
+		compound.setTag("block", compIn);
+		//ints
+		compound.setInteger("ticks", ticksRemaining);
+		compound.setInteger("light" ,lightValue);
+		compound.setInteger("anim", animTicks); //currently not used
+		
 		return super.writeToNBT(compound);
 	};
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
+		//blockstate
+		NBTTagCompound tagComp = compound.getCompoundTag("block");
+		ItemStack out = new ItemStack(tagComp);
+		int intOut = compound.getInteger("meta");
+		prevState = Block.getBlockFromItem(out.getItem()).getStateFromMeta(intOut);
+		//ints
+		ticksRemaining = compound.getInteger("ticks");
+		lightValue = compound.getInteger("light");
+		animTicks = compound.getInteger("anim");
+		
 		super.readFromNBT(compound);
 	};
 

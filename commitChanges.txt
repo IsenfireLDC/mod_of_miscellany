@@ -1,8 +1,8 @@
-<start version 0.1.4.15>
- * Made BlockLitAir a tileentity
- * Added check for blank input in build.bat
- * Added dynamic lighting to BlockLitAir
-<end version 0.1.4.15>
+<start version 0.1.4.16>
+ * Figured out how to save a blockstate to NBT
+ * Changed the way that I'm trying to register Config to the event bus
+ * Messed around with various config-related things
+<end version 0.1.4.16>
 
 ---------Goals----------
  X Fix tables on website
@@ -12,7 +12,7 @@
  X Add recipe class
  X Add recipes for existing items
  X Add a check for blank input in build.bat
- * Look into and fix config issues
+ > Look into and fix config issues
  > Miscellaneous Fixes
 ------Version 0.1.5------
  * Fix workaround

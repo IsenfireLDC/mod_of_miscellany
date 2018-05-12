@@ -1,4 +1,4 @@
-package github.io.isenfireldc.misc.gui;
+package github.io.isenfireldc.misc.config;
 
 import java.io.File;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Config {
 	public static Config instance = new Config();
 	public static Logger log = LogManager.getLogger(Reference.MODID + ":" + "Config");
 	
-	static ConfigCategory General;
+	public static ConfigCategory General;
 	
 	public static int maxBridgeDistance = 100;
 	
@@ -48,6 +48,8 @@ public class Config {
 			syncConfig();
 		}
 	};
+	
+	
 	
 	public static boolean syncConfig() {
 		log.info("Running syncConfig");
