@@ -53,6 +53,7 @@ public class Config {
 	
 	public static boolean syncConfig() {
 		log.info("Running syncConfig");
+		CONFIGURATION.load();
 		Property prop;
 		
 		{

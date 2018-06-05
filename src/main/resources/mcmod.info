@@ -2,7 +2,7 @@
 {
   "modid": "misc",
   "name": "Mod of Miscellany",
-  "description": "Miscellanious modding fun.",
+  "description": "Miscellanious modding fun. *Note: In-game configuration probably doesn't work*",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://isenfireldc.github.io/mod_of_miscellany/",
