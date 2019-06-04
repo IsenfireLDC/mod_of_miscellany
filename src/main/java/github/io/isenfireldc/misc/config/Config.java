@@ -25,7 +25,7 @@ public class Config {
 	public static final Configuration CONFIGURATION = new Configuration(CONFIGURATION_FILE, "main");
 	
 	public static Config instance = new Config();
-	public static Logger log = LogManager.getLogger(Reference.MODID + ":" + "Config");
+	public static Logger log = LogManager.getLogger(Reference.MODID + ":Config");
 	
 	public static ConfigCategory General;
 	

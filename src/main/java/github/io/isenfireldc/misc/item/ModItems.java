@@ -18,6 +18,12 @@ public class ModItems {
 	
 	public static ItemPizza pizza;
 	
+	public static ItemBridgeBuilder builder;
+	
+	public static ItemSpecialArrow special_arrow;
+	
+	public static ItemBazooka bazooka;
+	
 	public static void init() {
 		
 		inst10 = register(new ItemArrowSpawner("inst10", 10, true));
@@ -32,6 +38,12 @@ public class ModItems {
 		flare = register(new ItemFlare("flare"));
 		
 		pizza = register(new ItemPizza("pizza"));
+		
+		builder = register(new ItemBridgeBuilder("builder_ammo"));
+		
+		special_arrow = register(new ItemSpecialArrow());
+		
+		bazooka = register(new ItemBazooka("bazooka"));
 	}
 	
 	private static <T extends Item> T register(T item) {

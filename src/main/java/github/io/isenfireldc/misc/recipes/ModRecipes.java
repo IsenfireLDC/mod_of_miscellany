@@ -24,7 +24,7 @@ public class ModRecipes {
 		
 		//bridge builder
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.bridge_builder), " SL", "SGS", "S  ", 'S', Items.STICK, 'L', Blocks.LADDER, 'G', Items.GUNPOWDER);
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.slow20), " A ", "ABA", " A ", 'A', Items.ARROW, 'B', ModItems.slow10);
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.builder), " A ", "ACA", " A ", 'A', Items.ARROW, 'C', Blocks.COBBLESTONE);
 		
 		//pizza
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.pizza), " C ", "SSS", "BBB", 'C', Items.MILK_BUCKET, 'S', Items.BEEF, 'B', Items.BREAD);

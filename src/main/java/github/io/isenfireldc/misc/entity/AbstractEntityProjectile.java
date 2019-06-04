@@ -1,13 +1,14 @@
 package github.io.isenfireldc.misc.entity;
 
 import java.util.List;
-import java.util.concurrent.Callable;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import github.io.isenfireldc.misc.MiscellanyMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,6 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -40,12 +42,12 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     }
     });
     
-    private int xTile;
-    private int yTile;
-    private int zTile;
-    private Block inTile;
-    private int inData;
-    protected boolean inGround;
+    public int xTile;
+    public int yTile;
+    public int zTile;
+    public Block inTile;
+    public int inData;
+    public boolean inGround;
     protected int timeInGround;
     /** Seems to be some sort of timer for animating an arrow. */
     public int projectileShake;
@@ -53,6 +55,8 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
+    
+    public double damage = 2;
     
     /** The constant used to change motionY in vanilla */
     protected static final double grav = 0.05000000074505806D;
@@ -121,9 +125,12 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
-        this.motionX = sideVelocity(x, z)[0];
+        MiscellanyMod.debug.info("Setting aim to " + x + ", " + y + ", " + z);
+        double[] vel = sideVelocity(x, z);
+        this.motionX = vel[0];
         this.motionY = y;
-        this.motionZ = sideVelocity(x, z)[1];
+        this.motionZ = vel[1];
+        MiscellanyMod.debug.info("Motion vec at " + motionX + ", " + motionY + ", " + motionZ);
         float f1 = MathHelper.sqrt(x * x + z * z);
         this.rotationYaw = (float)(MathHelper.atan2(x, z) * (180D / Math.PI));
         this.rotationPitch = (float)(MathHelper.atan2(y, (double)f1) * (180D / Math.PI));
@@ -224,7 +231,7 @@ public abstract class AbstractEntityProjectile extends EntityBase {
             ++this.ticksInAir;
             Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
+            RayTraceResult raytraceresult = this.rayTrace(vec3d1, vec3d);
             vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
             vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -318,93 +325,35 @@ public abstract class AbstractEntityProjectile extends EntityBase {
     /**
      * Called when the arrow hits a block or an entity
      */
-    @SuppressWarnings("unused")
-	protected void onHit(RayTraceResult raytraceResultIn)
+    protected void onHit(RayTraceResult raytraceResultIn)
     {
         Entity entity = raytraceResultIn.entityHit;
 
         if (entity != null)
         {
         	onEntityHit(raytraceResultIn, entity);
-            //float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-            //int i = MathHelper.ceil((double)f * this.damage);
+        	
+            this.motionX *= -0.10000000149011612D;
+            this.motionY *= -0.10000000149011612D;
+            this.motionZ *= -0.10000000149011612D;
+            this.rotationYaw += 180.0F;
+            this.prevRotationYaw += 180.0F;
+            this.ticksInAir = 0;
 
-            /*DamageSource damagesource;
+            if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ < 0.0010000000474974513D) {
+            	
+                //this.entityDropItem(new ItemStack((Item)ModItems.slow20), 0.1F);
+                this.entityDropItem(this.getEntityStack(), 0.1F);
 
-            if (this.shootingEntity == null)
-            {
-                damagesource = DamageSource.causeArrowDamage(this, this);
-            }
-            else
-            {
-                damagesource = DamageSource.causeArrowDamage(this, this.shootingEntity);
-            }
-
-            if (this.isBurning() && !(entity instanceof EntityEnderman))
-            {
-                entity.setFire(5);
-            }*/
-
-            if (false /*entity.attackEntityFrom(damagesource, (float)i)*/)
-            {
-                /*if (entity instanceof EntityLivingBase)
-                {
-                    EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
-
-                    if (!this.world.isRemote)
-                    {
-                        entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
-                    }
-
-                    if (this.knockbackStrength > 0)
-                    {
-                        float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-                        if (f1 > 0.0F)
-                        {
-                            entitylivingbase.addVelocity(this.motionX * (double)this.knockbackStrength * 0.6000000238418579D / (double)f1, 0.1D, this.motionZ * (double)this.knockbackStrength * 0.6000000238418579D / (double)f1);
-                        }
-                    }
-
-                    if (this.shootingEntity instanceof EntityLivingBase)
-                    {
-                        EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
-                        EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase)this.shootingEntity, entitylivingbase);
-                    }
-
-                    this.arrowHit(entitylivingbase);
-
-                    if (this.shootingEntity != null && entitylivingbase != this.shootingEntity && entitylivingbase instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
-                    {
-                        ((EntityPlayerMP)this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
-                    }
-                }
-
-                this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-
-                if (!(entity instanceof EntityEnderman))
-                {
-                    this.setDead();
-                }*/
-            } else {
-                this.motionX *= -0.10000000149011612D;
-                this.motionY *= -0.10000000149011612D;
-                this.motionZ *= -0.10000000149011612D;
-                this.rotationYaw += 180.0F;
-                this.prevRotationYaw += 180.0F;
-                this.ticksInAir = 0;
-
-                if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ < 0.0010000000474974513D)
-                {
-                    //this.entityDropItem(new ItemStack((Item)ModItems.slow20), 0.1F);
-                	this.entityDropItem(this.getEntityStack(), 0.1F);
-
-                    this.setDead();
-                }
+                this.setDead();
             }
         } else {
         	onBlockHit(raytraceResultIn);
         }
+    };
+    
+    protected RayTraceResult rayTrace(Vec3d vec1, Vec3d vec2) {
+    	return this.world.rayTraceBlocks(vec1, vec2, false, true, false);
     };
     
     protected abstract void onEntityHit(RayTraceResult raytraceResultIn, Entity entity);
@@ -432,6 +381,10 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         {
             this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
         }
+    };
+    
+    public void playSound(SoundEvent soundIn, float volume, float pitch) {
+    	super.playSound(soundIn, volume, pitch);
     };
     
     /**
@@ -488,6 +441,7 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         compound.setByte("inData", (byte)this.inData);
         compound.setByte("shake", (byte)this.projectileShake);
         compound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
+        compound.setDouble("damage", this.damage);
     }
 
     /**
@@ -511,6 +465,7 @@ public abstract class AbstractEntityProjectile extends EntityBase {
         this.inData = compound.getByte("inData") & 255;
         this.projectileShake = compound.getByte("shake") & 255;
         this.inGround = compound.getByte("inGround") == 1;
+        this.damage = compound.getDouble("damage");
     };
     
     /**

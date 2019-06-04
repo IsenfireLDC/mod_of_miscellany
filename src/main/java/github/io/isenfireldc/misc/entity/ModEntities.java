@@ -8,11 +8,13 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ModEntities {
 	
-	private static int id = -1;
+	private static int id = 0;
 	
 	public static EntityFlare flare;
 	
 	public static EntityBridgeBuilder bridge_builder;
+	
+	public static EntitySpecialArrow special_arrow;
 	
 	public static void init() {
 		
@@ -20,10 +22,12 @@ public class ModEntities {
 		
 		register(EntityBridgeBuilder.class, "bridge_builder");
 		
+		register(EntitySpecialArrow.class, "special_arrow");
+		
 	};
 	
 	private static void register(Class entity, String name) {
-		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, ++id, MiscellanyMod.instance, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, id++, MiscellanyMod.instance, 128, 1, true);
 	};
 
 }

@@ -1,20 +1,11 @@
-<start version 0.1.4.17>
- * Made last attempt at fixing config (for a while)
- * BUILD: Config GUI still doesn't open, whatever
-<end version 0.1.4.17>
+<start version 0.1.5.0>
+ * Added ammo for bridge_builder (not fully implemented)
+<end version 0.1.5.0>
 
 ---------Goals----------
- X Fix tables on website
- X Add config GUI
- X Rework building batch files
- X Add pizza
- X Add recipe class
- X Add recipes for existing items
- X Add a check for blank input in build.bat
- > Look into and fix config issues
- > Miscellaneous Fixes
-------Version 0.1.5------
- * Fix workaround
+ * Fix In-Game Config
+ * Make flare_gun and bridge_builder use ammo
+ * Maybe create more expensive recipes for flare gun and bridge builder
+?* Fix workaround
  * Add missing textures
- * Add ability to craft items in survival
  * Look into machines
