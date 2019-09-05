@@ -50,6 +50,8 @@ public class ItemBazooka extends ItemBase {
                 return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
             }
         });
+        
+        this.setSubfolder("launchers");
     }
 
     private ItemStack findAmmo(EntityPlayer player)

@@ -15,7 +15,7 @@ public class ItemSpecialArrow extends ItemBase {
 	public List<ArrowType> types = new ArrayList<ArrowType>();
 	
 	public ItemSpecialArrow() {
-		super("special_arrow");
+		super("special_arrow#");
 	};
 	
     public EntitySpecialArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter)
