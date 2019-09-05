@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import github.io.isenfireldc.misc.entity.EntitySpecialArrow;
-import github.io.isenfireldc.misc.type.ArrowType;
+import github.io.isenfireldc.misc.type.ArrowTypes;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemSpecialArrow extends ItemBase {
 	
-	public List<ArrowType> types = new ArrayList<ArrowType>();
+	public List<ArrowTypes> types = new ArrayList<ArrowTypes>();
 	
 	public ItemSpecialArrow() {
 		super("special_arrow#");

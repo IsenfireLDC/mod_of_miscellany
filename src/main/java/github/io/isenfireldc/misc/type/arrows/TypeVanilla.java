@@ -64,6 +64,9 @@ public class TypeVanilla extends ArrowType {
         }
 	};
 	
+	public String toString() {
+		return "Vanilla Arrow";
+	};
 	
 
 }

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import github.io.isenfireldc.misc.MiscellanyMod;
 import github.io.isenfireldc.misc.entity.EntitySpecialArrow;
+import github.io.isenfireldc.misc.type.ArrowTypes;
 import github.io.isenfireldc.misc.type.arrows.TypeExplosive;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -116,10 +117,11 @@ public class ItemBazooka extends ItemBase {
                     if (!worldIn.isRemote)
                     {
                         ItemSpecialArrow itemarrow = (ItemSpecialArrow)((ItemSpecialArrow)(itemstack.getItem() instanceof ItemSpecialArrow ? itemstack.getItem() : ModItems.special_arrow));
-                        itemarrow.types.add(new TypeExplosive());
-                        ((TypeExplosive)itemarrow.types.get(0)).setStrength(f);
+                        if (!itemarrow.types.contains(ArrowTypes.EXPLOSIVE))
+                        	itemarrow.types.add(ArrowTypes.EXPLOSIVE);
+                        ((TypeExplosive)ArrowTypes.getFullType(itemarrow.types.get(0))).setStrength(f); //TODO: Fix this ugliness
                         EntitySpecialArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        MiscellanyMod.debug.info("Attempting to fire " + entityarrow.getEffects().get(0).type.id + " from " + entityplayer.toString());
+                        MiscellanyMod.debug.info("Attempting to fire " + entityarrow.getEffects().get(0).id + " from " + entityplayer.toString());
                         entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F)

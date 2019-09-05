@@ -37,11 +37,13 @@ public abstract class ArrowType {
 	
 	public abstract void onEntityHit(EntityLivingBase living, EntitySpecialArrow a);
 	public abstract void onBlockHit(RayTraceResult raytraceResultIn, EntitySpecialArrow a);
+	public abstract String toString();
 	
-	public static NBTTagCompound writeEffectList(NBTTagCompound compound, List<ArrowType> effects) {
+	public static NBTTagCompound writeEffectList(NBTTagCompound compound, List<ArrowTypes> effects) {
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (ArrowType arrowtype : effects) {
+        for (ArrowTypes type : effects) {
+        	ArrowType arrowtype = ArrowTypes.getFullType(type);
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setByte("Id", (byte)arrowtype.type.id);
             nbt.setByte("Amplifier", (byte)arrowtype.amplifier);
@@ -55,7 +57,7 @@ public abstract class ArrowType {
 		return compound;
 	};
 	
-	public static List<ArrowType> readEffectList(NBTTagCompound compound, List<ArrowType> effects) {
+	public static List<ArrowTypes> readEffectList(NBTTagCompound compound, List<ArrowTypes> effects) {
         for (NBTBase comp : compound.getTagList("Effects", 9))
         {
             NBTTagCompound nbt = (NBTTagCompound)comp;
@@ -64,7 +66,7 @@ public abstract class ArrowType {
             arrowtype.duration = nbt.getInteger("Duration");
             arrowtype.lasting = nbt.getBoolean("Lasting");
             arrowtype.particles = nbt.getBoolean("Particles");
-            effects.add(arrowtype);
+            effects.add(arrowtype.type);
         }
 		return effects;
 	};
@@ -77,5 +79,4 @@ public abstract class ArrowType {
 			return new TypeVanilla();
 		}
 	}
-
 }

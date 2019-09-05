@@ -37,6 +37,10 @@ public class TypeExplosive extends ArrowType {
 	
 	public void setStrength(float strength) {
 		this.strength = strength;
-	}
+	};
+	
+	public String toString() {
+		return "Explosive Arrow: " + strength;
+	};
 
 }

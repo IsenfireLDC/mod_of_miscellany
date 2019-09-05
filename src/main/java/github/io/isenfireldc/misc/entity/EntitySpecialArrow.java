@@ -33,12 +33,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntitySpecialArrow extends AbstractEntityProjectile {
 
     private static final DataParameter<Integer> COLOR = EntityDataManager.<Integer>createKey(EntityTippedArrow.class, DataSerializers.VARINT);
-    private List<ArrowType> effects = new ArrayList<ArrowType>();
+    private List<ArrowTypes> effects = new ArrayList<ArrowTypes>();
     private boolean field_191509_at;
     private int type;
     private boolean isCritical;
     private int knockback;
 	public PickupStatus pickupStatus;
+	
+	public static int arrow_count = 0;
+	
+	//TODO: Add data in to modify the strength of explosions
 
     public EntitySpecialArrow(World worldIn)
     {
@@ -64,7 +68,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
         
         else if (stack.getItem() == Items.ARROW)
         {
-            this.effects.add(ArrowType.VANILLA);
+            this.effects.add(ArrowTypes.VANILLA);
         }
     }
 
@@ -79,7 +83,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
         this.field_191509_at = false;
     }
 
-    public void addEffect(ArrowType effect) {
+    public void addEffect(ArrowTypes effect) {
     	this.effects.add(effect);
     };
 
@@ -96,7 +100,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
     {
         super.onUpdate();
 
-        if (this.world.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.inGround)
             {
@@ -114,7 +118,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
         {
             this.world.setEntityState(this, (byte)0);
             this.effects.clear();
-            this.effects.add(ArrowType.VANILLA);
+            this.effects.add(ArrowTypes.VANILLA);
             this.dataManager.set(COLOR, Integer.valueOf(-1));
         }
     }
@@ -194,18 +198,26 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
     }
 
     protected void onEntityHit(EntityLivingBase living) {
-        for (ArrowType arrowtype : this.effects)
-            arrowtype.onEntityHit(living, this);
+    	int effect_count = 0;
+        for (ArrowTypes arrowtype : this.effects) {
+            ArrowTypes.getFullType(arrowtype).onEntityHit(living, this);
+            effect_count++;
+        };
+        System.out.println("Hit entity with arrow " + arrow_count++ + ": " + effect_count);
     };
     
     protected void onBlockHit(RayTraceResult raytraceResultIn) {
-    	for (ArrowType arrowtype : this.effects)
-    		arrowtype.onBlockHit(raytraceResultIn, this);
+    	int effect_count = 0;
+    	for (ArrowTypes arrowtype : this.effects) {
+    		ArrowTypes.getFullType(arrowtype).onBlockHit(raytraceResultIn, this);
+    		effect_count++;
+    	};
+    	System.out.println("Hit block with arrow " + arrow_count++ + ": " + effect_count);
     };
 
     protected ItemStack getArrowStack()
     {
-        if (this.effects.isEmpty() || this.effects.get(0).type == ArrowTypes.VANILLA)
+        if (this.effects.isEmpty() || this.effects.get(0) == ArrowTypes.VANILLA)
         {
             return new ItemStack(Items.ARROW);
         }
@@ -260,7 +272,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
 	@Override
 	protected void onEntityHit(RayTraceResult raytraceResultIn, Entity entity) {
 		// TODO Auto-generated method stub
-		
+		this.onEntityHit((EntityLivingBase)entity);
 	}
 
 	@Override
@@ -295,7 +307,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
 		this.knockback = k;
 	};
 	
-	public List<ArrowType> getEffects() {
+	public List<ArrowTypes> getEffects() {
 		return this.effects;
 	};
 
