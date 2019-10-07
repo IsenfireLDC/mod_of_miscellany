@@ -53,7 +53,7 @@ public class ItemBazooka extends ItemBase {
         });
         
         this.setSubfolder("launchers");
-    }
+    };
 
     private ItemStack findAmmo(EntityPlayer player)
     {

@@ -24,6 +24,8 @@ public class ModItems {
 	
 	public static ItemBazooka bazooka;
 	
+	public static ItemInstLauncher inst_launcher;
+	
 	public static void init() {
 		
 		inst10 = register(new ItemArrowSpawner("inst10", 10, true));
@@ -44,6 +46,8 @@ public class ModItems {
 		special_arrow = register(new ItemSpecialArrow());
 		
 		bazooka = register(new ItemBazooka("bazooka"));
+		
+		inst_launcher = register(new ItemInstLauncher("inst_launcher"));
 	}
 	
 	private static <T extends Item> T register(T item) {
