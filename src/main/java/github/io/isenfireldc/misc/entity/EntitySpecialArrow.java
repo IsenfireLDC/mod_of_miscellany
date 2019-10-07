@@ -297,7 +297,11 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
 
 	public double getDamage() {
 		return this.damage;
-	}
+	};
+	
+	public String toString() {
+		return "SpecialArrow[*Add types here*]";
+	};
 
 	public void setDamage(double d) {
 		this.damage = d;

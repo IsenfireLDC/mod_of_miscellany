@@ -1,9 +1,10 @@
 package github.io.isenfireldc.misc.type;
 
+import github.io.isenfireldc.misc.item.ItemTypes;
 import github.io.isenfireldc.misc.type.arrows.TypeExplosive;
 import github.io.isenfireldc.misc.type.arrows.TypeVanilla;
 
-public enum ArrowTypes {
+public enum ArrowTypes implements ItemTypes {
 	
 	VANILLA(0, new TypeVanilla()),
 	EXPLOSIVE(1, new TypeExplosive());

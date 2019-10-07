@@ -68,5 +68,9 @@ public class TypeVanilla extends ArrowType {
 		return "Vanilla Arrow";
 	};
 	
+	public String getName() {
+		return "vanilla_arrow";
+	};
+	
 
 }

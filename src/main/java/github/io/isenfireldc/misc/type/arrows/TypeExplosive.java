@@ -42,5 +42,9 @@ public class TypeExplosive extends ArrowType {
 	public String toString() {
 		return "Explosive Arrow: " + strength;
 	};
+	
+	public String getName() {
+		return "explosive_arrow";
+	};
 
 }

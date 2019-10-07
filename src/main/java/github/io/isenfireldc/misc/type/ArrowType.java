@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.RayTraceResult;
 
-public abstract class ArrowType {
+public abstract class ArrowType implements ItemType {
 	public final static ArrowType VANILLA = new TypeVanilla();
 	//TODO: These should probably be private, but I don't want to add the getter/setter methods
 	public ArrowTypes type;
@@ -38,6 +38,7 @@ public abstract class ArrowType {
 	public abstract void onEntityHit(EntityLivingBase living, EntitySpecialArrow a);
 	public abstract void onBlockHit(RayTraceResult raytraceResultIn, EntitySpecialArrow a);
 	public abstract String toString();
+	public abstract String getName();
 	
 	public static NBTTagCompound writeEffectList(NBTTagCompound compound, List<ArrowTypes> effects) {
         NBTTagList nbttaglist = new NBTTagList();
