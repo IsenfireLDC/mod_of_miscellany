@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -17,10 +18,17 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemInstLauncher extends ItemBase {
+	
+	@ObjectHolder("misc:inst_lancher")
+	public static final Item inst_launcher = null;
+	
+	@ObjectHolder("misc:special_arrow")
+	public static final Item special_arrow = null;
 	
 	public ItemInstLauncher(String name) {
 		super(name);
@@ -32,7 +40,7 @@ public class ItemInstLauncher extends ItemBase {
 			
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-				return entityIn == null ? 0.0F : (entityIn.getActiveItemStack().getItem() != ModItems.inst_launcher ? 0.0F : (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F);
+				return entityIn == null ? 0.0F : (entityIn.getActiveItemStack().getItem() != inst_launcher ? 0.0F : (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F);
 			}
 		});
 		
@@ -53,7 +61,7 @@ public class ItemInstLauncher extends ItemBase {
 					return itemstack;
 				}
 			}
-			return player.isCreative() ? new ItemStack(ModItems.special_arrow) : ItemStack.EMPTY;
+			return player.isCreative() ? new ItemStack(special_arrow) : ItemStack.EMPTY;
 		}
 	};
 	
@@ -73,7 +81,7 @@ public class ItemInstLauncher extends ItemBase {
 			//if(!arrow.types.contains(ArrowTypes.EXPLOSIVE)) arrow.types.add(ArrowTypes.EXPLOSIVE);
 			EntitySpecialArrow entityspecialarrow = ItemSpecialArrow.createArrow(worldIn, stack, (EntityLivingBase)playerIn);
 			entityspecialarrow.addEffect(ArrowTypes.EXPLOSIVE);
-			entityspecialarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
+			entityspecialarrow.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
 			entityspecialarrow.setIsCritical(true);
 			
 			int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, launcher);

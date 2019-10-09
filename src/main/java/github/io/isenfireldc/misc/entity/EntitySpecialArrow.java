@@ -13,24 +13,24 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityArrow.PickupStatus;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntitySpecialArrow extends AbstractEntityProjectile {
+	
+	@ObjectHolder("misc:special_arrow")
+	public static final Item special_arrow = null;
 
     private static final DataParameter<Integer> COLOR = EntityDataManager.<Integer>createKey(EntityTippedArrow.class, DataSerializers.VARINT);
     private List<ArrowTypes> effects = new ArrayList<ArrowTypes>();
@@ -61,7 +61,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
 
     public void setArrowEffect(ItemStack stack)
     {
-        if (stack.getItem() == ModItems.special_arrow)
+        if (stack.getItem() == special_arrow)
         {
             this.effects.addAll(((ItemSpecialArrow)stack.getItem()).types);
         }
@@ -223,7 +223,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
         }
         else
         {
-            ItemStack itemstack = new ItemStack(ModItems.special_arrow);
+            ItemStack itemstack = new ItemStack(special_arrow);
             NBTTagCompound nbt = itemstack.getTagCompound();
             ArrowType.writeEffectList(nbt, this.effects);
 
@@ -277,7 +277,7 @@ public class EntitySpecialArrow extends AbstractEntityProjectile {
 
 	@Override
 	protected ItemStack getEntityStack() {
-		return new ItemStack(ModItems.special_arrow);
+		return new ItemStack(special_arrow);
 	};
 
 	@Override

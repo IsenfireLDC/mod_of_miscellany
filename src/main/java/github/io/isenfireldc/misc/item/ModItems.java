@@ -1,57 +1,46 @@
 package github.io.isenfireldc.misc.item;
 
 import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModItems {
 	
-	public static ItemArrowSpawner inst10;
-	public static ItemArrowSpawner slow10;
-	
-	public static ItemArrowSpawner inst20;
-	public static ItemArrowSpawner slow20;
-	
-	public static ItemEntityGun flare_gun;
-	public static ItemEntityGun bridge_builder;
-	
-	public static ItemFlare flare;
-	
-	public static ItemPizza pizza;
-	
-	public static ItemBridgeBuilder builder;
-	
-	public static ItemSpecialArrow special_arrow;
-	
-	public static ItemBazooka bazooka;
-	
-	public static ItemInstLauncher inst_launcher;
+	private static IForgeRegistry<Item> reg;
 	
 	public static void init() {
 		
-		inst10 = register(new ItemArrowSpawner("inst10", 10, true));
-		slow10 = register(new ItemArrowSpawner("slow10", 10, false));
+		register(new ItemArrowSpawner("inst10", 10, true));
+		register(new ItemArrowSpawner("slow10", 10, false));
 		
-		inst20 = register(new ItemArrowSpawner("inst20", 20, true));
-		slow20 = register(new ItemArrowSpawner("slow20", 20, false));
+		register(new ItemArrowSpawner("inst20", 20, true));
+		register(new ItemArrowSpawner("slow20", 20, false));
 		
-		flare_gun = register(new ItemEntityGun("flare_gun", 0));
-		bridge_builder = register(new ItemEntityGun("bridge_builder", 1));
+		register(new ItemEntityGun("flare_gun", 0));
+		register(new ItemEntityGun("bridge_builder", 1));
 		
-		flare = register(new ItemFlare("flare"));
+		register(new ItemFlare("flare"));
 		
-		pizza = register(new ItemPizza("pizza"));
+		register(new ItemPizza("pizza"));
 		
-		builder = register(new ItemBridgeBuilder("builder_ammo"));
+		register(new ItemBridgeBuilder("builder_ammo"));
 		
-		special_arrow = register(new ItemSpecialArrow());
+		register(new ItemSpecialArrow());
 		
-		bazooka = register(new ItemBazooka("bazooka"));
+		register(new ItemBazooka("bazooka"));
 		
-		inst_launcher = register(new ItemInstLauncher("inst_launcher"));
-	}
+		register(new ItemInstLauncher("inst_launcher"));
+	};
+	
+	@SubscribeEvent
+	public void registerItems(RegistryEvent.Register<Item> event) {
+		reg = event.getRegistry();
+	};
 	
 	private static <T extends Item> T register(T item) {
-		GameRegistry.register(item);
+		reg.register(item);
 		
 		if (item instanceof ItemModelProvider) {
 			//((ItemBase)item).registerItemModel(item);

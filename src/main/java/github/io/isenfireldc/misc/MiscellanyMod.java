@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  * A mod of miscellaneous creations
  * 
  * @author IsenfireLDC
- * @version 0.1.4.16
+ * @version 0.1.5
  *
  */
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, guiFactory = Reference.GUI_FACTORY)

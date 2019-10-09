@@ -62,7 +62,7 @@ public class TileEntityArrowSpawner extends TileEntity {
 			//shooting:
 			ItemArrow itemarrow = (ItemArrow)Items.ARROW;
 			EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), entityplayer);
-			entityarrow.setAim(entityplayer, conePitch(entityplayer.rotationPitch, spread), coneYaw(entityplayer.rotationPitch, entityplayer.rotationYaw, spread), 0.0F, charge * 3.0F, 0.0F);
+			entityarrow.shoot(entityplayer, conePitch(entityplayer.rotationPitch, spread), coneYaw(entityplayer.rotationPitch, entityplayer.rotationYaw, spread), 0.0F, charge * 3.0F, 0.0F);
 			entityarrow.setIsCritical(true);
 		
 			//enchantments:

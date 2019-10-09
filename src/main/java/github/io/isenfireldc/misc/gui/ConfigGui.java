@@ -2,7 +2,6 @@ package github.io.isenfireldc.misc.gui;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.Lists;
@@ -11,19 +10,10 @@ import github.io.isenfireldc.misc.ConfigHandler;
 import github.io.isenfireldc.misc.MiscellanyMod;
 import github.io.isenfireldc.misc.Reference;
 import github.io.isenfireldc.misc.config.Config;
-import jline.internal.Log;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent.PostConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public class ConfigGui extends GuiConfig {
 	

@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.collect.Lists;
 
 import github.io.isenfireldc.misc.Reference;
-import jline.internal.Log;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
