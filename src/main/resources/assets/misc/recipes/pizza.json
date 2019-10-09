@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " S ",
+        "SSS",
+        "BBB"
+    ],
+    "key": {
+        "C": {
+            "item": "minecraft:milk_bucket"
+        },
+        "S": {
+            "item": "minecraft:beef"
+        },
+        "B": {
+            "item": "minecraft:bread"
+        }
+    },
+    "result": {
+        "item": "misc:pizza"
+    }
+}

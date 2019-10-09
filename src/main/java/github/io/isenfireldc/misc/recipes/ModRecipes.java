@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModRecipes {
 	
 	public static void init() {
-		//TODO: Use json recipes
+		//TODO: Figure out json recipes
 		/*
 		//arrowspawners
 		//instant

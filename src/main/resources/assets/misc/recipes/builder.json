@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " A ",
+        "ACA",
+        " A "
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:arrow"
+        },
+        "C": {
+            "item": "minecraft:cobblestone"
+        }
+    },
+    "result": {
+        "item": "misc:builder"
+    }
+}
