@@ -1,0 +1,12 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "misc:items/arrowspawners/inst10"
+    },
+    "overrides": [
+        {"predicate": {"damage": 0}, "model": "misc:item/arrowspawners/inst10"},
+        {"predicate": {"damage": 1}, "model": "misc:item/arrowspawners/inst20"},
+        {"predicate": {"damage": 2}, "model": "misc:item/arrowspawners/slow10"},
+        {"predicate": {"damage": 3}, "model": "misc:item/arrowspawners/slow20"}
+    ]
+}

@@ -23,14 +23,16 @@ public class ModBlocks {
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
 		reg = event.getRegistry();
+		init();
 	};
 	
 	private static <T extends Block> T register(T block, ItemBlock itemBlock) {
 		reg.register(block);
 		
 		//TODO Create a better version of this
+		//TODO: Add subblock/metadata stuff
 		if (block instanceof ItemModelProvider) {
-			((ItemModelProvider)block).registerItemModel(itemBlock);
+			((ItemModelProvider)block).registerItemModel(itemBlock, 0);
 		}
 		if (block instanceof BlockTileEntity) {
 			GameRegistry.registerTileEntity(((BlockTileEntity<?>)block).getTileEntityClass(), block.getRegistryName().toString());

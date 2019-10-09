@@ -15,5 +15,7 @@ public class CommonProxy {
 			ConfigHandler.CONFIGURATION.save();
 		}
     }
+    
+    public void registerBakery() {};
 
 }

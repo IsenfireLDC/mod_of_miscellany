@@ -50,8 +50,9 @@ public class TileEntityArrowSpawner extends TileEntity {
 		super.readFromNBT(compound);
 	}
 	
-	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack, ItemArrowSpawner spawner, int timeLeft) {
+	public void spawn(World worldIn, EntityPlayer entityplayer, ItemStack stack, int timeLeft) {
 		EntityArrow[] arrows = new EntityArrow[arrowsSpawned];
+		ItemArrowSpawner spawner = (ItemArrowSpawner)stack.getItem();
 		//sound:
 		worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 1.2F) + 1.0F * 0.5F);
 		
@@ -98,12 +99,12 @@ public class TileEntityArrowSpawner extends TileEntity {
 		//damage the arrow spawner
 		stack.damageItem(1, entityplayer);
 		
-	}
+	};
 	
 	private float conePitch(float rotation, float spread) {
 		rotation -= (spread / 2.0F);
 		return rotation + rand.nextFloat() * spread;
-	}
+	};
 	
 	private float coneYaw(float pitch, float yaw, float spread) {
 		spread = (spread / 2) * (float)Math.pow((double)((Math.abs(Math.abs(pitch) - 90)) / 180), -1D);
@@ -112,7 +113,7 @@ public class TileEntityArrowSpawner extends TileEntity {
 		}
 		yaw -= spread / 2.0F;
 		return yaw + rand.nextFloat() * spread;
-	}
+	};
 	
 	private float getArrowVelocity(int charge) {
 		float f = (float)charge / 20.0F;
@@ -124,6 +125,6 @@ public class TileEntityArrowSpawner extends TileEntity {
 		}
 		
 		return f;
-	}
+	};
 
 }

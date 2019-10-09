@@ -25,9 +25,13 @@ public class ItemEdible extends ItemFood implements ItemModelProvider {
 	};
 
 	@Override
-	public void registerItemModel(Item item) {
-		MiscellanyMod.proxy.registerItemRenderer(item, 0, texture, subfolder);
+	public void registerItemModel(Item item, int meta) {
+		MiscellanyMod.proxy.registerItemRenderer(item, meta, texture, subfolder);
 	};
+	
+	public void registerItemModel(Item item) {
+		this.registerItemModel(item, 0);
+	}
 	
 	private String checkName(String name) {
 		String check = name.substring(name.length() - 1);
