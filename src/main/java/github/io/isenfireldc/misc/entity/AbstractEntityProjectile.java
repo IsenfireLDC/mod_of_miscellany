@@ -105,6 +105,7 @@ public abstract class AbstractEntityProjectile extends EntityBase implements IPr
         this.motionX += shooter.motionX;
         this.motionZ += shooter.motionZ;
 
+        //TODO: Why is this here?
         if (!shooter.onGround)
         {
             this.motionY += shooter.motionY;

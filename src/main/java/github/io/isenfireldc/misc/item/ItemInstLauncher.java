@@ -28,6 +28,7 @@ public class ItemInstLauncher extends ItemBase {
 		this.maxStackSize = 1;
 		this.setMaxDamage(2000);
 		this.setCreativeTab(CreativeTabs.COMBAT);
+		//TODO: I have this here, but I don't know what it does
 		this.addPropertyOverride(new ResourceLocation("reload"), new IItemPropertyGetter() {
 			
 			@SideOnly(Side.CLIENT)
