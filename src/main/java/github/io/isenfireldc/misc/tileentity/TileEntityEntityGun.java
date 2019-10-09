@@ -9,6 +9,9 @@ import net.minecraft.world.World;
 
 public class TileEntityEntityGun extends TileEntity {
 	
+	//TODO: This is a horrible thing, it should not exist
+	//TODO: It is an abomination and must be destroyed
+	
 	private World world;
 	private EntityPlayer player;
 	
@@ -21,7 +24,7 @@ public class TileEntityEntityGun extends TileEntity {
 		this.player = player;
 		AbstractEntityProjectile entity = setEntity(meta);
 		if (!world.isRemote) {
-			entity.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
+			entity.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 0.2F);
 			world.spawnEntity(entity);
 		};
 	};

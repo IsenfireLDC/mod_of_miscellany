@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " A ",
+        "ABA",
+        " A "
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:arrow"
+        },
+        "B": {
+            "item": "misc:arrowospawner",
+            "data": 2
+        }
+    },
+    "result": {
+        "item": "misc:arrowspawner",
+        "data": 3
+    }
+}

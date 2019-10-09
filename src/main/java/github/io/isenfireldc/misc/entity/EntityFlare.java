@@ -1,11 +1,8 @@
 package github.io.isenfireldc.misc.entity;
 
-import java.util.ArrayList;
-
 import github.io.isenfireldc.misc.block.BlockLitAir;
 import github.io.isenfireldc.misc.block.ModBlocks;
-import github.io.isenfireldc.misc.item.ModItems;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,13 +11,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 public class EntityFlare extends AbstractEntityProjectile {
 	
 	//TODO Use the AbstractEntityProjectile.Boundedness enum
 	//TODO Try to create a block at the current entity position
 	
-	private Item entityItem = ModItems.slow10;
+	@ObjectHolder("misc:slow10")
+	public static final Item slow10 = null;
+	
+	@ObjectHolder("misc:lit_air")
+	public static final Block lit_air = null;
 	
 	//private ArrayList<BlockLitAir> lighting = new ArrayList<BlockLitAir>();
 	
@@ -53,7 +55,7 @@ public class EntityFlare extends AbstractEntityProjectile {
 
 	@Override
 	protected ItemStack getEntityStack() {
-		return new ItemStack(entityItem);
+		return new ItemStack(slow10);
 	};
 	
 	@Override
@@ -105,7 +107,7 @@ public class EntityFlare extends AbstractEntityProjectile {
     private void setBlock(World world, BlockPos pos) {
 //    	BlockLitAir light = new BlockLitAir(pos);
     	IBlockState state = world.getBlockState(pos);
-    	BlockLitAir light = ModBlocks.lit_air;
+    	BlockLitAir light = (BlockLitAir)lit_air;
     	world.setBlockState(pos, light.getDefaultState());
     	light.getTileEntity(world, pos).ticksRemaining = defaultLitTime;
     	light.getTileEntity(world, pos).prevState = state;

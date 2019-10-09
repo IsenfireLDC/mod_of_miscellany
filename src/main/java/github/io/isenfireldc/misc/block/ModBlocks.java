@@ -3,27 +3,30 @@ package github.io.isenfireldc.misc.block;
 import github.io.isenfireldc.misc.item.ItemModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
 	
-	public static BlockLitAir lit_air;
-	
-	public static BlockBridgeBuilder bridge_builder;
+	private static IForgeRegistry<Block> reg;
 	
 	public static void init() {
 		
-		lit_air = register(new BlockLitAir());
+		register(new BlockLitAir());
 		
-		bridge_builder = register(new BlockBridgeBuilder());
+		register(new BlockBridgeBuilder());
 		
 	};
 	
+	@SubscribeEvent
+	public void registerBlocks(RegistryEvent.Register<Block> event) {
+		reg = event.getRegistry();
+	};
+	
 	private static <T extends Block> T register(T block, ItemBlock itemBlock) {
-		if (itemBlock != null) {
-			GameRegistry.register(itemBlock);
-		};
-		GameRegistry.register(block);
+		reg.register(block);
 		
 		//TODO Create a better version of this
 		if (block instanceof ItemModelProvider) {

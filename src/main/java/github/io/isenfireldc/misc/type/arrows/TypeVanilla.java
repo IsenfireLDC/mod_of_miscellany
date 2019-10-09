@@ -47,9 +47,9 @@ public class TypeVanilla extends ArrowType {
         IBlockState iblockstate = a.world.getBlockState(blockpos);
         a.inTile = iblockstate.getBlock();
         a.inData = a.inTile.getMetaFromState(iblockstate);
-        a.motionX = (double)((float)(raytraceResultIn.hitVec.xCoord - a.posX));
-        a.motionY = (double)((float)(raytraceResultIn.hitVec.yCoord - a.posY));
-        a.motionZ = (double)((float)(raytraceResultIn.hitVec.zCoord - a.posZ));
+        a.motionX = (double)((float)(raytraceResultIn.hitVec.x - a.posX));
+        a.motionY = (double)((float)(raytraceResultIn.hitVec.y - a.posY));
+        a.motionZ = (double)((float)(raytraceResultIn.hitVec.z - a.posZ));
         float f2 = MathHelper.sqrt(a.motionX * a.motionX + a.motionY * a.motionY + a.motionZ * a.motionZ);
         a.posX -= a.motionX / (double)f2 * 0.05000000074505806D;
         a.posY -= a.motionY / (double)f2 * 0.05000000074505806D;

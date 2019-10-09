@@ -1,9 +1,9 @@
 package github.io.isenfireldc.misc.entity;
 
 import github.io.isenfireldc.misc.ConfigHandler;
-import github.io.isenfireldc.misc.ConfigValues;
 import github.io.isenfireldc.misc.block.BlockBridgeBuilder;
 import github.io.isenfireldc.misc.block.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -12,9 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	//TODO Only works in cardinal directions at present, corners are too complicated
+	
+	@ObjectHolder("misc:bridge_builder")
+	public static final Block bridge_builder = null;
 	
 	BlockPos pos;
 	/** Direction of motion: -1 for nothing, 0 for +z, 1 for +x, 2 for -z, 3 for -x */
@@ -127,7 +131,7 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 		try {
 			if (!world.isRemote) {
 				System.out.println(this + ": " + direction);
-				BlockBridgeBuilder builder = ModBlocks.bridge_builder;
+				BlockBridgeBuilder builder = (BlockBridgeBuilder)bridge_builder;
 				builder.build(pos.down(), currentPos, direction, world, this);
 				this.world.setBlockState(currentPos, builder.getDefaultState());
 			};
@@ -144,6 +148,5 @@ public class EntityBridgeBuilder extends AbstractEntityProjectile {
 	};
 
 	@Override
-	public void onEntityHit(RayTraceResult raytraceResultIn, Entity entity) {};
-	
+	public void onEntityHit(RayTraceResult raytraceResultIn, Entity entity) {}
 }

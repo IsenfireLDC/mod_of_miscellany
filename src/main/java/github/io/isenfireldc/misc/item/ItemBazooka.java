@@ -16,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -24,10 +25,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBazooka extends ItemBase {
+	
+	@ObjectHolder("misc:special_arrow")
+	public static final Item special_arrow = null;
 	
     public ItemBazooka(String name)
     {
@@ -105,7 +110,7 @@ public class ItemBazooka extends ItemBase {
             {
                 if (itemstack.isEmpty())
                 {
-                    itemstack = new ItemStack(ModItems.special_arrow);
+                    itemstack = new ItemStack(special_arrow);
                 }
 
                 float f = (getArrowVelocity(i) + .1f) * 2;
@@ -116,13 +121,13 @@ public class ItemBazooka extends ItemBase {
 
                     if (!worldIn.isRemote)
                     {
-                        ItemSpecialArrow itemarrow = (ItemSpecialArrow)((ItemSpecialArrow)(itemstack.getItem() instanceof ItemSpecialArrow ? itemstack.getItem() : ModItems.special_arrow));
+                        ItemSpecialArrow itemarrow = (ItemSpecialArrow)((ItemSpecialArrow)(itemstack.getItem() instanceof ItemSpecialArrow ? itemstack.getItem() : special_arrow));
                         if (!itemarrow.types.contains(ArrowTypes.EXPLOSIVE))
                         	itemarrow.types.add(ArrowTypes.EXPLOSIVE);
                         ((TypeExplosive)ArrowTypes.getFullType(itemarrow.types.get(0))).setStrength(f); //TODO: Fix this ugliness
                         EntitySpecialArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
                         MiscellanyMod.debug.info("Attempting to fire " + entityarrow.getEffects().get(0).id + " from " + entityplayer.toString());
-                        entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F)
                         {

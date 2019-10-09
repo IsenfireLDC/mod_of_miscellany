@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GAG",
+        "ABA",
+        "GAG"
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:gunpowder"
+        },
+        "A": {
+            "item": "minecraft:arrow"
+        },
+        "B": {
+            "item": "misc:arrowspawner",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "misc:arrowspawner",
+        "data": 1
+    }
+}

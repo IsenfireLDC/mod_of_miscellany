@@ -9,7 +9,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModRecipes {
 	
 	public static void init() {
-		
+		//TODO: Use json recipes
+		/*
 		//arrowspawners
 		//instant
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.inst10), "GAG", "ABA", "GAG", 'G', Items.GUNPOWDER, 'A', Items.ARROW, 'B', Items.BOW);
@@ -28,7 +29,7 @@ public class ModRecipes {
 		
 		//pizza
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.pizza), " C ", "SSS", "BBB", 'C', Items.MILK_BUCKET, 'S', Items.BEEF, 'B', Items.BREAD);
-		
+		*/
 	};
 
 }
